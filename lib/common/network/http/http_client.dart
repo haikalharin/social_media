@@ -2,16 +2,12 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_alice/core/alice_http_extensions.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
-import '../../../utils/flavors.dart';
 import '../../../utils/shared_preference/app_shared_preference.dart';
 import '../../configurations/configurations.dart';
-import '../../exceptions/server_error_exception.dart';
-import '../../remote/url/service_url.dart';
 import '../http_constants.dart';
 import 'http_util.dart';
 
@@ -35,7 +31,7 @@ class HttpClient {
 
   Uri _getParsedUrl(String path, {Map<String, String>? queryParameters}) {
     String h = host!;
-    String _subHost = Configurations.sub_host + "/";
+    String _subHost = Configurations.subHost + "/";
     String finalPath = _subHost + path;
     if (h.contains("//")) {
       h = h.split("//")[1];
@@ -267,9 +263,7 @@ class HttpClient {
   }
 
   void setCookieFromSession(String cookie) {
-    if (cookie != null) {
-      int index = cookie.indexOf(';');
-      header!['cookie'] = (index == -1) ? cookie : cookie.substring(0, index);
-    }
+    int index = cookie.indexOf(';');
+    header!['cookie'] = (index == -1) ? cookie : cookie.substring(0, index);
   }
 }

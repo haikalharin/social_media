@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppConstants {
   static const screenWidth = 750;

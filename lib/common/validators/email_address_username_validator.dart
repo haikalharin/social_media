@@ -10,7 +10,6 @@ class EmailAddressUsernameValidator extends FormzInput<String, UsernameValidatio
 
   @override
   UsernameValidationError? validator(String value) {
-    // return value.isNotEmpty == true ? null : UsernameValidationError.empty;
     if (!RegExp(RegexConstants.validEmailRegex).hasMatch(value)) {
       return UsernameValidationError.invalid;
     }
