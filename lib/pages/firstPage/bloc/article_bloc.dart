@@ -7,7 +7,8 @@ import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
 
 import '../../../common/exceptions/article_error_exception.dart';
-import '../../../data/model/response_model/article_model/article_model.dart';
+import '../../../data/model/article_detail_model/article_detail_model.dart';
+import '../../../data/model/article_model/article_model.dart';
 import '../../../data/model/response_model/response_model.dart';
 import '../../../data/repository/article_repository/article_repository.dart';
 
@@ -24,7 +25,7 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
   Stream<ArticlePageState> mapEventToState(ArticlePageEvent event) async* {
     if (event is ArticleFetchEvent) {
       yield* _mapArticleFetchEventToState(event, state);
-    } else if (event is ArticleReadEvent) {
+    } else if (event is ArticleReadDetailEvent) {
       yield* _mapArticleReadEventToState(event, state);
     } else if (event is ArticleBackEvent) {
       yield _mapArticleBackEventToState(event, state);
@@ -99,11 +100,29 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
   }
 
   Stream<ArticlePageState> _mapArticleReadEventToState(
-    ArticleReadEvent event,
+    ArticleReadDetailEvent event,
     ArticlePageState state,
   ) async* {
     yield state.copyWith(submitStatus: FormzStatus.submissionInProgress);
-    try {} on ArticleErrorException catch (e) {
+    yield state.copyWith(
+        submitStatus: FormzStatus.submissionInProgress,
+        type: 'fetching-detail',
+        keyword: '');
+    try {
+
+      ArticleDetailModel response = await articleRepository.readDetailArticle(event.id);
+      List<ArticleModel>? data = [];
+      String next = '';
+
+      if (response.id != null) {
+        yield state.copyWith(
+            submitStatus: FormzStatus.submissionSuccess,
+            articleDetailModel: response,
+          type: 'fetching-detail',);
+      }
+
+
+    } on ArticleErrorException catch (e) {
       print(e);
       yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
     } on Exception catch (a) {}

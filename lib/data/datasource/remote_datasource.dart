@@ -1,5 +1,6 @@
 import '../../common/network/http/http_client.dart';
-import '../model/response_model/article_model/article_model.dart';
+import '../model/article_detail_model/article_detail_model.dart';
+import '../model/article_model/article_model.dart';
 import '../model/response_model/response_model.dart';
 
 class RemoteDataSource {
@@ -7,24 +8,8 @@ class RemoteDataSource {
 
   RemoteDataSource({required this.httpClient});
 
-  //
-  // Future<ResponseModel<ArticleModel>> fetchArticle(
-  //     {String title = '',
-  //       String category = '',
-  //       int? page,
-  //       String? sortBy,
-  //       String? sort}) async {
-  //   Map<String, String> qParams = {
-  //     'title': title,
-  //     'category': category,
-  //     'page': page.toString(),
-  //     'size': "10",
-  //     'sort': "$sortBy,$sort",
-  //   };
-  //   final response =
-  //   await httpClient.get(ServiceUrl.listArticle, queryParameters: qParams);
-  //   return ResponseModel.fromJson(response, ArticleModel.fromJson);
-  // }
+
+
 
   Future<ResponseModel> fetchArticle(String page,String start, String end) async {
     try {
@@ -43,6 +28,21 @@ class RemoteDataSource {
       return data;
     } catch (e) {
       return ResponseModel.resultsEmpty();
+    }
+  }
+
+  Future<ArticleDetailModel> readDetailArticle(int id) async {
+    try {
+      Map<String, String> qParams = {
+        'key': '02ef6ba5d13444ee86bad607e8bce3f4',
+
+      };
+      final response = await httpClient.get(
+          "games/$id",queryParameters: qParams);
+      var data = ArticleDetailModel.fromJson(response);
+      return data;
+    } catch (e) {
+      return ArticleDetailModel();
     }
   }
 }

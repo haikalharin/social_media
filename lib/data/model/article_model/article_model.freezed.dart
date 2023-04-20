@@ -1008,7 +1008,9 @@ class __$$_AddedByStatusCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: true, explicitToJson: true)
 class _$_AddedByStatus implements _AddedByStatus {
   const _$_AddedByStatus(
       {this.yet,
@@ -1227,7 +1229,9 @@ class __$$_EsrbRatingCopyWithImpl<$Res> extends _$EsrbRatingCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: true, explicitToJson: true)
 class _$_EsrbRating implements _EsrbRating {
   const _$_EsrbRating(
       {this.id, this.name, this.slug, this.nameEn, this.nameRu});
@@ -1405,7 +1409,9 @@ class __$$_GenreCopyWithImpl<$Res> extends _$GenreCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: true, explicitToJson: true)
 class _$_Genre implements _Genre {
   const _$_Genre({this.id, this.name, this.slug});
 
@@ -1562,7 +1568,9 @@ class __$$_PlatformCopyWithImpl<$Res> extends _$PlatformCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: true, explicitToJson: true)
 class _$_Platform implements _Platform {
   const _$_Platform({this.platform});
 
@@ -1719,7 +1727,9 @@ class __$$_RatingCopyWithImpl<$Res> extends _$RatingCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: true, explicitToJson: true)
 class _$_Rating implements _Rating {
   const _$_Rating({this.id, this.title, this.count, this.percent});
 
@@ -1884,7 +1894,9 @@ class __$$_ShortScreenshotCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: true, explicitToJson: true)
 class _$_ShortScreenshot implements _ShortScreenshot {
   const _$_ShortScreenshot({this.id, this.image});
 
@@ -2033,7 +2045,9 @@ class __$$_StoreCopyWithImpl<$Res> extends _$StoreCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: true, explicitToJson: true)
 class _$_Store implements _Store {
   const _$_Store({this.store});
 
@@ -2224,7 +2238,9 @@ class __$$_TagCopyWithImpl<$Res> extends _$TagCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(
+    fieldRename: FieldRename.snake, includeIfNull: true, explicitToJson: true)
 class _$_Tag implements _Tag {
   const _$_Tag(
       {this.id,

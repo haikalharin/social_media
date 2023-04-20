@@ -1,5 +1,7 @@
 
 
+import 'package:base_app_new/data/model/article_detail_model/article_detail_model.dart';
+
 import '../../../common/exceptions/network_connection_exception.dart';
 import '../../../common/network/network_info.dart';
 import '../../datasource/remote_datasource.dart';
@@ -23,10 +25,10 @@ class ArticleRepositoryImpl extends ArticleRepository {
   }
 
   @override
-  Future<ResponseModel> readArticle(String id) async {
-    // if (await networkInfo.isConnected) {
-    //   return remoteDatasource.readArticle(id);
-    // }
+  Future<ArticleDetailModel> readDetailArticle(int id) async {
+    if (await networkInfo.isConnected) {
+      return remoteDatasource.readDetailArticle(id);
+    }
     throw NetworkConnectionException();
   }
 

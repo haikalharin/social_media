@@ -2,7 +2,7 @@ part of 'article_bloc.dart';
 
 class ArticlePageState with FormzMixin {
   final List<ArticleModel>? listArticle;
-  final ArticleModel? articleModel;
+  final ArticleDetailModel? articleDetailModel;
   final FormzStatus? submitStatus;
   final String? errorMessage;
   final String? type;
@@ -13,7 +13,7 @@ class ArticlePageState with FormzMixin {
   final String next;
 
   ArticlePageState({
-    this.articleModel,
+    this.articleDetailModel,
     this.listArticle,
     this.type,
     this.isSearch = false,
@@ -27,7 +27,7 @@ class ArticlePageState with FormzMixin {
 
   ArticlePageState copyWith(
       {FormzStatus? submitStatus,
-      ArticleModel? articleModel,
+      ArticleDetailModel? articleDetailModel,
       List<ArticleModel>? listArticle,
       bool? isSearch,
       String? type,
@@ -38,7 +38,7 @@ class ArticlePageState with FormzMixin {
       String? errorMessage}) {
     return ArticlePageState(
         submitStatus: submitStatus,
-        articleModel: articleModel ?? this.articleModel,
+        articleDetailModel: articleDetailModel ?? this.articleDetailModel,
         listArticle: listArticle ?? this.listArticle,
         isSearch: isSearch ?? this.isSearch,
         type: type,

@@ -7,7 +7,7 @@ import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 import '../../common/injector/injector.dart';
-import '../../data/model/response_model/article_model/article_model.dart';
+import '../../data/model/article_model/article_model.dart';
 import '../../utils/epragnancy_color.dart';
 import 'article_detail_page.dart';
 import 'bloc/article_bloc.dart';
@@ -154,7 +154,7 @@ class _ListArticleBody extends StatelessWidget {
           // 12/3
           return InkWell(
             onTap: () {
-              Injector.resolve<ArticlePageBloc>().add(ArticleReadEvent(""));
+
               Navigator.push(
                   context,
                   MaterialPageRoute(

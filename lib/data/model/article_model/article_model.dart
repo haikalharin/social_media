@@ -57,6 +57,7 @@ class ArticleModel with _$ArticleModel {
 
 @freezed
 class AddedByStatus with _$AddedByStatus {
+  @JsonSerializable(fieldRename: FieldRename.snake,includeIfNull: true, explicitToJson: true)
   const factory AddedByStatus({
      int? yet,
      int? owned,
@@ -71,6 +72,7 @@ class AddedByStatus with _$AddedByStatus {
 
 @freezed
 class EsrbRating with _$EsrbRating {
+  @JsonSerializable(fieldRename: FieldRename.snake,includeIfNull: true, explicitToJson: true)
   const factory EsrbRating({
      int? id,
      String? name,
@@ -86,6 +88,7 @@ class EsrbRating with _$EsrbRating {
 
 @freezed
 class Genre with _$Genre {
+  @JsonSerializable(fieldRename: FieldRename.snake,includeIfNull: true, explicitToJson: true)
   const factory Genre({
      int? id,
      String? name,
@@ -97,6 +100,7 @@ class Genre with _$Genre {
 
 @freezed
 class Platform with _$Platform {
+  @JsonSerializable(fieldRename: FieldRename.snake,includeIfNull: true, explicitToJson: true)
   const factory Platform({
      Genre? platform,
   }) = _Platform;
@@ -106,6 +110,7 @@ class Platform with _$Platform {
 
 @freezed
 class Rating with _$Rating {
+  @JsonSerializable(fieldRename: FieldRename.snake,includeIfNull: true, explicitToJson: true)
   const factory Rating({
      int? id,
      String? title,
@@ -118,6 +123,7 @@ class Rating with _$Rating {
 
 @freezed
 class ShortScreenshot with _$ShortScreenshot {
+  @JsonSerializable(fieldRename: FieldRename.snake,includeIfNull: true, explicitToJson: true)
   const factory ShortScreenshot({
      int? id,
      String? image,
@@ -128,6 +134,7 @@ class ShortScreenshot with _$ShortScreenshot {
 
 @freezed
 class Store with _$Store {
+  @JsonSerializable(fieldRename: FieldRename.snake,includeIfNull: true, explicitToJson: true)
   const factory Store({
      Genre? store,
   }) = _Store;
@@ -137,6 +144,7 @@ class Store with _$Store {
 
 @freezed
 class Tag with _$Tag {
+  @JsonSerializable(fieldRename: FieldRename.snake,includeIfNull: true, explicitToJson: true)
   const factory Tag({
      int? id,
      String? name,

@@ -1,13 +1,16 @@
+import 'dart:math';
+
 import 'package:base_app_new/pages/firstPage/bloc/article_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:formz/formz.dart';
 import 'package:intl/intl.dart';
 
 import '../../common/injector/injector.dart';
-import '../../data/model/response_model/article_model/article_model.dart';
+import '../../data/model/article_model/article_model.dart';
 import '../../utils/epragnancy_color.dart';
-
 
 class ArticleDetailPage extends StatefulWidget {
   ArticleModel? article = ArticleModel();
@@ -19,12 +22,21 @@ class ArticleDetailPage extends StatefulWidget {
 }
 
 class _ArticleDetailPageState extends State<ArticleDetailPage> {
+
+  var articleBgColor = [
+    EpregnancyColors.coolGreen,
+    EpregnancyColors.periwinkle,
+    EpregnancyColors.rosePink
+  ];
+  @override
+  void initState() {
+    Injector.resolve<ArticlePageBloc>()
+        .add(ArticleReadDetailEvent(widget.article?.id ?? 0));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    String outputDate = "";
-    var outputFormat = DateFormat.yMMMMd('id');
-    outputDate = outputFormat.format(DateTime.parse(widget.article?.released?? "0000-00-00"));
-
     return WillPopScope(
       onWillPop: () {
         return Future.value(true);
@@ -32,139 +44,249 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         body: BlocBuilder<ArticlePageBloc, ArticlePageState>(
-  builder: (context, state) {
-    return NestedScrollView(
-            headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-              return <Widget>[
-                SliverAppBar(
-                  expandedHeight: 300.0,
-                  floating: false,
-                  pinned: true,
-                  elevation: 0.0,
-                  leading: GestureDetector(
-                    child: const Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.grey,
-                    ),
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  backgroundColor: Colors.white,
-                  flexibleSpace: FlexibleSpaceBar(
-                    centerTitle: false,
-                    title: Container(),
-                    background: Image(
-                      image: NetworkImage(
-                         widget.article?.backgroundImage??'https://images.nintendolife.com/7eb5b6e59be08/a-hat-in-time-cover.cover_large.jpg'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                SliverPersistentHeader(
-                  pinned: true,
-                  delegate: _SliverAppBarDelegate(Container(
-                    width: MediaQuery.of(context).size.width,
-                    color: Colors.white,
-                    child: Container(
-                      padding: EdgeInsets.only(left: 20, right: 20),
-                      decoration: BoxDecoration(
-                        // borderRadius: BorderRadius.circular(5.0),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey,
-                            offset: Offset(0.0, 1.0), //(x,y)
-                            blurRadius: 6.0,
+          builder: (context, state) {
+            String outputDate = "";
+            var outputFormat = DateFormat.yMMMMd('id');
+            outputDate = outputFormat.format(DateTime.parse(
+                state.articleDetailModel?.released ?? "0000-00-00"));
+
+            return Stack(
+              children: [
+                NestedScrollView(
+                    headerSliverBuilder:
+                        (BuildContext context, bool innerBoxIsScrolled) {
+                      return <Widget>[
+                        SliverAppBar(
+                          expandedHeight: 300.0,
+                          floating: false,
+                          pinned: true,
+                          elevation: 0.0,
+                          leading: GestureDetector(
+                            child: const Icon(
+                              Icons.arrow_back_ios,
+                              color: Colors.grey,
+                            ),
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
                           ),
-                        ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(top: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(top: 5),
-                                  decoration: BoxDecoration(
-                                      borderRadius:
-                                      BorderRadius.circular(
-                                          10.0),
-                                      color:
-                                      EpregnancyColors.green),
-                                  height: 30,
-                                  width: 100,
-                                  child: Center(
-                                      child: Text(
-                                        "Rating : ${widget.article?.rating.toString()??''}",
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold),
-                                      )
-                                  ),
-                                ),
-                                Icon(Icons.ios_share),
-                              ],
+                          backgroundColor: Colors.white,
+                          flexibleSpace: FlexibleSpaceBar(
+                            centerTitle: false,
+                            title: Container(),
+                            background: Image(
+                              image: NetworkImage(state
+                                      .articleDetailModel?.backgroundImage ??
+                                  'https://images.nintendolife.com/7eb5b6e59be08/a-hat-in-time-cover.cover_large.jpg'),
+                              fit: BoxFit.cover,
                             ),
                           ),
-                          Container(
-                              margin: EdgeInsets.only(top: 10),
-                              child: Text(
-                                  widget.article?.name??'',
-                                  maxLines: 5,
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold),
-                                  overflow: TextOverflow.clip,
-                              ),
-                          ),
-                          Expanded(
+                        ),
+                        SliverPersistentHeader(
+                          pinned: true,
+                          delegate: _SliverAppBarDelegate(Container(
+                            width: MediaQuery.of(context).size.width,
+                            color: Colors.white,
                             child: Container(
-                                margin: EdgeInsets.only(top: 20, bottom: 10),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                        child: Icon(
-                                      Icons.access_time,
-                                      size: 18,
-                                    )),
-                                    SizedBox(
-                                      width: 5,
+                              padding: EdgeInsets.only(left: 20, right: 20),
+                              decoration: BoxDecoration(
+                                // borderRadius: BorderRadius.circular(5.0),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey,
+                                    offset: Offset(0.0, 1.0), //(x,y)
+                                    blurRadius: 6.0,
+                                  ),
+                                ],
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(top: 10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.only(top: 5),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                              color: EpregnancyColors.green),
+                                          height: 30,
+                                          width: 100,
+                                          child: Center(
+                                              child: Text(
+                                            "Rating : ${state.articleDetailModel?.rating.toString() ?? '0.0'}",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold),
+                                          )),
+                                        ),
+                                        Icon(Icons.ios_share),
+                                      ],
                                     ),
-                                    Container(
-                                        child: Text(
-                                          outputDate,
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(top: 10),
+                                    child: Text(
+                                      state.articleDetailModel?.name ?? '',
+                                      maxLines: 5,
                                       style: TextStyle(
-                                          fontSize: 16, color: Colors.black),
-                                    )),
-                                  ],
-                                )),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
+                                      overflow: TextOverflow.clip,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Container(child: ListView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        shrinkWrap: true,
+                                        itemCount: state.articleDetailModel?.publishers?.length,
+                                        itemBuilder: (context, index) {
+                                          return Row(
+                                            children: [
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    top: 5, right: 5),
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                    BorderRadius
+                                                        .circular(
+                                                        10.0),
+                                                    color:
+                                                    articleBgColor[Random().nextInt(3)]),
+                                                height: 30,
+                                                width: 180,
+                                                child: Center(
+                                                    child: Text(
+                                                      state.articleDetailModel
+                                                          ?.publishers !=
+                                                          null
+                                                          ? state
+                                                          .articleDetailModel
+                                                          ?.publishers![
+                                                      index]
+                                                          .name ??
+                                                          ''
+                                                          : '',
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(
+                                                          fontSize: 12,
+                                                          color: Colors.white,
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .bold),
+                                                    )),
+                                              ),
+                                            ],
+                                          );
+                                        })),
+                                  ),
+                                  Expanded(
+                                    child: Container(child: ListView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        shrinkWrap: true,
+                                        itemCount: state.articleDetailModel?.genres?.length,
+                                        itemBuilder: (context, index) {
+                                          return Row(
+                                            children: [
+                                              Container(
+                                                margin: EdgeInsets.only(
+                                                    top: 5, right: 5),
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                    BorderRadius
+                                                        .circular(
+                                                        10.0),
+                                                    color:
+                                                    EpregnancyColors
+                                                        .orange),
+                                                height: 20,
+                                                width: 100,
+                                                child: Center(
+                                                    child: Text(
+                                                      state.articleDetailModel
+                                                          ?.genres !=
+                                                          null
+                                                          ? state
+                                                          .articleDetailModel
+                                                          ?.genres![
+                                                      index]
+                                                          .name ??
+                                                          ''
+                                                          : '',
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(
+                                                          fontSize: 12,
+                                                          color: Colors.white,
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .bold),
+                                                    )),
+                                              ),
+                                            ],
+                                          );
+                                        })),
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                        margin: EdgeInsets.only(
+                                            bottom: 10),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                                child: Icon(
+                                              Icons.access_time,
+                                              size: 18,
+                                            )),
+                                            SizedBox(
+                                              width: 5,
+                                            ),
+                                            Container(
+                                                child: Text(
+                                              outputDate,
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.black),
+                                            )),
+                                          ],
+                                        )),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )),
+                        ),
+                      ];
+                    },
+                    body: Column(
+                      children: [
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: Container(
+                                padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
+                                child: Html(
+                                    data:
+                                        state.articleDetailModel?.description ??
+                                            '',
+                                    style: {
+                                      "body": Style(
+                                          fontSize: FontSize(16.0),
+                                          color: Colors.black),
+                                    })),
                           ),
-                        ],
-                      ),
-                    ),
-                  )),
-                ),
-              ];
-            },
-            body: Column(
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Container(
-                      padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
-                      child: Container()
-                    ),
-                  ),
-                ),
+                        ),
+                      ],
+                    )),
+                _Loading()
               ],
-            ));
-  },
-),
+            );
+          },
+        ),
       ),
     );
   }
@@ -179,7 +301,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   double get minExtent => 120.h;
 
   @override
-  double get maxExtent => 120.h;
+  double get maxExtent => 180.h;
 
   @override
   Widget build(
@@ -192,5 +314,22 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   @override
   bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
     return false;
+  }
+}
+
+class _Loading extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ArticlePageBloc, ArticlePageState>(
+        builder: (context, state) {
+      if (state.submitStatus == FormzStatus.submissionInProgress &&
+          state.type == 'fetching-detail') {
+        return Container(
+            color: Colors.white.withAlpha(90),
+            child: Center(child: CircularProgressIndicator()));
+      } else {
+        return Text("");
+      }
+    });
   }
 }

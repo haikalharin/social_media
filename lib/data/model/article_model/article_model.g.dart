@@ -120,8 +120,8 @@ _$_EsrbRating _$$_EsrbRatingFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int?,
       name: json['name'] as String?,
       slug: json['slug'] as String?,
-      nameEn: json['nameEn'] as String?,
-      nameRu: json['nameRu'] as String?,
+      nameEn: json['name_en'] as String?,
+      nameRu: json['name_ru'] as String?,
     );
 
 Map<String, dynamic> _$$_EsrbRatingToJson(_$_EsrbRating instance) =>
@@ -129,8 +129,8 @@ Map<String, dynamic> _$$_EsrbRatingToJson(_$_EsrbRating instance) =>
       'id': instance.id,
       'name': instance.name,
       'slug': instance.slug,
-      'nameEn': instance.nameEn,
-      'nameRu': instance.nameRu,
+      'name_en': instance.nameEn,
+      'name_ru': instance.nameRu,
     };
 
 _$_Genre _$$_GenreFromJson(Map<String, dynamic> json) => _$_Genre(
@@ -153,7 +153,7 @@ _$_Platform _$$_PlatformFromJson(Map<String, dynamic> json) => _$_Platform(
 
 Map<String, dynamic> _$$_PlatformToJson(_$_Platform instance) =>
     <String, dynamic>{
-      'platform': instance.platform,
+      'platform': instance.platform?.toJson(),
     };
 
 _$_Rating _$$_RatingFromJson(Map<String, dynamic> json) => _$_Rating(
@@ -189,7 +189,7 @@ _$_Store _$$_StoreFromJson(Map<String, dynamic> json) => _$_Store(
     );
 
 Map<String, dynamic> _$$_StoreToJson(_$_Store instance) => <String, dynamic>{
-      'store': instance.store,
+      'store': instance.store?.toJson(),
     };
 
 _$_Tag _$$_TagFromJson(Map<String, dynamic> json) => _$_Tag(
@@ -197,8 +197,8 @@ _$_Tag _$$_TagFromJson(Map<String, dynamic> json) => _$_Tag(
       name: json['name'] as String?,
       slug: json['slug'] as String?,
       language: json['language'] as String?,
-      gamesCount: json['gamesCount'] as int?,
-      imageBackground: json['imageBackground'] as String?,
+      gamesCount: json['games_count'] as int?,
+      imageBackground: json['image_background'] as String?,
     );
 
 Map<String, dynamic> _$$_TagToJson(_$_Tag instance) => <String, dynamic>{
@@ -206,6 +206,6 @@ Map<String, dynamic> _$$_TagToJson(_$_Tag instance) => <String, dynamic>{
       'name': instance.name,
       'slug': instance.slug,
       'language': instance.language,
-      'gamesCount': instance.gamesCount,
-      'imageBackground': instance.imageBackground,
+      'games_count': instance.gamesCount,
+      'image_background': instance.imageBackground,
     };
