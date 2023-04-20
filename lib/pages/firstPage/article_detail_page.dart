@@ -80,185 +80,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                             ),
                           ),
                         ),
-                        SliverPersistentHeader(
-                          pinned: true,
-                          delegate: _SliverAppBarDelegate(Container(
-                            width: MediaQuery.of(context).size.width,
-                            color: Colors.white,
-                            child: Container(
-                              padding: EdgeInsets.only(left: 20, right: 20),
-                              decoration: BoxDecoration(
-                                // borderRadius: BorderRadius.circular(5.0),
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey,
-                                    offset: Offset(0.0, 1.0), //(x,y)
-                                    blurRadius: 6.0,
-                                  ),
-                                ],
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    margin: EdgeInsets.only(top: 10),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          margin: EdgeInsets.only(top: 5),
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                              color: EpregnancyColors.green),
-                                          height: 30,
-                                          width: 100,
-                                          child: Center(
-                                              child: Text(
-                                            "Rating : ${state.articleDetailModel?.rating.toString() ?? '0.0'}",
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold),
-                                          )),
-                                        ),
-                                        Icon(Icons.ios_share),
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.only(top: 10),
-                                    child: Text(
-                                      state.articleDetailModel?.name ?? '',
-                                      maxLines: 5,
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold),
-                                      overflow: TextOverflow.clip,
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Container(child: ListView.builder(
-                                        scrollDirection: Axis.horizontal,
-                                        shrinkWrap: true,
-                                        itemCount: state.articleDetailModel?.publishers?.length,
-                                        itemBuilder: (context, index) {
-                                          return Row(
-                                            children: [
-                                              Container(
-                                                margin: EdgeInsets.only(
-                                                    top: 5, right: 5),
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                    BorderRadius
-                                                        .circular(
-                                                        10.0),
-                                                    color:
-                                                    articleBgColor[Random().nextInt(3)]),
-                                                height: 30,
-                                                width: 180,
-                                                child: Center(
-                                                    child: Text(
-                                                      state.articleDetailModel
-                                                          ?.publishers !=
-                                                          null
-                                                          ? state
-                                                          .articleDetailModel
-                                                          ?.publishers![
-                                                      index]
-                                                          .name ??
-                                                          ''
-                                                          : '',
-                                                      textAlign: TextAlign.center,
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .bold),
-                                                    )),
-                                              ),
-                                            ],
-                                          );
-                                        })),
-                                  ),
-                                  Expanded(
-                                    child: Container(child: ListView.builder(
-                                        scrollDirection: Axis.horizontal,
-                                        shrinkWrap: true,
-                                        itemCount: state.articleDetailModel?.genres?.length,
-                                        itemBuilder: (context, index) {
-                                          return Row(
-                                            children: [
-                                              Container(
-                                                margin: EdgeInsets.only(
-                                                    top: 5, right: 5),
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                    BorderRadius
-                                                        .circular(
-                                                        10.0),
-                                                    color:
-                                                    EpregnancyColors
-                                                        .orange),
-                                                height: 20,
-                                                width: 100,
-                                                child: Center(
-                                                    child: Text(
-                                                      state.articleDetailModel
-                                                          ?.genres !=
-                                                          null
-                                                          ? state
-                                                          .articleDetailModel
-                                                          ?.genres![
-                                                      index]
-                                                          .name ??
-                                                          ''
-                                                          : '',
-                                                      textAlign: TextAlign.center,
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .bold),
-                                                    )),
-                                              ),
-                                            ],
-                                          );
-                                        })),
-                                  ),
-                                  Expanded(
-                                    child: Container(
-                                        margin: EdgeInsets.only(
-                                            bottom: 10),
-                                        child: Row(
-                                          children: [
-                                            Container(
-                                                child: Icon(
-                                              Icons.access_time,
-                                              size: 18,
-                                            )),
-                                            SizedBox(
-                                              width: 5,
-                                            ),
-                                            Container(
-                                                child: Text(
-                                              outputDate,
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  color: Colors.black),
-                                            )),
-                                          ],
-                                        )),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )),
-                        ),
+                        header(context, state,outputDate)
                       ];
                     },
                     body: Column(
@@ -286,6 +108,158 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
           },
         ),
       ),
+    );
+  }
+
+  Widget header(BuildContext context, ArticlePageState state,String outputDate) {
+    return SliverPersistentHeader(
+      pinned: true,
+      delegate: _SliverAppBarDelegate(Container(
+        width: MediaQuery.of(context).size.width,
+        color: Colors.white,
+        child: Container(
+          padding: EdgeInsets.only(left: 20, right: 20),
+          decoration: BoxDecoration(
+            // borderRadius: BorderRadius.circular(5.0),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey,
+                offset: Offset(0.0, 1.0), //(x,y)
+                blurRadius: 6.0,
+              ),
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(top: 5),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: EpregnancyColors.green),
+                      height: 30,
+                      width: 100,
+                      child: Center(
+                          child: Text(
+                        "Rating : ${state.articleDetailModel?.rating.toString() ?? '0.0'}",
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      )),
+                    ),
+                    Icon(Icons.ios_share),
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 10),
+                child: Text(
+                  state.articleDetailModel?.name ?? '',
+                  maxLines: 5,
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  overflow: TextOverflow.clip,
+                ),
+              ),
+              Expanded(
+                child: Container(
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemCount: state.articleDetailModel?.publishers?.length,
+                        itemBuilder: (context, index) {
+                          return Row(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(top: 5, right: 5),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    color: articleBgColor[Random().nextInt(3)]),
+                                height: 30,
+                                width: 180,
+                                child: Center(
+                                    child: Text(
+                                  state.articleDetailModel?.publishers != null
+                                      ? state.articleDetailModel
+                                              ?.publishers![index].name ??
+                                          ''
+                                      : '',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                )),
+                              ),
+                            ],
+                          );
+                        })),
+              ),
+              Expanded(
+                child: Container(
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemCount: state.articleDetailModel?.genres?.length,
+                        itemBuilder: (context, index) {
+                          return Row(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(top: 5, right: 5),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    color: EpregnancyColors.orange),
+                                height: 20,
+                                width: 100,
+                                child: Center(
+                                    child: Text(
+                                  state.articleDetailModel?.genres != null
+                                      ? state.articleDetailModel?.genres![index]
+                                              .name ??
+                                          ''
+                                      : '',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                )),
+                              ),
+                            ],
+                          );
+                        })),
+              ),
+              Expanded(
+                child: Container(
+                    margin: EdgeInsets.only(bottom: 10),
+                    child: Row(
+                      children: [
+                        Container(
+                            child: Icon(
+                          Icons.access_time,
+                          size: 18,
+                        )),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Container(
+                            child: Text(
+                          outputDate,
+                          style: TextStyle(fontSize: 16, color: Colors.black),
+                        )),
+                      ],
+                    )),
+              ),
+            ],
+          ),
+        ),
+      )),
     );
   }
 }
