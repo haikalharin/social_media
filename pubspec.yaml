@@ -1,0 +1,187 @@
+name: base_app_new
+description: A new Flutter application.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.1 <3.0.0"
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_screenutil: ^5.5.3+2
+  kiwi: ^4.0.2
+  http: ^0.13.4
+  shared_preferences: ^2.0.13
+  flutter_bloc: ^7.0.0
+  equatable: ^2.0.3
+  formz: ^0.4.0
+  #  cloud_firestore: ^3.0.0
+  firebase_core: ^1.17.0
+  firebase_auth: ^3.3.18
+  firebase_messaging: ^11.4.4
+  flutter_local_notifications: ^9.5.3
+  firebase_storage: ^10.2.16
+  google_sign_in: ^5.0.7
+  cloud_firestore: ^3.1.17
+  image_picker: ^0.8.5+3
+  image_cropper: ^2.0.3
+  clipboard: ^0.1.3
+  grouped_list: ^5.0.0
+  flutter_parsed_text: ^2.2.1
+  url_launcher: ^6.0.4
+  flutter_svg: ^0.23.0+1
+  #  photo_view: ^0.11.0
+  intl: ^0.17.0
+  shimmer: ^2.0.0
+  rxdart: ^0.27.5
+  flutter_alarm_clock: ^0.0.2
+  flutter_inappwebview: ^5.0.5+2
+  lazy_load_scrollview: ^1.3.0
+  gugor_emoji: ^0.0.4
+  toast: any
+  font_awesome_flutter: ^10.2.1
+  animate_do: any
+  liquid_pull_to_refresh: ^3.0.1
+  flutter_html: ^2.2.1
+  dots_indicator: ^2.1.0
+  encrypt: ^5.0.1
+  pin_code_fields: ^7.4.0
+  flutter_alice: ^1.0.1
+  overlay_support: ^1.2.1
+  quiver: ^3.1.0
+  add_2_calendar: ^2.1.3
+  showcaseview: ^1.1.8
+  expandable: ^5.0.1
+  firebase_remote_config: ^2.0.1
+  lottie: ^1.4.2
+  age_calculator: ^1.0.0
+  mobile_scanner: ^1.1.2
+  qr_flutter: ^4.0.0
+  firebase_analytics: ^9.3.8
+  #blur from recent app
+  secure_content: ^0.0.11
+  root_detector: ^0.0.6
+  in_app_update: ^3.0.0
+  countly_flutter: ^23.2.0
+  #audio feature
+  audio_video_progress_bar: ^1.0.0
+  just_audio: ^0.9.30
+  just_audio_background: ^0.0.1-beta.7
+  audio_session: ^0.1.13
+  just_the_tooltip: ^0.0.11+2
+  device_info_plus: ^4.0.0
+  dotted_border: ^2.0.0
+  transparent_image: ^2.0.1
+
+
+  #flavor for environment management
+  #  flutter_flavor: ^3.1.1
+
+
+
+
+
+
+
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+  otp_text_field: ^1.1.3
+  date_field: ^3.0.1
+  toggle_switch: ^2.0.1
+  intl_phone_field: ^3.1.0
+  freezed_annotation: ^2.1.0
+  json_annotation: ^4.6.0
+
+
+#dependency_overrides:
+#  analyzer: ">=4.2.0 <5.0.0"
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^2.2.0
+  kiwi_generator: ^4.0.2
+  flutter_launcher_icons: ^0.10.0
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^1.0.0
+  freezed: 2.0.3+1
+  json_serializable: ^6.3.1
+  onboarding: ^3.1.0
+  flutter_countdown_timer: ^4.1.0
+  flutter_flavorizr: ^2.1.3
+  #dismiss keyboard
+  tap_to_dismiss_keyboard: ^0.0.4
+
+
+
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    #    - languages/
+    - assets/images/
+    - assets/icons/
+    - res/graphics/
+    - res/fonts/
+    - res/json/
+    - assets/model.tflite
+
+  fonts:
+    - family: Sora
+      fonts:
+        - asset: assets/fonts/Sora-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Sora-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Sora-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Sora-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Sora-Regular.ttf
+        - asset: assets/fonts/Sora-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Sora-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Sora-Thin.ttf
+          weight: 100

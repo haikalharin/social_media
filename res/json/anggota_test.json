@@ -1,0 +1,124 @@
+{
+  "anggotas": [
+    {
+      "id": 1,
+      "name": "AGUS RIANTO",
+      "code": "123456",
+      "bank": "BRI 425314146754"
+    },
+    {
+      "id": 2,
+      "name": "REXY TORNADO",
+      "code": "696969",
+      "bank": "BNI 987651234567"
+    },
+    {
+      "id": 3,
+      "name": "BAMBANG",
+      "code": "323232",
+      "bank": "BRI 098765432345"
+    },
+    {
+      "id": 4,
+      "name": "ADE LONDOK",
+      "code": "121212",
+      "bank": "BRI 4354587634"
+    },
+    {
+      "id": 5,
+      "name": "GISEL",
+      "code": "666666",
+      "bank": "BJB 2345654321"
+    },
+    {
+      "id": 6,
+      "name": "JESIKA",
+      "code": "888888",
+      "bank": "BCA 65433468"
+    },
+    {
+      "id": 7,
+      "name": "ARIEL NOAH",
+      "code": "545454",
+      "bank": "BCA 42346546"
+    },
+    {
+      "id": 8,
+      "name": "OPA",
+      "code": "343434",
+      "bank": "BNI 345654321"
+    },
+    {
+      "id": 9,
+      "name": "LE MEN HO",
+      "code": "565656",
+      "bank": "BTPN 999876543"
+    },
+    {
+      "id": 10,
+      "name": "HAIKAL",
+      "code": "999999",
+      "bank": "BCA 2654324587"
+    },
+    {
+      "id": 11,
+      "name": "ARAFI BABA",
+      "code": "676767",
+      "bank": "BTPN 13765432"
+    },
+    {
+      "id": 12,
+      "name": "JEMY HENDRA",
+      "code": "898989",
+      "bank": "BCA 8765478888"
+    },
+    {
+      "id": 13,
+      "name": "PONARI",
+      "code": "090909",
+      "bank": "BNI 934567890"
+    },
+    {
+      "id": 14,
+      "name": "BUDIANTO",
+      "code": "767676",
+      "bank": "BRI 98876542345"
+    },
+    {
+      "id": 15,
+      "name": "UPIK ABU",
+      "code": "131313",
+      "bank": "BRI 1243287654"
+    },
+    {
+      "id": 16,
+      "name": "YUSUF",
+      "code": "535353",
+      "bank": "BRI 98634567833"
+    },
+    {
+      "id": 17,
+      "name": "FAREL",
+      "code": "234234",
+      "bank": "BCA 5234567890"
+    },
+    {
+      "id": 18,
+      "name": "RAMOS",
+      "code": "890890",
+      "bank": "BTN 165432"
+    },
+    {
+      "id": 19,
+      "name": "RENALDI",
+      "code": "282828",
+      "bank": "BRI 983456789"
+    },
+    {
+      "id": 20,
+      "name": "DESY",
+      "code": "858585",
+      "bank": "BCA 87654323"
+    }
+  ]
+}
