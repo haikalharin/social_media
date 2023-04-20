@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
+import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
 
 import '../../../common/exceptions/article_error_exception.dart';
@@ -43,21 +44,54 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
     ArticleFetchEvent event,
     ArticlePageState state,
   ) async* {
-    yield state.copyWith(
-        submitStatus: FormzStatus.submissionInProgress,
-        type: 'fetching-article',
-        keyword: '');
+    if(event.isBottomScroll){
+      yield state.copyWith(
+          submitStatus: FormzStatus.submissionInProgress,
+          type: 'get-next-page-article',
+          keyword: '');
+    }else {
+      yield state.copyWith(
+          submitStatus: FormzStatus.submissionInProgress,
+          type: 'fetching-article',
+          keyword: '');
+    }
     try {
-      ResponseModel response = await articleRepository.fetchArticle(0, '', '');
-      List<ArticleModel> data = [];
+      int? page = state.page;
+      DateTime dateEnd = DateTime.now();
+      DateTime dateStart =  dateEnd.subtract(Duration(days: 365));
+
+      String endString = DateFormat('yyyy-MM-dd').format(dateEnd);
+      String startString = DateFormat('yyyy-MM-dd').format(dateStart);
+
+      if(event.page != 0){
+        page = event.page??1;
+      }
+
+
+      ResponseModel response = await articleRepository.fetchArticle(page,startString,endString);
+      List<ArticleModel>? data = [];
+      String next = '';
+
       if (response.results !=null) {
-        data = response.results;
+        if(state.listArticle != null && event.page != 1){
+          data = state.listArticle;
+          data?.addAll(response.results);
+        } else{
+          data = response.results;
+        }
+        next = response.next??'';
+        if(response.next!= null) {
+          page = state.page + 1;
+
+        }
       }
 
       yield state.copyWith(
           submitStatus: FormzStatus.submissionSuccess,
           listArticle: data,
-          keyword: '');
+          keyword: '',
+          page: page,
+      next: next);
     } on ArticleErrorException catch (e) {
       print(e);
       yield state.copyWith(submitStatus: FormzStatus.submissionFailure);

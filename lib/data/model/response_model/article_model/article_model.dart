@@ -17,7 +17,7 @@ String articleModelToJson(ArticleModel data) => json.encode(data.toJson());
 
 @freezed
 class ArticleModel with _$ArticleModel {
-  @JsonSerializable(fieldRename: FieldRename.none,includeIfNull: true, explicitToJson: true)
+  @JsonSerializable(fieldRename: FieldRename.snake,includeIfNull: true, explicitToJson: true)
   const factory ArticleModel({
     String? slug,
     String? name,

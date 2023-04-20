@@ -15,10 +15,9 @@ class ArticleRepositoryImpl extends ArticleRepository {
 
   @override
   Future<ResponseModel> fetchArticle(
-      int page, String sort, String sortBy,
-      { String title = '', String category = ''}) async {
+      int page,String start, String end) async {
     if (await networkInfo.isConnected) {
-      return remoteDatasource.fetchArticle('');
+      return remoteDatasource.fetchArticle(page.toString(),start,end);
     }
     throw NetworkConnectionException();
   }

@@ -26,13 +26,13 @@ class RemoteDataSource {
   //   return ResponseModel.fromJson(response, ArticleModel.fromJson);
   // }
 
-  Future<ResponseModel> fetchArticle(String id) async {
+  Future<ResponseModel> fetchArticle(String page,String start, String end) async {
     try {
       Map<String, String> qParams = {
-        'page': '1',
+        'page': page,
         'page_size': '20',
         'platforms': '187',
-        'dates': '2020-12-21,2021-12-21',
+        'dates': '$start,$end',
         'ordering': '-released',
         'key': '02ef6ba5d13444ee86bad607e8bce3f4',
 

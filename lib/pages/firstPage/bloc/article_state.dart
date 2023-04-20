@@ -20,7 +20,7 @@ class ArticlePageState with FormzMixin {
     this.submitStatus = FormzStatus.pure,
     this.errorMessage,
     this.last = false,
-    this.page = 0,
+    this.page = 1,
     this.keyword = '',
     this.next = '',
   });
@@ -34,6 +34,7 @@ class ArticlePageState with FormzMixin {
       bool? last,
       int? page,
       String? keyword,
+      String? next,
       String? errorMessage}) {
     return ArticlePageState(
         submitStatus: submitStatus,
@@ -44,6 +45,7 @@ class ArticlePageState with FormzMixin {
         last: last ?? this.last,
         page: page ?? this.page,
         keyword: keyword ?? this.keyword,
+        next: next ?? this.keyword,
         errorMessage: errorMessage);
   }
 

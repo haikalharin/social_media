@@ -19,21 +19,21 @@ _$_ArticleModel _$$_ArticleModelFromJson(Map<String, dynamic> json) =>
           .toList(),
       released: json['released'] as String?,
       tba: json['tba'] as bool?,
-      backgroundImage: json['backgroundImage'] as String?,
+      backgroundImage: json['background_image'] as String?,
       rating: (json['rating'] as num?)?.toDouble(),
-      ratingTop: json['ratingTop'] as int?,
+      ratingTop: json['rating_top'] as int?,
       ratings: (json['ratings'] as List<dynamic>?)
           ?.map((e) => Rating.fromJson(e as Map<String, dynamic>))
           .toList(),
-      ratingsCount: json['ratingsCount'] as int?,
-      reviewsTextCount: json['reviewsTextCount'] as int?,
+      ratingsCount: json['ratings_count'] as int?,
+      reviewsTextCount: json['reviews_text_count'] as int?,
       added: json['added'] as int?,
-      addedByStatus: json['addedByStatus'] == null
+      addedByStatus: json['added_by_status'] == null
           ? null
           : AddedByStatus.fromJson(
-              json['addedByStatus'] as Map<String, dynamic>),
+              json['added_by_status'] as Map<String, dynamic>),
       metacritic: json['metacritic'] as int?,
-      suggestionsCount: json['suggestionsCount'] as int?,
+      suggestionsCount: json['suggestions_count'] as int?,
       updated: json['updated'] as String?,
       id: json['id'] as int?,
       score: json['score'],
@@ -41,17 +41,17 @@ _$_ArticleModel _$$_ArticleModelFromJson(Map<String, dynamic> json) =>
       tags: (json['tags'] as List<dynamic>?)
           ?.map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
-      esrbRating: json['esrbRating'] == null
+      esrbRating: json['esrb_rating'] == null
           ? null
-          : EsrbRating.fromJson(json['esrbRating'] as Map<String, dynamic>),
-      userGame: json['userGame'],
-      reviewsCount: json['reviewsCount'] as int?,
-      saturatedColor: json['saturatedColor'] as String?,
-      dominantColor: json['dominantColor'] as String?,
-      shortScreenshots: (json['shortScreenshots'] as List<dynamic>?)
+          : EsrbRating.fromJson(json['esrb_rating'] as Map<String, dynamic>),
+      userGame: json['user_game'],
+      reviewsCount: json['reviews_count'] as int?,
+      saturatedColor: json['saturated_color'] as String?,
+      dominantColor: json['dominant_color'] as String?,
+      shortScreenshots: (json['short_screenshots'] as List<dynamic>?)
           ?.map((e) => ShortScreenshot.fromJson(e as Map<String, dynamic>))
           .toList(),
-      parentPlatforms: (json['parentPlatforms'] as List<dynamic>?)
+      parentPlatforms: (json['parent_platforms'] as List<dynamic>?)
           ?.map((e) => Platform.fromJson(e as Map<String, dynamic>))
           .toList(),
       genres: (json['genres'] as List<dynamic>?)
@@ -68,29 +68,29 @@ Map<String, dynamic> _$$_ArticleModelToJson(_$_ArticleModel instance) =>
       'stores': instance.stores?.map((e) => e.toJson()).toList(),
       'released': instance.released,
       'tba': instance.tba,
-      'backgroundImage': instance.backgroundImage,
+      'background_image': instance.backgroundImage,
       'rating': instance.rating,
-      'ratingTop': instance.ratingTop,
+      'rating_top': instance.ratingTop,
       'ratings': instance.ratings?.map((e) => e.toJson()).toList(),
-      'ratingsCount': instance.ratingsCount,
-      'reviewsTextCount': instance.reviewsTextCount,
+      'ratings_count': instance.ratingsCount,
+      'reviews_text_count': instance.reviewsTextCount,
       'added': instance.added,
-      'addedByStatus': instance.addedByStatus?.toJson(),
+      'added_by_status': instance.addedByStatus?.toJson(),
       'metacritic': instance.metacritic,
-      'suggestionsCount': instance.suggestionsCount,
+      'suggestions_count': instance.suggestionsCount,
       'updated': instance.updated,
       'id': instance.id,
       'score': instance.score,
       'clip': instance.clip,
       'tags': instance.tags?.map((e) => e.toJson()).toList(),
-      'esrbRating': instance.esrbRating?.toJson(),
-      'userGame': instance.userGame,
-      'reviewsCount': instance.reviewsCount,
-      'saturatedColor': instance.saturatedColor,
-      'dominantColor': instance.dominantColor,
-      'shortScreenshots':
+      'esrb_rating': instance.esrbRating?.toJson(),
+      'user_game': instance.userGame,
+      'reviews_count': instance.reviewsCount,
+      'saturated_color': instance.saturatedColor,
+      'dominant_color': instance.dominantColor,
+      'short_screenshots':
           instance.shortScreenshots?.map((e) => e.toJson()).toList(),
-      'parentPlatforms':
+      'parent_platforms':
           instance.parentPlatforms?.map((e) => e.toJson()).toList(),
       'genres': instance.genres?.map((e) => e.toJson()).toList(),
     };

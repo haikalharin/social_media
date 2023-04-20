@@ -11,20 +11,10 @@ abstract class ArticlePageEvent extends Equatable {
 enum SortEnum { asc, desc }
 
 class ArticleFetchEvent extends ArticlePageEvent {
-  const ArticleFetchEvent(this.condition, this.page,
-      {this.keyword = '',
-      this.isSearch = false,
-      this.isNextPage = false,
-      this.sortBy = 'createdDate',
-      this.sort = SortEnum.desc});
+  const ArticleFetchEvent({this.page = 0,this.isBottomScroll=false});
 
-  final String? sortBy;
-  final SortEnum? sort;
   final int? page;
-  final bool isNextPage;
-  final String condition;
-  final String keyword;
-  final bool isSearch;
+  final bool isBottomScroll;
 
   @override
   List<Object> get props => [];

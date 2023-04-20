@@ -1,4 +1,6 @@
+import 'package:base_app_new/pages/firstPage/bloc/article_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
@@ -7,13 +9,21 @@ import '../../data/model/response_model/article_model/article_model.dart';
 import '../../utils/epragnancy_color.dart';
 
 
-class ArticleDetailPage extends StatelessWidget {
+class ArticleDetailPage extends StatefulWidget {
   ArticleModel? article = ArticleModel();
 
   ArticleDetailPage({this.article});
 
   @override
+  State<ArticleDetailPage> createState() => _ArticleDetailPageState();
+}
+
+class _ArticleDetailPageState extends State<ArticleDetailPage> {
+  @override
   Widget build(BuildContext context) {
+    String outputDate = "";
+    var outputFormat = DateFormat.yMMMMd('id');
+    outputDate = outputFormat.format(DateTime.parse(widget.article?.released?? "0000-00-00"));
 
     return WillPopScope(
       onWillPop: () {
@@ -21,7 +31,9 @@ class ArticleDetailPage extends StatelessWidget {
       },
       child: Scaffold(
         backgroundColor: Colors.white,
-        body: NestedScrollView(
+        body: BlocBuilder<ArticlePageBloc, ArticlePageState>(
+  builder: (context, state) {
+    return NestedScrollView(
             headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
               return <Widget>[
                 SliverAppBar(
@@ -35,7 +47,7 @@ class ArticleDetailPage extends StatelessWidget {
                       color: Colors.grey,
                     ),
                     onTap: () {
-
+                      Navigator.pop(context);
                     },
                   ),
                   backgroundColor: Colors.white,
@@ -44,7 +56,7 @@ class ArticleDetailPage extends StatelessWidget {
                     title: Container(),
                     background: Image(
                       image: NetworkImage(
-                         'https://images.nintendolife.com/7eb5b6e59be08/a-hat-in-time-cover.cover_large.jpg'),
+                         widget.article?.backgroundImage??'https://images.nintendolife.com/7eb5b6e59be08/a-hat-in-time-cover.cover_large.jpg'),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -82,12 +94,12 @@ class ArticleDetailPage extends StatelessWidget {
                                       BorderRadius.circular(
                                           10.0),
                                       color:
-                                      EpregnancyColors.primer),
-                                  height: 20,
-                                  width: 80,
+                                      EpregnancyColors.green),
+                                  height: 30,
+                                  width: 100,
                                   child: Center(
                                       child: Text(
-                                        "Berita",
+                                        "Rating : ${widget.article?.rating.toString()??''}",
                                         style: TextStyle(
                                             fontSize: 14,
                                             color: Colors.white,
@@ -102,7 +114,7 @@ class ArticleDetailPage extends StatelessWidget {
                           Container(
                               margin: EdgeInsets.only(top: 10),
                               child: Text(
-                                  '',
+                                  widget.article?.name??'',
                                   maxLines: 5,
                                   style: TextStyle(
                                       fontSize: 16,
@@ -125,7 +137,7 @@ class ArticleDetailPage extends StatelessWidget {
                                     ),
                                     Container(
                                         child: Text(
-                                      'asdasds',
+                                          outputDate,
                                       style: TextStyle(
                                           fontSize: 16, color: Colors.black),
                                     )),
@@ -150,7 +162,9 @@ class ArticleDetailPage extends StatelessWidget {
                   ),
                 ),
               ],
-            )),
+            ));
+  },
+),
       ),
     );
   }

@@ -504,7 +504,7 @@ class __$$_ArticleModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(
-    fieldRename: FieldRename.none, includeIfNull: true, explicitToJson: true)
+    fieldRename: FieldRename.snake, includeIfNull: true, explicitToJson: true)
 class _$_ArticleModel implements _ArticleModel {
   const _$_ArticleModel(
       {this.slug,
