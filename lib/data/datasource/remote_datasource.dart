@@ -1,3 +1,5 @@
+import 'package:base_app_new/common/configurations/configurations.dart';
+
 import '../../common/network/http/http_client.dart';
 import '../model/article_detail_model/article_detail_model.dart';
 import '../model/article_model/article_model.dart';
@@ -34,8 +36,7 @@ class RemoteDataSource {
   Future<ArticleDetailModel> readDetailArticle(int id) async {
     try {
       Map<String, String> qParams = {
-        'key': '02ef6ba5d13444ee86bad607e8bce3f4',
-
+        'key': Configurations.key,
       };
       final response = await httpClient.get(
           "games/$id",queryParameters: qParams);

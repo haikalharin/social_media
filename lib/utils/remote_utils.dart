@@ -1,15 +1,7 @@
-dynamic getData(dynamic result) => result['data'];
+dynamic getDataValue(dynamic result) => result;
 
-int getCode(dynamic result) => result['code'];
+dynamic getGameUrl(dynamic result) => result['game_url'];
 
-dynamic getDataList(dynamic result) => result['total_results'];
+dynamic getGameName(dynamic result) => result['game_name'];
 
-dynamic getErrorResult(dynamic result) => result['error'];
-
-String getFormattedUrl(String url, Map<String, String> variables) {
-  return url.replaceAllMapped(RegExp(r'{{\w+}}'), (match) {
-    final key = match.group(0)?.replaceAll(RegExp(r'[{}]'), '');
-    return variables[key]??'';
-  });
-}
 

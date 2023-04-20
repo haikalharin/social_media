@@ -86,18 +86,12 @@ class HttpClient {
 
   Future<Response?> downloadAccess(String path) async {
     late Response response;
-    if (Configurations.isShowChucker == true) {
-      response = await _client!
-          .get(
-            _getParsedUrl(path),
-            headers: header,
-          );
-    } else {
+
       response = await _client!.get(
         _getParsedUrl(path),
         headers: header,
       );
-    }
+
 
     return response;
   }
@@ -111,17 +105,7 @@ class HttpClient {
       {Map<String, String>? overrideHeader}) async {
     final Map<String, String>? requestHeader = overrideHeader ?? header;
     late Response response;
-    if (Configurations.isShowChucker == true) {
-      response = await _client!
-          .post(
-            _getParsedUrl(path),
-            body: HttpUtil.encodeRequestBody(
-                json.encode(data), requestHeader![HttpConstants.contentType]!),
-            headers: requestHeader,
-          );
 
-      updateCookie(response);
-    } else {
       response = await _client!.post(
         _getParsedUrl(path),
         body: HttpUtil.encodeRequestBody(
@@ -129,7 +113,7 @@ class HttpClient {
         headers: requestHeader,
       );
       updateCookie(response);
-    }
+
 
     return response;
   }
@@ -189,22 +173,14 @@ class HttpClient {
       {Map<String, String>? overrideHeader}) async {
     final Map<String, String>? requestHeader = overrideHeader ?? header;
     late Response response;
-    if (Configurations.isShowChucker == true) {
-      response = await _client!
-          .delete(
-            _getParsedUrl(path),
-            body: HttpUtil.encodeRequestBody(
-                json.encode(data), requestHeader![HttpConstants.contentType]!),
-            headers: requestHeader,
-          );
-    } else {
+
       response = await _client!.delete(
         _getParsedUrl(path),
         body: HttpUtil.encodeRequestBody(
             json.encode(data), requestHeader![HttpConstants.contentType]!),
         headers: requestHeader,
       );
-    }
+
     return response;
   }
 
@@ -231,7 +207,7 @@ class HttpClient {
       {Map<String, String>? overrideHeader}) async {
     final Map<String, String>? requestHeader = overrideHeader ?? header;
     late Response response;
-    if (Configurations.isShowChucker == true) {
+
       response = await _client!
           .put(
             _getParsedUrl(path),
@@ -239,14 +215,13 @@ class HttpClient {
                 json.encode(data), requestHeader![HttpConstants.contentType]!),
             headers: requestHeader,
           );
-    } else {
+
       response = await _client!.put(
         _getParsedUrl(path),
         body: HttpUtil.encodeRequestBody(
-            json.encode(data), requestHeader![HttpConstants.contentType]!),
+            json.encode(data), requestHeader[HttpConstants.contentType]!),
         headers: requestHeader,
       );
-    }
 
     return response;
   }

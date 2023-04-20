@@ -13,9 +13,8 @@ import '../../data/model/article_model/article_model.dart';
 import '../../utils/epragnancy_color.dart';
 
 class ArticleDetailPage extends StatefulWidget {
-  ArticleModel? article = ArticleModel();
 
-  ArticleDetailPage({this.article});
+  ArticleDetailPage();
 
   @override
   State<ArticleDetailPage> createState() => _ArticleDetailPageState();
@@ -30,8 +29,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
   ];
   @override
   void initState() {
-    Injector.resolve<ArticlePageBloc>()
-        .add(ArticleReadDetailEvent(widget.article?.id ?? 0));
+
     super.initState();
   }
 

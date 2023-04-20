@@ -5,6 +5,7 @@ import 'package:formz/formz.dart';
 import 'package:intl/intl.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+import 'package:rxdart/rxdart.dart';
 
 import '../../common/injector/injector.dart';
 import '../../data/model/article_model/article_model.dart';
@@ -27,7 +28,6 @@ class ListArticleVertical extends StatefulWidget {
 class _ListArticleVerticalState extends State<ListArticleVertical> {
   final GlobalKey<LiquidPullToRefreshState> _refreshIndicatorKey =
       GlobalKey<LiquidPullToRefreshState>();
-
   Future<void> _handleRefresh() async {
     if (widget.isSearch == false) {
       Injector.resolve<ArticlePageBloc>().add(ArticleFetchEvent(page: 1));
@@ -52,7 +52,15 @@ class _ListArticleVerticalState extends State<ListArticleVertical> {
   Widget build(BuildContext context) {
     return BlocListener<ArticlePageBloc, ArticlePageState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if (state.submitStatus == FormzStatus.submissionSuccess &&
+            state.type == 'fetching-detail') {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ArticleDetailPage()
+              )
+          );
+        }
       },
       child: BlocBuilder<ArticlePageBloc, ArticlePageState>(
         builder: (context, state) {
@@ -154,14 +162,8 @@ class _ListArticleBody extends StatelessWidget {
           // 12/3
           return InkWell(
             onTap: () {
-
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ArticleDetailPage(
-                          article: state.listArticle![index])
-                  )
-              );
+              Injector.resolve<ArticlePageBloc>()
+                  .add(ArticleReadDetailEvent( state.listArticle![index].id ?? 0));
             },
             child: Container(
               height: 300,

@@ -59,31 +59,33 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
     try {
       int? page = state.page;
       DateTime dateEnd = DateTime.now();
-      DateTime dateStart =  dateEnd.subtract(Duration(days: 365));
-
+      DateTime dateStart = dateEnd.subtract(Duration(days: 365));
+      bool isLast = false;
       String endString = DateFormat('yyyy-MM-dd').format(dateEnd);
       String startString = DateFormat('yyyy-MM-dd').format(dateStart);
 
-      if(event.page != 0){
-        page = event.page??1;
+      if (event.page != 0) {
+        page = event.page ?? 1;
       }
 
 
-      ResponseModel response = await articleRepository.fetchArticle(page,startString,endString);
+      ResponseModel response = await articleRepository.fetchArticle(
+          page, startString, endString);
       List<ArticleModel>? data = [];
       String next = '';
 
-      if (response.results !=null) {
-        if(state.listArticle != null && event.page != 1){
+      if (response.results != null) {
+        if (state.listArticle != null && event.page != 1) {
           data = state.listArticle;
           data?.addAll(response.results);
-        } else{
+        } else {
           data = response.results;
         }
         next = response.next??'';
-        if(response.next!= null) {
+        if (response.next != null) {
           page = state.page + 1;
-
+        } else {
+          isLast = true;
         }
       }
 
@@ -92,7 +94,8 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
           listArticle: data,
           keyword: '',
           page: page,
-      next: next);
+          last: isLast,
+          next: next);
     } on ArticleErrorException catch (e) {
       print(e);
       yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
