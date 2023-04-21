@@ -93,7 +93,7 @@ class _ListArticleVerticalState extends State<ListArticleVertical> {
                                               state.type ==
                                                   "get-next-page-article",
                                           onEndOfPage: () {
-                                            if (!state.last) {
+                                            if (!state.isLast) {
                                               if (widget.isSearch == true) {
                                                 Injector.resolve<
                                                         ArticlePageBloc>()

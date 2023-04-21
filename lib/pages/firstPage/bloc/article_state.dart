@@ -1,13 +1,13 @@
 part of 'article_bloc.dart';
 
-class ArticlePageState with FormzMixin {
+class ArticlePageState extends Equatable with FormzMixin {
   final List<ArticleModel>? listArticle;
   final ArticleDetailModel? articleDetailModel;
   final FormzStatus? submitStatus;
   final String? errorMessage;
   final String? type;
   final bool? isSearch;
-  final bool last;
+  final bool isLast;
   final int page;
   final String keyword;
   final String next;
@@ -19,7 +19,7 @@ class ArticlePageState with FormzMixin {
     this.isSearch = false,
     this.submitStatus = FormzStatus.pure,
     this.errorMessage,
-    this.last = false,
+    this.isLast = false,
     this.page = 1,
     this.keyword = '',
     this.next = '',
@@ -31,7 +31,7 @@ class ArticlePageState with FormzMixin {
       List<ArticleModel>? listArticle,
       bool? isSearch,
       String? type,
-      bool? last,
+      bool? isLast,
       int? page,
       String? keyword,
       String? next,
@@ -42,7 +42,7 @@ class ArticlePageState with FormzMixin {
         listArticle: listArticle ?? this.listArticle,
         isSearch: isSearch ?? this.isSearch,
         type: type,
-        last: last ?? this.last,
+        isLast: isLast ?? this.isLast,
         page: page ?? this.page,
         keyword: keyword ?? this.keyword,
         next: next ?? this.keyword,
@@ -50,7 +50,22 @@ class ArticlePageState with FormzMixin {
   }
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => type == 'fetching-detail'
+      ? [
+          submitStatus ?? '',
+          articleDetailModel ?? ArticleDetailModel(),
+          type ?? ''
+        ]
+      : type == 'fetching-article'
+          ? [
+              submitStatus ?? '',
+              listArticle ?? [],
+              type ?? '',
+              page,
+              isLast,
+              next
+            ]
+          : [];
 
   @override
   // TODO: implement inputs

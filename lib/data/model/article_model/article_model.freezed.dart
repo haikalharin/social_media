@@ -1,6 +1,5 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'article_model.dart';
@@ -12,11 +11,88 @@ part of 'article_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 ArticleModel _$ArticleModelFromJson(Map<String, dynamic> json) {
   return _ArticleModel.fromJson(json);
 }
+
+/// @nodoc
+class _$ArticleModelTearOff {
+  const _$ArticleModelTearOff();
+
+  _ArticleModel call(
+      {String? slug,
+      String? name,
+      int? playtime,
+      List<Platform>? platforms,
+      List<Store>? stores,
+      String? released,
+      bool? tba,
+      String? backgroundImage,
+      double? rating,
+      int? ratingTop,
+      List<Rating>? ratings,
+      int? ratingsCount,
+      int? reviewsTextCount,
+      int? added,
+      AddedByStatus? addedByStatus,
+      int? metacritic,
+      int? suggestionsCount,
+      String? updated,
+      int? id,
+      dynamic score,
+      dynamic clip,
+      List<Tag>? tags,
+      EsrbRating? esrbRating,
+      dynamic userGame,
+      int? reviewsCount,
+      String? saturatedColor,
+      String? dominantColor,
+      List<ShortScreenshot>? shortScreenshots,
+      List<Platform>? parentPlatforms,
+      List<Genre>? genres}) {
+    return _ArticleModel(
+      slug: slug,
+      name: name,
+      playtime: playtime,
+      platforms: platforms,
+      stores: stores,
+      released: released,
+      tba: tba,
+      backgroundImage: backgroundImage,
+      rating: rating,
+      ratingTop: ratingTop,
+      ratings: ratings,
+      ratingsCount: ratingsCount,
+      reviewsTextCount: reviewsTextCount,
+      added: added,
+      addedByStatus: addedByStatus,
+      metacritic: metacritic,
+      suggestionsCount: suggestionsCount,
+      updated: updated,
+      id: id,
+      score: score,
+      clip: clip,
+      tags: tags,
+      esrbRating: esrbRating,
+      userGame: userGame,
+      reviewsCount: reviewsCount,
+      saturatedColor: saturatedColor,
+      dominantColor: dominantColor,
+      shortScreenshots: shortScreenshots,
+      parentPlatforms: parentPlatforms,
+      genres: genres,
+    );
+  }
+
+  ArticleModel fromJson(Map<String, Object?> json) {
+    return ArticleModel.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $ArticleModel = _$ArticleModelTearOff();
 
 /// @nodoc
 mixin _$ArticleModel {
@@ -288,11 +364,11 @@ class _$ArticleModelCopyWithImpl<$Res> implements $ArticleModelCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_ArticleModelCopyWith<$Res>
+abstract class _$ArticleModelCopyWith<$Res>
     implements $ArticleModelCopyWith<$Res> {
-  factory _$$_ArticleModelCopyWith(
-          _$_ArticleModel value, $Res Function(_$_ArticleModel) then) =
-      __$$_ArticleModelCopyWithImpl<$Res>;
+  factory _$ArticleModelCopyWith(
+          _ArticleModel value, $Res Function(_ArticleModel) then) =
+      __$ArticleModelCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? slug,
@@ -333,15 +409,14 @@ abstract class _$$_ArticleModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ArticleModelCopyWithImpl<$Res>
-    extends _$ArticleModelCopyWithImpl<$Res>
-    implements _$$_ArticleModelCopyWith<$Res> {
-  __$$_ArticleModelCopyWithImpl(
-      _$_ArticleModel _value, $Res Function(_$_ArticleModel) _then)
-      : super(_value, (v) => _then(v as _$_ArticleModel));
+class __$ArticleModelCopyWithImpl<$Res> extends _$ArticleModelCopyWithImpl<$Res>
+    implements _$ArticleModelCopyWith<$Res> {
+  __$ArticleModelCopyWithImpl(
+      _ArticleModel _value, $Res Function(_ArticleModel) _then)
+      : super(_value, (v) => _then(v as _ArticleModel));
 
   @override
-  _$_ArticleModel get _value => super._value as _$_ArticleModel;
+  _ArticleModel get _value => super._value as _ArticleModel;
 
   @override
   $Res call({
@@ -376,7 +451,7 @@ class __$$_ArticleModelCopyWithImpl<$Res>
     Object? parentPlatforms = freezed,
     Object? genres = freezed,
   }) {
-    return _then(_$_ArticleModel(
+    return _then(_ArticleModel(
       slug: slug == freezed
           ? _value.slug
           : slug // ignore: cast_nullable_to_non_nullable
@@ -390,11 +465,11 @@ class __$$_ArticleModelCopyWithImpl<$Res>
           : playtime // ignore: cast_nullable_to_non_nullable
               as int?,
       platforms: platforms == freezed
-          ? _value._platforms
+          ? _value.platforms
           : platforms // ignore: cast_nullable_to_non_nullable
               as List<Platform>?,
       stores: stores == freezed
-          ? _value._stores
+          ? _value.stores
           : stores // ignore: cast_nullable_to_non_nullable
               as List<Store>?,
       released: released == freezed
@@ -418,7 +493,7 @@ class __$$_ArticleModelCopyWithImpl<$Res>
           : ratingTop // ignore: cast_nullable_to_non_nullable
               as int?,
       ratings: ratings == freezed
-          ? _value._ratings
+          ? _value.ratings
           : ratings // ignore: cast_nullable_to_non_nullable
               as List<Rating>?,
       ratingsCount: ratingsCount == freezed
@@ -462,7 +537,7 @@ class __$$_ArticleModelCopyWithImpl<$Res>
           : clip // ignore: cast_nullable_to_non_nullable
               as dynamic,
       tags: tags == freezed
-          ? _value._tags
+          ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<Tag>?,
       esrbRating: esrbRating == freezed
@@ -486,15 +561,15 @@ class __$$_ArticleModelCopyWithImpl<$Res>
           : dominantColor // ignore: cast_nullable_to_non_nullable
               as String?,
       shortScreenshots: shortScreenshots == freezed
-          ? _value._shortScreenshots
+          ? _value.shortScreenshots
           : shortScreenshots // ignore: cast_nullable_to_non_nullable
               as List<ShortScreenshot>?,
       parentPlatforms: parentPlatforms == freezed
-          ? _value._parentPlatforms
+          ? _value.parentPlatforms
           : parentPlatforms // ignore: cast_nullable_to_non_nullable
               as List<Platform>?,
       genres: genres == freezed
-          ? _value._genres
+          ? _value.genres
           : genres // ignore: cast_nullable_to_non_nullable
               as List<Genre>?,
     ));
@@ -510,14 +585,14 @@ class _$_ArticleModel implements _ArticleModel {
       {this.slug,
       this.name,
       this.playtime,
-      final List<Platform>? platforms,
-      final List<Store>? stores,
+      this.platforms,
+      this.stores,
       this.released,
       this.tba,
       this.backgroundImage,
       this.rating,
       this.ratingTop,
-      final List<Rating>? ratings,
+      this.ratings,
       this.ratingsCount,
       this.reviewsTextCount,
       this.added,
@@ -528,22 +603,15 @@ class _$_ArticleModel implements _ArticleModel {
       this.id,
       this.score,
       this.clip,
-      final List<Tag>? tags,
+      this.tags,
       this.esrbRating,
       this.userGame,
       this.reviewsCount,
       this.saturatedColor,
       this.dominantColor,
-      final List<ShortScreenshot>? shortScreenshots,
-      final List<Platform>? parentPlatforms,
-      final List<Genre>? genres})
-      : _platforms = platforms,
-        _stores = stores,
-        _ratings = ratings,
-        _tags = tags,
-        _shortScreenshots = shortScreenshots,
-        _parentPlatforms = parentPlatforms,
-        _genres = genres;
+      this.shortScreenshots,
+      this.parentPlatforms,
+      this.genres});
 
   factory _$_ArticleModel.fromJson(Map<String, dynamic> json) =>
       _$$_ArticleModelFromJson(json);
@@ -554,24 +622,10 @@ class _$_ArticleModel implements _ArticleModel {
   final String? name;
   @override
   final int? playtime;
-  final List<Platform>? _platforms;
   @override
-  List<Platform>? get platforms {
-    final value = _platforms;
-    if (value == null) return null;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<Store>? _stores;
+  final List<Platform>? platforms;
   @override
-  List<Store>? get stores {
-    final value = _stores;
-    if (value == null) return null;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+  final List<Store>? stores;
   @override
   final String? released;
   @override
@@ -582,15 +636,8 @@ class _$_ArticleModel implements _ArticleModel {
   final double? rating;
   @override
   final int? ratingTop;
-  final List<Rating>? _ratings;
   @override
-  List<Rating>? get ratings {
-    final value = _ratings;
-    if (value == null) return null;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+  final List<Rating>? ratings;
   @override
   final int? ratingsCount;
   @override
@@ -611,15 +658,8 @@ class _$_ArticleModel implements _ArticleModel {
   final dynamic score;
   @override
   final dynamic clip;
-  final List<Tag>? _tags;
   @override
-  List<Tag>? get tags {
-    final value = _tags;
-    if (value == null) return null;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
+  final List<Tag>? tags;
   @override
   final EsrbRating? esrbRating;
   @override
@@ -630,32 +670,12 @@ class _$_ArticleModel implements _ArticleModel {
   final String? saturatedColor;
   @override
   final String? dominantColor;
-  final List<ShortScreenshot>? _shortScreenshots;
   @override
-  List<ShortScreenshot>? get shortScreenshots {
-    final value = _shortScreenshots;
-    if (value == null) return null;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<Platform>? _parentPlatforms;
+  final List<ShortScreenshot>? shortScreenshots;
   @override
-  List<Platform>? get parentPlatforms {
-    final value = _parentPlatforms;
-    if (value == null) return null;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
-
-  final List<Genre>? _genres;
+  final List<Platform>? parentPlatforms;
   @override
-  List<Genre>? get genres {
-    final value = _genres;
-    if (value == null) return null;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  final List<Genre>? genres;
 
   @override
   String toString() {
@@ -666,20 +686,19 @@ class _$_ArticleModel implements _ArticleModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ArticleModel &&
+            other is _ArticleModel &&
             const DeepCollectionEquality().equals(other.slug, slug) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.playtime, playtime) &&
-            const DeepCollectionEquality()
-                .equals(other._platforms, _platforms) &&
-            const DeepCollectionEquality().equals(other._stores, _stores) &&
+            const DeepCollectionEquality().equals(other.platforms, platforms) &&
+            const DeepCollectionEquality().equals(other.stores, stores) &&
             const DeepCollectionEquality().equals(other.released, released) &&
             const DeepCollectionEquality().equals(other.tba, tba) &&
             const DeepCollectionEquality()
                 .equals(other.backgroundImage, backgroundImage) &&
             const DeepCollectionEquality().equals(other.rating, rating) &&
             const DeepCollectionEquality().equals(other.ratingTop, ratingTop) &&
-            const DeepCollectionEquality().equals(other._ratings, _ratings) &&
+            const DeepCollectionEquality().equals(other.ratings, ratings) &&
             const DeepCollectionEquality()
                 .equals(other.ratingsCount, ratingsCount) &&
             const DeepCollectionEquality()
@@ -695,7 +714,7 @@ class _$_ArticleModel implements _ArticleModel {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.score, score) &&
             const DeepCollectionEquality().equals(other.clip, clip) &&
-            const DeepCollectionEquality().equals(other._tags, _tags) &&
+            const DeepCollectionEquality().equals(other.tags, tags) &&
             const DeepCollectionEquality()
                 .equals(other.esrbRating, esrbRating) &&
             const DeepCollectionEquality().equals(other.userGame, userGame) &&
@@ -706,27 +725,26 @@ class _$_ArticleModel implements _ArticleModel {
             const DeepCollectionEquality()
                 .equals(other.dominantColor, dominantColor) &&
             const DeepCollectionEquality()
-                .equals(other._shortScreenshots, _shortScreenshots) &&
+                .equals(other.shortScreenshots, shortScreenshots) &&
             const DeepCollectionEquality()
-                .equals(other._parentPlatforms, _parentPlatforms) &&
-            const DeepCollectionEquality().equals(other._genres, _genres));
+                .equals(other.parentPlatforms, parentPlatforms) &&
+            const DeepCollectionEquality().equals(other.genres, genres));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
         const DeepCollectionEquality().hash(slug),
         const DeepCollectionEquality().hash(name),
         const DeepCollectionEquality().hash(playtime),
-        const DeepCollectionEquality().hash(_platforms),
-        const DeepCollectionEquality().hash(_stores),
+        const DeepCollectionEquality().hash(platforms),
+        const DeepCollectionEquality().hash(stores),
         const DeepCollectionEquality().hash(released),
         const DeepCollectionEquality().hash(tba),
         const DeepCollectionEquality().hash(backgroundImage),
         const DeepCollectionEquality().hash(rating),
         const DeepCollectionEquality().hash(ratingTop),
-        const DeepCollectionEquality().hash(_ratings),
+        const DeepCollectionEquality().hash(ratings),
         const DeepCollectionEquality().hash(ratingsCount),
         const DeepCollectionEquality().hash(reviewsTextCount),
         const DeepCollectionEquality().hash(added),
@@ -737,21 +755,21 @@ class _$_ArticleModel implements _ArticleModel {
         const DeepCollectionEquality().hash(id),
         const DeepCollectionEquality().hash(score),
         const DeepCollectionEquality().hash(clip),
-        const DeepCollectionEquality().hash(_tags),
+        const DeepCollectionEquality().hash(tags),
         const DeepCollectionEquality().hash(esrbRating),
         const DeepCollectionEquality().hash(userGame),
         const DeepCollectionEquality().hash(reviewsCount),
         const DeepCollectionEquality().hash(saturatedColor),
         const DeepCollectionEquality().hash(dominantColor),
-        const DeepCollectionEquality().hash(_shortScreenshots),
-        const DeepCollectionEquality().hash(_parentPlatforms),
-        const DeepCollectionEquality().hash(_genres)
+        const DeepCollectionEquality().hash(shortScreenshots),
+        const DeepCollectionEquality().hash(parentPlatforms),
+        const DeepCollectionEquality().hash(genres)
       ]);
 
   @JsonKey(ignore: true)
   @override
-  _$$_ArticleModelCopyWith<_$_ArticleModel> get copyWith =>
-      __$$_ArticleModelCopyWithImpl<_$_ArticleModel>(this, _$identity);
+  _$ArticleModelCopyWith<_ArticleModel> get copyWith =>
+      __$ArticleModelCopyWithImpl<_ArticleModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -761,110 +779,138 @@ class _$_ArticleModel implements _ArticleModel {
 
 abstract class _ArticleModel implements ArticleModel {
   const factory _ArticleModel(
-      {final String? slug,
-      final String? name,
-      final int? playtime,
-      final List<Platform>? platforms,
-      final List<Store>? stores,
-      final String? released,
-      final bool? tba,
-      final String? backgroundImage,
-      final double? rating,
-      final int? ratingTop,
-      final List<Rating>? ratings,
-      final int? ratingsCount,
-      final int? reviewsTextCount,
-      final int? added,
-      final AddedByStatus? addedByStatus,
-      final int? metacritic,
-      final int? suggestionsCount,
-      final String? updated,
-      final int? id,
-      final dynamic score,
-      final dynamic clip,
-      final List<Tag>? tags,
-      final EsrbRating? esrbRating,
-      final dynamic userGame,
-      final int? reviewsCount,
-      final String? saturatedColor,
-      final String? dominantColor,
-      final List<ShortScreenshot>? shortScreenshots,
-      final List<Platform>? parentPlatforms,
-      final List<Genre>? genres}) = _$_ArticleModel;
+      {String? slug,
+      String? name,
+      int? playtime,
+      List<Platform>? platforms,
+      List<Store>? stores,
+      String? released,
+      bool? tba,
+      String? backgroundImage,
+      double? rating,
+      int? ratingTop,
+      List<Rating>? ratings,
+      int? ratingsCount,
+      int? reviewsTextCount,
+      int? added,
+      AddedByStatus? addedByStatus,
+      int? metacritic,
+      int? suggestionsCount,
+      String? updated,
+      int? id,
+      dynamic score,
+      dynamic clip,
+      List<Tag>? tags,
+      EsrbRating? esrbRating,
+      dynamic userGame,
+      int? reviewsCount,
+      String? saturatedColor,
+      String? dominantColor,
+      List<ShortScreenshot>? shortScreenshots,
+      List<Platform>? parentPlatforms,
+      List<Genre>? genres}) = _$_ArticleModel;
 
   factory _ArticleModel.fromJson(Map<String, dynamic> json) =
       _$_ArticleModel.fromJson;
 
   @override
-  String? get slug => throw _privateConstructorUsedError;
+  String? get slug;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  int? get playtime => throw _privateConstructorUsedError;
+  int? get playtime;
   @override
-  List<Platform>? get platforms => throw _privateConstructorUsedError;
+  List<Platform>? get platforms;
   @override
-  List<Store>? get stores => throw _privateConstructorUsedError;
+  List<Store>? get stores;
   @override
-  String? get released => throw _privateConstructorUsedError;
+  String? get released;
   @override
-  bool? get tba => throw _privateConstructorUsedError;
+  bool? get tba;
   @override
-  String? get backgroundImage => throw _privateConstructorUsedError;
+  String? get backgroundImage;
   @override
-  double? get rating => throw _privateConstructorUsedError;
+  double? get rating;
   @override
-  int? get ratingTop => throw _privateConstructorUsedError;
+  int? get ratingTop;
   @override
-  List<Rating>? get ratings => throw _privateConstructorUsedError;
+  List<Rating>? get ratings;
   @override
-  int? get ratingsCount => throw _privateConstructorUsedError;
+  int? get ratingsCount;
   @override
-  int? get reviewsTextCount => throw _privateConstructorUsedError;
+  int? get reviewsTextCount;
   @override
-  int? get added => throw _privateConstructorUsedError;
+  int? get added;
   @override
-  AddedByStatus? get addedByStatus => throw _privateConstructorUsedError;
+  AddedByStatus? get addedByStatus;
   @override
-  int? get metacritic => throw _privateConstructorUsedError;
+  int? get metacritic;
   @override
-  int? get suggestionsCount => throw _privateConstructorUsedError;
+  int? get suggestionsCount;
   @override
-  String? get updated => throw _privateConstructorUsedError;
+  String? get updated;
   @override
-  int? get id => throw _privateConstructorUsedError;
+  int? get id;
   @override
-  dynamic get score => throw _privateConstructorUsedError;
+  dynamic get score;
   @override
-  dynamic get clip => throw _privateConstructorUsedError;
+  dynamic get clip;
   @override
-  List<Tag>? get tags => throw _privateConstructorUsedError;
+  List<Tag>? get tags;
   @override
-  EsrbRating? get esrbRating => throw _privateConstructorUsedError;
+  EsrbRating? get esrbRating;
   @override
-  dynamic get userGame => throw _privateConstructorUsedError;
+  dynamic get userGame;
   @override
-  int? get reviewsCount => throw _privateConstructorUsedError;
+  int? get reviewsCount;
   @override
-  String? get saturatedColor => throw _privateConstructorUsedError;
+  String? get saturatedColor;
   @override
-  String? get dominantColor => throw _privateConstructorUsedError;
+  String? get dominantColor;
   @override
-  List<ShortScreenshot>? get shortScreenshots =>
-      throw _privateConstructorUsedError;
+  List<ShortScreenshot>? get shortScreenshots;
   @override
-  List<Platform>? get parentPlatforms => throw _privateConstructorUsedError;
+  List<Platform>? get parentPlatforms;
   @override
-  List<Genre>? get genres => throw _privateConstructorUsedError;
+  List<Genre>? get genres;
   @override
   @JsonKey(ignore: true)
-  _$$_ArticleModelCopyWith<_$_ArticleModel> get copyWith =>
+  _$ArticleModelCopyWith<_ArticleModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 AddedByStatus _$AddedByStatusFromJson(Map<String, dynamic> json) {
   return _AddedByStatus.fromJson(json);
 }
+
+/// @nodoc
+class _$AddedByStatusTearOff {
+  const _$AddedByStatusTearOff();
+
+  _AddedByStatus call(
+      {int? yet,
+      int? owned,
+      int? beaten,
+      int? toplay,
+      int? dropped,
+      int? playing}) {
+    return _AddedByStatus(
+      yet: yet,
+      owned: owned,
+      beaten: beaten,
+      toplay: toplay,
+      dropped: dropped,
+      playing: playing,
+    );
+  }
+
+  AddedByStatus fromJson(Map<String, Object?> json) {
+    return AddedByStatus.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $AddedByStatus = _$AddedByStatusTearOff();
 
 /// @nodoc
 mixin _$AddedByStatus {
@@ -943,11 +989,11 @@ class _$AddedByStatusCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_AddedByStatusCopyWith<$Res>
+abstract class _$AddedByStatusCopyWith<$Res>
     implements $AddedByStatusCopyWith<$Res> {
-  factory _$$_AddedByStatusCopyWith(
-          _$_AddedByStatus value, $Res Function(_$_AddedByStatus) then) =
-      __$$_AddedByStatusCopyWithImpl<$Res>;
+  factory _$AddedByStatusCopyWith(
+          _AddedByStatus value, $Res Function(_AddedByStatus) then) =
+      __$AddedByStatusCopyWithImpl<$Res>;
   @override
   $Res call(
       {int? yet,
@@ -959,15 +1005,15 @@ abstract class _$$_AddedByStatusCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_AddedByStatusCopyWithImpl<$Res>
+class __$AddedByStatusCopyWithImpl<$Res>
     extends _$AddedByStatusCopyWithImpl<$Res>
-    implements _$$_AddedByStatusCopyWith<$Res> {
-  __$$_AddedByStatusCopyWithImpl(
-      _$_AddedByStatus _value, $Res Function(_$_AddedByStatus) _then)
-      : super(_value, (v) => _then(v as _$_AddedByStatus));
+    implements _$AddedByStatusCopyWith<$Res> {
+  __$AddedByStatusCopyWithImpl(
+      _AddedByStatus _value, $Res Function(_AddedByStatus) _then)
+      : super(_value, (v) => _then(v as _AddedByStatus));
 
   @override
-  _$_AddedByStatus get _value => super._value as _$_AddedByStatus;
+  _AddedByStatus get _value => super._value as _AddedByStatus;
 
   @override
   $Res call({
@@ -978,7 +1024,7 @@ class __$$_AddedByStatusCopyWithImpl<$Res>
     Object? dropped = freezed,
     Object? playing = freezed,
   }) {
-    return _then(_$_AddedByStatus(
+    return _then(_AddedByStatus(
       yet: yet == freezed
           ? _value.yet
           : yet // ignore: cast_nullable_to_non_nullable
@@ -1045,7 +1091,7 @@ class _$_AddedByStatus implements _AddedByStatus {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AddedByStatus &&
+            other is _AddedByStatus &&
             const DeepCollectionEquality().equals(other.yet, yet) &&
             const DeepCollectionEquality().equals(other.owned, owned) &&
             const DeepCollectionEquality().equals(other.beaten, beaten) &&
@@ -1054,7 +1100,6 @@ class _$_AddedByStatus implements _AddedByStatus {
             const DeepCollectionEquality().equals(other.playing, playing));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1067,8 +1112,8 @@ class _$_AddedByStatus implements _AddedByStatus {
 
   @JsonKey(ignore: true)
   @override
-  _$$_AddedByStatusCopyWith<_$_AddedByStatus> get copyWith =>
-      __$$_AddedByStatusCopyWithImpl<_$_AddedByStatus>(this, _$identity);
+  _$AddedByStatusCopyWith<_AddedByStatus> get copyWith =>
+      __$AddedByStatusCopyWithImpl<_AddedByStatus>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -1078,37 +1123,60 @@ class _$_AddedByStatus implements _AddedByStatus {
 
 abstract class _AddedByStatus implements AddedByStatus {
   const factory _AddedByStatus(
-      {final int? yet,
-      final int? owned,
-      final int? beaten,
-      final int? toplay,
-      final int? dropped,
-      final int? playing}) = _$_AddedByStatus;
+      {int? yet,
+      int? owned,
+      int? beaten,
+      int? toplay,
+      int? dropped,
+      int? playing}) = _$_AddedByStatus;
 
   factory _AddedByStatus.fromJson(Map<String, dynamic> json) =
       _$_AddedByStatus.fromJson;
 
   @override
-  int? get yet => throw _privateConstructorUsedError;
+  int? get yet;
   @override
-  int? get owned => throw _privateConstructorUsedError;
+  int? get owned;
   @override
-  int? get beaten => throw _privateConstructorUsedError;
+  int? get beaten;
   @override
-  int? get toplay => throw _privateConstructorUsedError;
+  int? get toplay;
   @override
-  int? get dropped => throw _privateConstructorUsedError;
+  int? get dropped;
   @override
-  int? get playing => throw _privateConstructorUsedError;
+  int? get playing;
   @override
   @JsonKey(ignore: true)
-  _$$_AddedByStatusCopyWith<_$_AddedByStatus> get copyWith =>
+  _$AddedByStatusCopyWith<_AddedByStatus> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 EsrbRating _$EsrbRatingFromJson(Map<String, dynamic> json) {
   return _EsrbRating.fromJson(json);
 }
+
+/// @nodoc
+class _$EsrbRatingTearOff {
+  const _$EsrbRatingTearOff();
+
+  _EsrbRating call(
+      {int? id, String? name, String? slug, String? nameEn, String? nameRu}) {
+    return _EsrbRating(
+      id: id,
+      name: name,
+      slug: slug,
+      nameEn: nameEn,
+      nameRu: nameRu,
+    );
+  }
+
+  EsrbRating fromJson(Map<String, Object?> json) {
+    return EsrbRating.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $EsrbRating = _$EsrbRatingTearOff();
 
 /// @nodoc
 mixin _$EsrbRating {
@@ -1175,25 +1243,24 @@ class _$EsrbRatingCopyWithImpl<$Res> implements $EsrbRatingCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_EsrbRatingCopyWith<$Res>
-    implements $EsrbRatingCopyWith<$Res> {
-  factory _$$_EsrbRatingCopyWith(
-          _$_EsrbRating value, $Res Function(_$_EsrbRating) then) =
-      __$$_EsrbRatingCopyWithImpl<$Res>;
+abstract class _$EsrbRatingCopyWith<$Res> implements $EsrbRatingCopyWith<$Res> {
+  factory _$EsrbRatingCopyWith(
+          _EsrbRating value, $Res Function(_EsrbRating) then) =
+      __$EsrbRatingCopyWithImpl<$Res>;
   @override
   $Res call(
       {int? id, String? name, String? slug, String? nameEn, String? nameRu});
 }
 
 /// @nodoc
-class __$$_EsrbRatingCopyWithImpl<$Res> extends _$EsrbRatingCopyWithImpl<$Res>
-    implements _$$_EsrbRatingCopyWith<$Res> {
-  __$$_EsrbRatingCopyWithImpl(
-      _$_EsrbRating _value, $Res Function(_$_EsrbRating) _then)
-      : super(_value, (v) => _then(v as _$_EsrbRating));
+class __$EsrbRatingCopyWithImpl<$Res> extends _$EsrbRatingCopyWithImpl<$Res>
+    implements _$EsrbRatingCopyWith<$Res> {
+  __$EsrbRatingCopyWithImpl(
+      _EsrbRating _value, $Res Function(_EsrbRating) _then)
+      : super(_value, (v) => _then(v as _EsrbRating));
 
   @override
-  _$_EsrbRating get _value => super._value as _$_EsrbRating;
+  _EsrbRating get _value => super._value as _EsrbRating;
 
   @override
   $Res call({
@@ -1203,7 +1270,7 @@ class __$$_EsrbRatingCopyWithImpl<$Res> extends _$EsrbRatingCopyWithImpl<$Res>
     Object? nameEn = freezed,
     Object? nameRu = freezed,
   }) {
-    return _then(_$_EsrbRating(
+    return _then(_EsrbRating(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1259,7 +1326,7 @@ class _$_EsrbRating implements _EsrbRating {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_EsrbRating &&
+            other is _EsrbRating &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.slug, slug) &&
@@ -1267,7 +1334,6 @@ class _$_EsrbRating implements _EsrbRating {
             const DeepCollectionEquality().equals(other.nameRu, nameRu));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1279,8 +1345,8 @@ class _$_EsrbRating implements _EsrbRating {
 
   @JsonKey(ignore: true)
   @override
-  _$$_EsrbRatingCopyWith<_$_EsrbRating> get copyWith =>
-      __$$_EsrbRatingCopyWithImpl<_$_EsrbRating>(this, _$identity);
+  _$EsrbRatingCopyWith<_EsrbRating> get copyWith =>
+      __$EsrbRatingCopyWithImpl<_EsrbRating>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -1290,34 +1356,54 @@ class _$_EsrbRating implements _EsrbRating {
 
 abstract class _EsrbRating implements EsrbRating {
   const factory _EsrbRating(
-      {final int? id,
-      final String? name,
-      final String? slug,
-      final String? nameEn,
-      final String? nameRu}) = _$_EsrbRating;
+      {int? id,
+      String? name,
+      String? slug,
+      String? nameEn,
+      String? nameRu}) = _$_EsrbRating;
 
   factory _EsrbRating.fromJson(Map<String, dynamic> json) =
       _$_EsrbRating.fromJson;
 
   @override
-  int? get id => throw _privateConstructorUsedError;
+  int? get id;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  String? get slug => throw _privateConstructorUsedError;
+  String? get slug;
   @override
-  String? get nameEn => throw _privateConstructorUsedError;
+  String? get nameEn;
   @override
-  String? get nameRu => throw _privateConstructorUsedError;
+  String? get nameRu;
   @override
   @JsonKey(ignore: true)
-  _$$_EsrbRatingCopyWith<_$_EsrbRating> get copyWith =>
+  _$EsrbRatingCopyWith<_EsrbRating> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 Genre _$GenreFromJson(Map<String, dynamic> json) {
   return _Genre.fromJson(json);
 }
+
+/// @nodoc
+class _$GenreTearOff {
+  const _$GenreTearOff();
+
+  _Genre call({int? id, String? name, String? slug}) {
+    return _Genre(
+      id: id,
+      name: name,
+      slug: slug,
+    );
+  }
+
+  Genre fromJson(Map<String, Object?> json) {
+    return Genre.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $Genre = _$GenreTearOff();
 
 /// @nodoc
 mixin _$Genre {
@@ -1369,21 +1455,21 @@ class _$GenreCopyWithImpl<$Res> implements $GenreCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_GenreCopyWith<$Res> implements $GenreCopyWith<$Res> {
-  factory _$$_GenreCopyWith(_$_Genre value, $Res Function(_$_Genre) then) =
-      __$$_GenreCopyWithImpl<$Res>;
+abstract class _$GenreCopyWith<$Res> implements $GenreCopyWith<$Res> {
+  factory _$GenreCopyWith(_Genre value, $Res Function(_Genre) then) =
+      __$GenreCopyWithImpl<$Res>;
   @override
   $Res call({int? id, String? name, String? slug});
 }
 
 /// @nodoc
-class __$$_GenreCopyWithImpl<$Res> extends _$GenreCopyWithImpl<$Res>
-    implements _$$_GenreCopyWith<$Res> {
-  __$$_GenreCopyWithImpl(_$_Genre _value, $Res Function(_$_Genre) _then)
-      : super(_value, (v) => _then(v as _$_Genre));
+class __$GenreCopyWithImpl<$Res> extends _$GenreCopyWithImpl<$Res>
+    implements _$GenreCopyWith<$Res> {
+  __$GenreCopyWithImpl(_Genre _value, $Res Function(_Genre) _then)
+      : super(_value, (v) => _then(v as _Genre));
 
   @override
-  _$_Genre get _value => super._value as _$_Genre;
+  _Genre get _value => super._value as _Genre;
 
   @override
   $Res call({
@@ -1391,7 +1477,7 @@ class __$$_GenreCopyWithImpl<$Res> extends _$GenreCopyWithImpl<$Res>
     Object? name = freezed,
     Object? slug = freezed,
   }) {
-    return _then(_$_Genre(
+    return _then(_Genre(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1434,13 +1520,12 @@ class _$_Genre implements _Genre {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Genre &&
+            other is _Genre &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.slug, slug));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1450,8 +1535,8 @@ class _$_Genre implements _Genre {
 
   @JsonKey(ignore: true)
   @override
-  _$$_GenreCopyWith<_$_Genre> get copyWith =>
-      __$$_GenreCopyWithImpl<_$_Genre>(this, _$identity);
+  _$GenreCopyWith<_Genre> get copyWith =>
+      __$GenreCopyWithImpl<_Genre>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -1460,26 +1545,42 @@ class _$_Genre implements _Genre {
 }
 
 abstract class _Genre implements Genre {
-  const factory _Genre(
-      {final int? id, final String? name, final String? slug}) = _$_Genre;
+  const factory _Genre({int? id, String? name, String? slug}) = _$_Genre;
 
   factory _Genre.fromJson(Map<String, dynamic> json) = _$_Genre.fromJson;
 
   @override
-  int? get id => throw _privateConstructorUsedError;
+  int? get id;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  String? get slug => throw _privateConstructorUsedError;
+  String? get slug;
   @override
   @JsonKey(ignore: true)
-  _$$_GenreCopyWith<_$_Genre> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$GenreCopyWith<_Genre> get copyWith => throw _privateConstructorUsedError;
 }
 
 Platform _$PlatformFromJson(Map<String, dynamic> json) {
   return _Platform.fromJson(json);
 }
+
+/// @nodoc
+class _$PlatformTearOff {
+  const _$PlatformTearOff();
+
+  _Platform call({Genre? platform}) {
+    return _Platform(
+      platform: platform,
+    );
+  }
+
+  Platform fromJson(Map<String, Object?> json) {
+    return Platform.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $Platform = _$PlatformTearOff();
 
 /// @nodoc
 mixin _$Platform {
@@ -1533,10 +1634,9 @@ class _$PlatformCopyWithImpl<$Res> implements $PlatformCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_PlatformCopyWith<$Res> implements $PlatformCopyWith<$Res> {
-  factory _$$_PlatformCopyWith(
-          _$_Platform value, $Res Function(_$_Platform) then) =
-      __$$_PlatformCopyWithImpl<$Res>;
+abstract class _$PlatformCopyWith<$Res> implements $PlatformCopyWith<$Res> {
+  factory _$PlatformCopyWith(_Platform value, $Res Function(_Platform) then) =
+      __$PlatformCopyWithImpl<$Res>;
   @override
   $Res call({Genre? platform});
 
@@ -1545,20 +1645,19 @@ abstract class _$$_PlatformCopyWith<$Res> implements $PlatformCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_PlatformCopyWithImpl<$Res> extends _$PlatformCopyWithImpl<$Res>
-    implements _$$_PlatformCopyWith<$Res> {
-  __$$_PlatformCopyWithImpl(
-      _$_Platform _value, $Res Function(_$_Platform) _then)
-      : super(_value, (v) => _then(v as _$_Platform));
+class __$PlatformCopyWithImpl<$Res> extends _$PlatformCopyWithImpl<$Res>
+    implements _$PlatformCopyWith<$Res> {
+  __$PlatformCopyWithImpl(_Platform _value, $Res Function(_Platform) _then)
+      : super(_value, (v) => _then(v as _Platform));
 
   @override
-  _$_Platform get _value => super._value as _$_Platform;
+  _Platform get _value => super._value as _Platform;
 
   @override
   $Res call({
     Object? platform = freezed,
   }) {
-    return _then(_$_Platform(
+    return _then(_Platform(
       platform: platform == freezed
           ? _value.platform
           : platform // ignore: cast_nullable_to_non_nullable
@@ -1589,19 +1688,18 @@ class _$_Platform implements _Platform {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Platform &&
+            other is _Platform &&
             const DeepCollectionEquality().equals(other.platform, platform));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(platform));
 
   @JsonKey(ignore: true)
   @override
-  _$$_PlatformCopyWith<_$_Platform> get copyWith =>
-      __$$_PlatformCopyWithImpl<_$_Platform>(this, _$identity);
+  _$PlatformCopyWith<_Platform> get copyWith =>
+      __$PlatformCopyWithImpl<_Platform>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -1610,21 +1708,42 @@ class _$_Platform implements _Platform {
 }
 
 abstract class _Platform implements Platform {
-  const factory _Platform({final Genre? platform}) = _$_Platform;
+  const factory _Platform({Genre? platform}) = _$_Platform;
 
   factory _Platform.fromJson(Map<String, dynamic> json) = _$_Platform.fromJson;
 
   @override
-  Genre? get platform => throw _privateConstructorUsedError;
+  Genre? get platform;
   @override
   @JsonKey(ignore: true)
-  _$$_PlatformCopyWith<_$_Platform> get copyWith =>
+  _$PlatformCopyWith<_Platform> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 Rating _$RatingFromJson(Map<String, dynamic> json) {
   return _Rating.fromJson(json);
 }
+
+/// @nodoc
+class _$RatingTearOff {
+  const _$RatingTearOff();
+
+  _Rating call({int? id, String? title, int? count, double? percent}) {
+    return _Rating(
+      id: id,
+      title: title,
+      count: count,
+      percent: percent,
+    );
+  }
+
+  Rating fromJson(Map<String, Object?> json) {
+    return Rating.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $Rating = _$RatingTearOff();
 
 /// @nodoc
 mixin _$Rating {
@@ -1682,21 +1801,21 @@ class _$RatingCopyWithImpl<$Res> implements $RatingCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_RatingCopyWith<$Res> implements $RatingCopyWith<$Res> {
-  factory _$$_RatingCopyWith(_$_Rating value, $Res Function(_$_Rating) then) =
-      __$$_RatingCopyWithImpl<$Res>;
+abstract class _$RatingCopyWith<$Res> implements $RatingCopyWith<$Res> {
+  factory _$RatingCopyWith(_Rating value, $Res Function(_Rating) then) =
+      __$RatingCopyWithImpl<$Res>;
   @override
   $Res call({int? id, String? title, int? count, double? percent});
 }
 
 /// @nodoc
-class __$$_RatingCopyWithImpl<$Res> extends _$RatingCopyWithImpl<$Res>
-    implements _$$_RatingCopyWith<$Res> {
-  __$$_RatingCopyWithImpl(_$_Rating _value, $Res Function(_$_Rating) _then)
-      : super(_value, (v) => _then(v as _$_Rating));
+class __$RatingCopyWithImpl<$Res> extends _$RatingCopyWithImpl<$Res>
+    implements _$RatingCopyWith<$Res> {
+  __$RatingCopyWithImpl(_Rating _value, $Res Function(_Rating) _then)
+      : super(_value, (v) => _then(v as _Rating));
 
   @override
-  _$_Rating get _value => super._value as _$_Rating;
+  _Rating get _value => super._value as _Rating;
 
   @override
   $Res call({
@@ -1705,7 +1824,7 @@ class __$$_RatingCopyWithImpl<$Res> extends _$RatingCopyWithImpl<$Res>
     Object? count = freezed,
     Object? percent = freezed,
   }) {
-    return _then(_$_Rating(
+    return _then(_Rating(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1754,14 +1873,13 @@ class _$_Rating implements _Rating {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Rating &&
+            other is _Rating &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.count, count) &&
             const DeepCollectionEquality().equals(other.percent, percent));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1772,8 +1890,8 @@ class _$_Rating implements _Rating {
 
   @JsonKey(ignore: true)
   @override
-  _$$_RatingCopyWith<_$_Rating> get copyWith =>
-      __$$_RatingCopyWithImpl<_$_Rating>(this, _$identity);
+  _$RatingCopyWith<_Rating> get copyWith =>
+      __$RatingCopyWithImpl<_Rating>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -1782,31 +1900,46 @@ class _$_Rating implements _Rating {
 }
 
 abstract class _Rating implements Rating {
-  const factory _Rating(
-      {final int? id,
-      final String? title,
-      final int? count,
-      final double? percent}) = _$_Rating;
+  const factory _Rating({int? id, String? title, int? count, double? percent}) =
+      _$_Rating;
 
   factory _Rating.fromJson(Map<String, dynamic> json) = _$_Rating.fromJson;
 
   @override
-  int? get id => throw _privateConstructorUsedError;
+  int? get id;
   @override
-  String? get title => throw _privateConstructorUsedError;
+  String? get title;
   @override
-  int? get count => throw _privateConstructorUsedError;
+  int? get count;
   @override
-  double? get percent => throw _privateConstructorUsedError;
+  double? get percent;
   @override
   @JsonKey(ignore: true)
-  _$$_RatingCopyWith<_$_Rating> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$RatingCopyWith<_Rating> get copyWith => throw _privateConstructorUsedError;
 }
 
 ShortScreenshot _$ShortScreenshotFromJson(Map<String, dynamic> json) {
   return _ShortScreenshot.fromJson(json);
 }
+
+/// @nodoc
+class _$ShortScreenshotTearOff {
+  const _$ShortScreenshotTearOff();
+
+  _ShortScreenshot call({int? id, String? image}) {
+    return _ShortScreenshot(
+      id: id,
+      image: image,
+    );
+  }
+
+  ShortScreenshot fromJson(Map<String, Object?> json) {
+    return ShortScreenshot.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $ShortScreenshot = _$ShortScreenshotTearOff();
 
 /// @nodoc
 mixin _$ShortScreenshot {
@@ -1855,32 +1988,32 @@ class _$ShortScreenshotCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_ShortScreenshotCopyWith<$Res>
+abstract class _$ShortScreenshotCopyWith<$Res>
     implements $ShortScreenshotCopyWith<$Res> {
-  factory _$$_ShortScreenshotCopyWith(
-          _$_ShortScreenshot value, $Res Function(_$_ShortScreenshot) then) =
-      __$$_ShortScreenshotCopyWithImpl<$Res>;
+  factory _$ShortScreenshotCopyWith(
+          _ShortScreenshot value, $Res Function(_ShortScreenshot) then) =
+      __$ShortScreenshotCopyWithImpl<$Res>;
   @override
   $Res call({int? id, String? image});
 }
 
 /// @nodoc
-class __$$_ShortScreenshotCopyWithImpl<$Res>
+class __$ShortScreenshotCopyWithImpl<$Res>
     extends _$ShortScreenshotCopyWithImpl<$Res>
-    implements _$$_ShortScreenshotCopyWith<$Res> {
-  __$$_ShortScreenshotCopyWithImpl(
-      _$_ShortScreenshot _value, $Res Function(_$_ShortScreenshot) _then)
-      : super(_value, (v) => _then(v as _$_ShortScreenshot));
+    implements _$ShortScreenshotCopyWith<$Res> {
+  __$ShortScreenshotCopyWithImpl(
+      _ShortScreenshot _value, $Res Function(_ShortScreenshot) _then)
+      : super(_value, (v) => _then(v as _ShortScreenshot));
 
   @override
-  _$_ShortScreenshot get _value => super._value as _$_ShortScreenshot;
+  _ShortScreenshot get _value => super._value as _ShortScreenshot;
 
   @override
   $Res call({
     Object? id = freezed,
     Object? image = freezed,
   }) {
-    return _then(_$_ShortScreenshot(
+    return _then(_ShortScreenshot(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1917,12 +2050,11 @@ class _$_ShortScreenshot implements _ShortScreenshot {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ShortScreenshot &&
+            other is _ShortScreenshot &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.image, image));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1931,8 +2063,8 @@ class _$_ShortScreenshot implements _ShortScreenshot {
 
   @JsonKey(ignore: true)
   @override
-  _$$_ShortScreenshotCopyWith<_$_ShortScreenshot> get copyWith =>
-      __$$_ShortScreenshotCopyWithImpl<_$_ShortScreenshot>(this, _$identity);
+  _$ShortScreenshotCopyWith<_ShortScreenshot> get copyWith =>
+      __$ShortScreenshotCopyWithImpl<_ShortScreenshot>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -1941,25 +2073,42 @@ class _$_ShortScreenshot implements _ShortScreenshot {
 }
 
 abstract class _ShortScreenshot implements ShortScreenshot {
-  const factory _ShortScreenshot({final int? id, final String? image}) =
-      _$_ShortScreenshot;
+  const factory _ShortScreenshot({int? id, String? image}) = _$_ShortScreenshot;
 
   factory _ShortScreenshot.fromJson(Map<String, dynamic> json) =
       _$_ShortScreenshot.fromJson;
 
   @override
-  int? get id => throw _privateConstructorUsedError;
+  int? get id;
   @override
-  String? get image => throw _privateConstructorUsedError;
+  String? get image;
   @override
   @JsonKey(ignore: true)
-  _$$_ShortScreenshotCopyWith<_$_ShortScreenshot> get copyWith =>
+  _$ShortScreenshotCopyWith<_ShortScreenshot> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 Store _$StoreFromJson(Map<String, dynamic> json) {
   return _Store.fromJson(json);
 }
+
+/// @nodoc
+class _$StoreTearOff {
+  const _$StoreTearOff();
+
+  _Store call({Genre? store}) {
+    return _Store(
+      store: store,
+    );
+  }
+
+  Store fromJson(Map<String, Object?> json) {
+    return Store.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $Store = _$StoreTearOff();
 
 /// @nodoc
 mixin _$Store {
@@ -2012,9 +2161,9 @@ class _$StoreCopyWithImpl<$Res> implements $StoreCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_StoreCopyWith<$Res> implements $StoreCopyWith<$Res> {
-  factory _$$_StoreCopyWith(_$_Store value, $Res Function(_$_Store) then) =
-      __$$_StoreCopyWithImpl<$Res>;
+abstract class _$StoreCopyWith<$Res> implements $StoreCopyWith<$Res> {
+  factory _$StoreCopyWith(_Store value, $Res Function(_Store) then) =
+      __$StoreCopyWithImpl<$Res>;
   @override
   $Res call({Genre? store});
 
@@ -2023,19 +2172,19 @@ abstract class _$$_StoreCopyWith<$Res> implements $StoreCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_StoreCopyWithImpl<$Res> extends _$StoreCopyWithImpl<$Res>
-    implements _$$_StoreCopyWith<$Res> {
-  __$$_StoreCopyWithImpl(_$_Store _value, $Res Function(_$_Store) _then)
-      : super(_value, (v) => _then(v as _$_Store));
+class __$StoreCopyWithImpl<$Res> extends _$StoreCopyWithImpl<$Res>
+    implements _$StoreCopyWith<$Res> {
+  __$StoreCopyWithImpl(_Store _value, $Res Function(_Store) _then)
+      : super(_value, (v) => _then(v as _Store));
 
   @override
-  _$_Store get _value => super._value as _$_Store;
+  _Store get _value => super._value as _Store;
 
   @override
   $Res call({
     Object? store = freezed,
   }) {
-    return _then(_$_Store(
+    return _then(_Store(
       store: store == freezed
           ? _value.store
           : store // ignore: cast_nullable_to_non_nullable
@@ -2066,19 +2215,18 @@ class _$_Store implements _Store {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Store &&
+            other is _Store &&
             const DeepCollectionEquality().equals(other.store, store));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(store));
 
   @JsonKey(ignore: true)
   @override
-  _$$_StoreCopyWith<_$_Store> get copyWith =>
-      __$$_StoreCopyWithImpl<_$_Store>(this, _$identity);
+  _$StoreCopyWith<_Store> get copyWith =>
+      __$StoreCopyWithImpl<_Store>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -2087,21 +2235,49 @@ class _$_Store implements _Store {
 }
 
 abstract class _Store implements Store {
-  const factory _Store({final Genre? store}) = _$_Store;
+  const factory _Store({Genre? store}) = _$_Store;
 
   factory _Store.fromJson(Map<String, dynamic> json) = _$_Store.fromJson;
 
   @override
-  Genre? get store => throw _privateConstructorUsedError;
+  Genre? get store;
   @override
   @JsonKey(ignore: true)
-  _$$_StoreCopyWith<_$_Store> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$StoreCopyWith<_Store> get copyWith => throw _privateConstructorUsedError;
 }
 
 Tag _$TagFromJson(Map<String, dynamic> json) {
   return _Tag.fromJson(json);
 }
+
+/// @nodoc
+class _$TagTearOff {
+  const _$TagTearOff();
+
+  _Tag call(
+      {int? id,
+      String? name,
+      String? slug,
+      String? language,
+      int? gamesCount,
+      String? imageBackground}) {
+    return _Tag(
+      id: id,
+      name: name,
+      slug: slug,
+      language: language,
+      gamesCount: gamesCount,
+      imageBackground: imageBackground,
+    );
+  }
+
+  Tag fromJson(Map<String, Object?> json) {
+    return Tag.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $Tag = _$TagTearOff();
 
 /// @nodoc
 mixin _$Tag {
@@ -2177,9 +2353,9 @@ class _$TagCopyWithImpl<$Res> implements $TagCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_TagCopyWith<$Res> implements $TagCopyWith<$Res> {
-  factory _$$_TagCopyWith(_$_Tag value, $Res Function(_$_Tag) then) =
-      __$$_TagCopyWithImpl<$Res>;
+abstract class _$TagCopyWith<$Res> implements $TagCopyWith<$Res> {
+  factory _$TagCopyWith(_Tag value, $Res Function(_Tag) then) =
+      __$TagCopyWithImpl<$Res>;
   @override
   $Res call(
       {int? id,
@@ -2191,13 +2367,13 @@ abstract class _$$_TagCopyWith<$Res> implements $TagCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_TagCopyWithImpl<$Res> extends _$TagCopyWithImpl<$Res>
-    implements _$$_TagCopyWith<$Res> {
-  __$$_TagCopyWithImpl(_$_Tag _value, $Res Function(_$_Tag) _then)
-      : super(_value, (v) => _then(v as _$_Tag));
+class __$TagCopyWithImpl<$Res> extends _$TagCopyWithImpl<$Res>
+    implements _$TagCopyWith<$Res> {
+  __$TagCopyWithImpl(_Tag _value, $Res Function(_Tag) _then)
+      : super(_value, (v) => _then(v as _Tag));
 
   @override
-  _$_Tag get _value => super._value as _$_Tag;
+  _Tag get _value => super._value as _Tag;
 
   @override
   $Res call({
@@ -2208,7 +2384,7 @@ class __$$_TagCopyWithImpl<$Res> extends _$TagCopyWithImpl<$Res>
     Object? gamesCount = freezed,
     Object? imageBackground = freezed,
   }) {
-    return _then(_$_Tag(
+    return _then(_Tag(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -2274,7 +2450,7 @@ class _$_Tag implements _Tag {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Tag &&
+            other is _Tag &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.slug, slug) &&
@@ -2285,7 +2461,6 @@ class _$_Tag implements _Tag {
                 .equals(other.imageBackground, imageBackground));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2298,8 +2473,8 @@ class _$_Tag implements _Tag {
 
   @JsonKey(ignore: true)
   @override
-  _$$_TagCopyWith<_$_Tag> get copyWith =>
-      __$$_TagCopyWithImpl<_$_Tag>(this, _$identity);
+  _$TagCopyWith<_Tag> get copyWith =>
+      __$TagCopyWithImpl<_Tag>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -2309,28 +2484,28 @@ class _$_Tag implements _Tag {
 
 abstract class _Tag implements Tag {
   const factory _Tag(
-      {final int? id,
-      final String? name,
-      final String? slug,
-      final String? language,
-      final int? gamesCount,
-      final String? imageBackground}) = _$_Tag;
+      {int? id,
+      String? name,
+      String? slug,
+      String? language,
+      int? gamesCount,
+      String? imageBackground}) = _$_Tag;
 
   factory _Tag.fromJson(Map<String, dynamic> json) = _$_Tag.fromJson;
 
   @override
-  int? get id => throw _privateConstructorUsedError;
+  int? get id;
   @override
-  String? get name => throw _privateConstructorUsedError;
+  String? get name;
   @override
-  String? get slug => throw _privateConstructorUsedError;
+  String? get slug;
   @override
-  String? get language => throw _privateConstructorUsedError;
+  String? get language;
   @override
-  int? get gamesCount => throw _privateConstructorUsedError;
+  int? get gamesCount;
   @override
-  String? get imageBackground => throw _privateConstructorUsedError;
+  String? get imageBackground;
   @override
   @JsonKey(ignore: true)
-  _$$_TagCopyWith<_$_Tag> get copyWith => throw _privateConstructorUsedError;
+  _$TagCopyWith<_Tag> get copyWith => throw _privateConstructorUsedError;
 }

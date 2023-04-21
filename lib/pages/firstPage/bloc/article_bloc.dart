@@ -48,13 +48,11 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
     if(event.isBottomScroll){
       yield state.copyWith(
           submitStatus: FormzStatus.submissionInProgress,
-          type: 'get-next-page-article',
-          keyword: '');
+          type: 'get-next-page-article');
     }else {
       yield state.copyWith(
           submitStatus: FormzStatus.submissionInProgress,
-          type: 'fetching-article',
-          keyword: '');
+          type: 'fetching-article');
     }
     try {
       int? page = state.page;
@@ -71,13 +69,13 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
 
       ResponseModel response = await articleRepository.fetchArticle(
           page, startString, endString);
-      List<ArticleModel>? data = [];
+      List<ArticleModel>data = [];
       String next = '';
 
       if (response.results != null) {
         if (state.listArticle != null && event.page != 1) {
-          data = state.listArticle;
-          data?.addAll(response.results);
+          data = state.listArticle??[];
+          data.addAll(response.results);
         } else {
           data = response.results;
         }
@@ -88,14 +86,13 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
           isLast = true;
         }
       }
-
       yield state.copyWith(
           submitStatus: FormzStatus.submissionSuccess,
           listArticle: data,
-          keyword: '',
           page: page,
-          last: isLast,
-          next: next);
+          isLast: isLast,
+          next: next,
+      type: 'fetching-article');
     } on ArticleErrorException catch (e) {
       print(e);
       yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
@@ -106,24 +103,18 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
     ArticleReadDetailEvent event,
     ArticlePageState state,
   ) async* {
-    yield state.copyWith(submitStatus: FormzStatus.submissionInProgress);
     yield state.copyWith(
         submitStatus: FormzStatus.submissionInProgress,
-        type: 'fetching-detail',
-        keyword: '');
+        type: 'fetching-detail');
     try {
 
       ArticleDetailModel response = await articleRepository.readDetailArticle(event.id);
-      List<ArticleModel>? data = [];
-      String next = '';
-
       if (response.id != null) {
         yield state.copyWith(
             submitStatus: FormzStatus.submissionSuccess,
             articleDetailModel: response,
           type: 'fetching-detail',);
       }
-
 
     } on ArticleErrorException catch (e) {
       print(e);

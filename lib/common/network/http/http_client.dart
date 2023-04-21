@@ -27,6 +27,9 @@ class HttpClient {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
     };
+    host = Configurations.host;
+    cookieFromSp = true;
+    isRefresh = false;
   }
 
   Uri _getParsedUrl(String path, {Map<String, String>? queryParameters}) {

@@ -21,13 +21,11 @@ class ArticleFetchEvent extends ArticlePageEvent {
 }
 
 class ArticleReadDetailEvent extends ArticlePageEvent {
-  const ArticleReadDetailEvent(this.id, {this.isFromTips =false});
-
+  const ArticleReadDetailEvent(this.id);
   final int id;
-  final bool isFromTips;
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [id];
 }
 
 class ArticleBackEvent extends ArticlePageEvent {
