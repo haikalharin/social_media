@@ -5,12 +5,11 @@ import 'package:formz/formz.dart';
 import 'package:intl/intl.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
-import 'package:rxdart/rxdart.dart';
-
 import '../../common/injector/injector.dart';
 import '../../data/model/article_model/article_model.dart';
+import '../../routes/route_name.dart';
 import '../../utils/epragnancy_color.dart';
-import 'article_detail_page.dart';
+import '../second_page/article_detail_page.dart';
 import 'bloc/article_bloc.dart';
 
 class ListArticleVertical extends StatefulWidget {
@@ -54,12 +53,8 @@ class _ListArticleVerticalState extends State<ListArticleVertical> {
       listener: (context, state) {
         if (state.submitStatus == FormzStatus.submissionSuccess &&
             state.type == 'fetching-detail') {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => ArticleDetailPage()
-              )
-          );
+          Navigator.of(context).pushNamed(
+              RouteName.secondPage);
         }
       },
       child: BlocBuilder<ArticlePageBloc, ArticlePageState>(

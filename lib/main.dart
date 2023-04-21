@@ -1,5 +1,5 @@
-import 'package:base_app_new/pages/firstPage/bloc/article_bloc.dart';
-import 'package:base_app_new/pages/firstPage/list_article_vertical.dart';
+import 'package:base_app_new/pages/first_page/bloc/article_bloc.dart';
+import 'package:base_app_new/pages/first_page/list_article_vertical.dart';
 import 'package:base_app_new/routes/routes.dart';
 import 'package:base_app_new/utils/flavors.dart';
 import 'package:flutter/material.dart';
