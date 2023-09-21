@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../theme/theme_color.dart';
+
 class DarkThemeColors
 {
   //dark swatch
@@ -10,8 +12,8 @@ class DarkThemeColors
   static const Color appbarColor = Colors.black;
 
   //SCAFFOLD
-  static const Color scaffoldBackgroundColor = Color(0xFF1F2E35);
-  static const Color backgroundColor = Color(0xFF30444E);
+  static const Color scaffoldBackgroundColor = Color(0xFF0C0A19);
+  static const Color backgroundColor = Color(0xFF0C0A19);
   static const Color dividerColor = primaryColor;
   static const Color cardColor = Color(0xFF1e2336);
 

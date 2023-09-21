@@ -5,6 +5,7 @@ import 'package:formz/formz.dart';
 import 'package:intl/intl.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+import 'package:swapi/common/utils/substring_util.dart';
 import 'package:swapi/data/model/people_model/people_model.dart';
 
 import '../../common/injector/injector.dart';
@@ -86,7 +87,7 @@ class _ListArticleVerticalState extends State<ListArticleVertical> {
                           padding: EdgeInsets.only(left: 8.w, right: 8.w),
                           child: Icon(
                             Icons.search,
-                            color: Colors.black,
+                            color: Colors.deepPurple,
                           ),
                         ),
                         suffixIconConstraints:
@@ -106,7 +107,7 @@ class _ListArticleVerticalState extends State<ListArticleVertical> {
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                                color: Colors.black, shape: BoxShape.circle),
+                                color: Colors.deepPurple, shape: BoxShape.circle),
                             child: Center(
                               child: Icon(
                                 Icons.close,
@@ -118,7 +119,7 @@ class _ListArticleVerticalState extends State<ListArticleVertical> {
                         ),
                         contentPadding:
                             EdgeInsets.only(top: 5.h, left: 20.w, right: 20.w),
-                        hintText: "Cari Nama...",
+                        hintText: "Find by name...",
                         fillColor: Colors.white,
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
@@ -154,7 +155,7 @@ class _ListArticleVerticalState extends State<ListArticleVertical> {
                                             MediaQuery.of(context).size.width,
                                         child: Center(
                                             child:
-                                                Text("Artikel tidak tersedia")))
+                                                Text("Not found")))
                                     : Stack(
                                         children: [
                                           Column(
@@ -187,8 +188,7 @@ class _ListArticleVerticalState extends State<ListArticleVertical> {
                                                   },
                                                   child: Scrollbar(
                                                     child: LiquidPullToRefresh(
-                                                        color: EpregnancyColors
-                                                            .primer,
+                                                        color: Colors.deepPurple,
                                                         key:
                                                             _refreshIndicatorKey,
                                                         onRefresh:
@@ -263,8 +263,8 @@ class _ListArticleBody extends StatelessWidget {
                 image: state.listArticle != null &&
                         state.listArticle![index].url != null
                     ? DecorationImage(
-                        image: new NetworkImage(
-                            'https://cdn.vox-cdn.com/thumbor/4CfA0tz-b4KaLS8rJzk3NwQoIvc=/85x0:1014x619/1200x800/filters:focal(85x0:1014x619)/cdn.vox-cdn.com/uploads/chorus_image/image/12771259/ea_star_wars_darth_vader.0.jpg'),
+                        image: new AssetImage(
+                            'assets/people/${getIdOrPage(state.listArticle?[index].url ?? "0")}.jpg'),
                         fit: BoxFit.cover,
                       )
                     : DecorationImage(
@@ -366,7 +366,7 @@ class _LoadingBottom extends StatelessWidget {
             color: Colors.white.withAlpha(90),
             child: Center(
                 child: CircularProgressIndicator(
-              color: EpregnancyColors.green,
+              color: Colors.red,
             )));
       } else {
         return Container();
@@ -383,8 +383,8 @@ class _Loading extends StatelessWidget {
       if (state.submitStatus == FormzStatus.submissionInProgress &&
           state.type == 'fetching-article') {
         return Container(
-            color: Colors.white.withAlpha(90),
-            child: Center(child: CircularProgressIndicator()));
+            color: Colors.white.withAlpha(50),
+            child: Center(child: CircularProgressIndicator(color: Colors.red,)));
       } else {
         return Text("");
       }

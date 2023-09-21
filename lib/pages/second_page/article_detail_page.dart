@@ -10,6 +10,7 @@ import '../../common/style/style.dart';
 import '../../common/utils/substring_util.dart';
 import '../../utils/epragnancy_color.dart';
 import '../first_page/bloc/article_bloc.dart';
+import 'list_starships_horizontal.dart';
 
 class ArticleDetailPage extends StatefulWidget {
   final String? data;
@@ -38,234 +39,190 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Stack(
-        children: [
-          NestedScrollView(
-            headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-              return <Widget>[
-                SliverAppBar(
-                  expandedHeight: 300.0,
-                  floating: false,
-                  pinned: true,
-                  elevation: 0.0,
-                  leading: GestureDetector(
-                    child: const Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.redAccent,
-                    ),
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  flexibleSpace: FlexibleSpaceBar(
-                    centerTitle: false,
-                    title: Container(),
-                    background: Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        Container(
-                          alignment: Alignment.topCenter,
-                          height: size.height - 300,
-                          width: size.width,
-                          decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                alignment: Alignment.bottomRight,
-                                fit: BoxFit.cover,
-                                image: NetworkImage(
-                                    'https://media.timeout.com/images/105863223/image.jpg'),
-                              )),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              //   Positioned(
-              //   top: 0,
-              //   child: Container(
-              //     alignment: Alignment.topCenter,
-              //     height: size.height - 300,
-              //     width: size.width,
-              //     decoration: const BoxDecoration(
-              //         image: DecorationImage(
-              //           alignment: Alignment.bottomRight,
-              //           fit: BoxFit.cover,
-              //           image: NetworkImage(
-              //               'https://media.timeout.com/images/105863223/image.jpg'),
-              //         )),
-              //   ),
-              // )
-              ];
-            }, body:  SingleChildScrollView(
-              child:   Container(
-                height: size.height,
-                width: size.width,
-                decoration: BoxDecoration(
-                  color: AppColor.secondary,),
-                child: Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Center(
-                        child: Container(
-                          margin: const EdgeInsets.only(bottom: 16),
-                          height: 5,
-                          width: 32 * 1.5,
-                          decoration: BoxDecoration(
-                            gradient: AppColor.gradient,
-                            borderRadius: BorderRadius.circular(3),
-                          ),
-                        ),
+    return BlocListener<ArticlePageBloc, ArticlePageState>(
+      listener: (context, state) {
+        if (state.submitStatus == FormzStatus.submissionSuccess &&
+            state.type == 'fetching-detail') {
+          if (state.articleDetailModel?.starships?.length != 0) {
+            state.articleDetailModel?.starships?.forEach((element) {
+              Injector.resolve<ArticlePageBloc>().add(
+                  ArticleListStarshipsHorizontalEvent(
+                      type: 'starships',
+                      id: getIdOrPage(element),
+                      listData: state.articleDetailModel?.starships ?? []));
+            });
+          } else {
+            Injector.resolve<ArticlePageBloc>()
+                .add(ArticleListStarshipsHorizontalEvent(type: 'starships'));
+          }
+        }
+      },
+      child: Scaffold(
+        body: Stack(
+          children: [
+            NestedScrollView(
+              headerSliverBuilder:
+                  (BuildContext context, bool innerBoxIsScrolled) {
+                return <Widget>[
+                  SliverAppBar(
+                    expandedHeight: 300.0,
+                    floating: false,
+                    pinned: true,
+                    elevation: 0.0,
+                    leading: GestureDetector(
+                      child: const Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.redAccent,
                       ),
-                      const ProductNameAndPrice(),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      Text('Size',
-                          style: AppStyle.text
-                              .copyWith(color: Colors.white.withOpacity(.8))),
-                      const Spacing(),
-                      Row(
-                        children: const [
-                          RectButtonSelected(
-                            label: 'S',
-                          ),
-                          RectButton(
-                            label: 'M',
-                          ),
-                          RectButton(
-                            label: 'L',
-                          ),
-                          RectButton(
-                            label: 'XL',
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    flexibleSpace: FlexibleSpaceBar(
+                      centerTitle: false,
+                      title: Container(),
+                      background: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          BlocBuilder<ArticlePageBloc, ArticlePageState>(
+                            builder: (context, state) {
+                              return state.submitStatus ==
+                                      FormzStatus.submissionInProgress
+                                  ? SizedBox(
+                                      child: Shimmer.fromColors(
+                                        baseColor: Colors.deepPurple,
+                                        highlightColor: Colors.grey,
+                                        child: Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                                color: EpregnancyColors.grey)),
+                                      ),
+                                    )
+                                  : Container(
+                                      alignment: Alignment.topCenter,
+                                      height: size.height - 300,
+                                      width: size.width,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                        alignment: Alignment.center,
+                                        fit: BoxFit.fitHeight,
+                                        image: AssetImage(
+                                            'assets/people/${getIdOrPage(state.articleDetailModel?.url ?? "0")}.jpg'),
+                                      )),
+                                    );
+                            },
                           ),
                         ],
                       ),
-                      const Spacing(),
-                      Row(
-                        children: const [
-                          TabTitle(label: 'Details', selected: true),
-                          SizedBox(width: 8),
-                          TabTitle(label: 'Review', selected: false),
-                        ],
-                      ),
-                      const Spacing(),
-                      Text(
-                        'This is weekdays design-your go-to for all the latest trends, no matter who you are.',
-                        style: AppStyle.bodyText.copyWith(color: Colors.white),
-                      ),
-                      const Spacing(),
-                      Center(
-                          child: ElevatedButton(
-                              style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(
-                                      AppColor.primary),
-                                  shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(
-                                          borderRadius:
-                                          BorderRadius.circular(16))),
-                                  minimumSize: MaterialStateProperty.all(
-                                      Size(size.width / 1.4, 37))),
-                              onPressed: () {},
-                              child: Text('Add To Cart',
-                                  style: AppStyle.h3
-                                      .copyWith(color: Colors.white))))
-                    ],
+                    ),
                   ),
-                ),
+
+                ];
+              },
+
+              body: BlocBuilder<ArticlePageBloc, ArticlePageState>(
+                builder: (context, state) {
+                  return SingleChildScrollView(
+                    child: Container(
+                      height: size.height,
+                      width: size.width,
+                      decoration: BoxDecoration(
+                        color: AppColor.secondary,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(24.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Center(
+                              child: Container(
+                                margin: const EdgeInsets.only(bottom: 16),
+                                height: 5,
+                                width: 32 * 1.5,
+                                decoration: BoxDecoration(
+                                  gradient: AppColor.gradient,
+                                  borderRadius: BorderRadius.circular(3),
+                                ),
+                              ),
+                            ),
+                            const ProductNameAndPrice(),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            Text('Size',
+                                style: AppStyle.text.copyWith(
+                                    color: Colors.white.withOpacity(.8))),
+                            const Spacing(),
+                            Row(
+                              children: const [
+                                RectButtonSelected(
+                                  label: 'S',
+                                ),
+                                RectButton(
+                                  label: 'M',
+                                ),
+                                RectButton(
+                                  label: 'L',
+                                ),
+                                RectButton(
+                                  label: 'XL',
+                                ),
+                              ],
+                            ),
+                            const Spacing(),
+                            Row(
+                              children: const [
+                                TabTitle(label: 'Details', selected: true),
+                                SizedBox(width: 8),
+                                TabTitle(label: 'Review', selected: false),
+                              ],
+                            ),
+                            const Spacing(),
+                            Text(
+                              'This is weekdays design-your go-to for all the latest trends, no matter who you are.',
+                              style: AppStyle.bodyText
+                                  .copyWith(color: Colors.white),
+                            ),
+                            const Spacing(),
+                            Center(
+                                child: ElevatedButton(
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all(
+                                                AppColor.primary),
+                                        shape: MaterialStateProperty.all(
+                                            RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(16))),
+                                        minimumSize: MaterialStateProperty.all(
+                                            Size(size.width / 1.4, 37))),
+                                    onPressed: () {},
+                                    child: Text('Add To Cart',
+                                        style: AppStyle.h3
+                                            .copyWith(color: Colors.white)))),
+                            const Spacing(),
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              child: ListStarshipsHorizontal(
+                                listStarship: state.listStarship,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
+
             ),
-
-
-          // Positioned(
-          //     bottom: 0,
-          //     child: Container(
-          //       height: size.height / 2.2,
-          //       width: size.width,
-          //       decoration: BoxDecoration(
-          //         color: AppColor.secondary,
-          //         borderRadius: BorderRadius.circular(34),
-          //       ),
-          //       child: Padding(
-          //         padding: const EdgeInsets.all(24.0),
-          //         child: Column(
-          //           mainAxisAlignment: MainAxisAlignment.start,
-          //           crossAxisAlignment: CrossAxisAlignment.start,
-          //           children: [
-          //             Center(
-          //               child: Container(
-          //                 margin: const EdgeInsets.only(bottom: 16),
-          //                 height: 5,
-          //                 width: 32 * 1.5,
-          //                 decoration: BoxDecoration(
-          //                   gradient: AppColor.gradient,
-          //                   borderRadius: BorderRadius.circular(3),
-          //                 ),
-          //               ),
-          //             ),
-          //             const ProductNameAndPrice(),
-          //             const SizedBox(
-          //               height: 16,
-          //             ),
-          //             Text('Size',
-          //                 style: AppStyle.text
-          //                     .copyWith(color: Colors.white.withOpacity(.8))),
-          //             const Spacing(),
-          //             Row(
-          //               children: const [
-          //                 RectButtonSelected(
-          //                   label: 'S',
-          //                 ),
-          //                 RectButton(
-          //                   label: 'M',
-          //                 ),
-          //                 RectButton(
-          //                   label: 'L',
-          //                 ),
-          //                 RectButton(
-          //                   label: 'XL',
-          //                 ),
-          //               ],
-          //             ),
-          //             const Spacing(),
-          //             Row(
-          //               children: const [
-          //                 TabTitle(label: 'Details', selected: true),
-          //                 SizedBox(width: 8),
-          //                 TabTitle(label: 'Review', selected: false),
-          //               ],
-          //             ),
-          //             const Spacing(),
-          //             Text(
-          //               'This is weekdays design-your go-to for all the latest trends, no matter who you are.',
-          //               style: AppStyle.bodyText.copyWith(color: Colors.white),
-          //             ),
-          //             const Spacing(),
-          //             Center(
-          //                 child: ElevatedButton(
-          //                     style: ButtonStyle(
-          //                         backgroundColor: MaterialStateProperty.all(
-          //                             AppColor.primary),
-          //                         shape: MaterialStateProperty.all(
-          //                             RoundedRectangleBorder(
-          //                                 borderRadius:
-          //                                 BorderRadius.circular(16))),
-          //                         minimumSize: MaterialStateProperty.all(
-          //                             Size(size.width / 1.4, 37))),
-          //                     onPressed: () {},
-          //                     child: Text('Add To Cart',
-          //                         style: AppStyle.h3
-          //                             .copyWith(color: Colors.white))))
-          //           ],
-          //         ),
-          //       ),
-          //     )),
-
-          ),
-
-        ],
+          ],
+        ),
       ),
     );
   }

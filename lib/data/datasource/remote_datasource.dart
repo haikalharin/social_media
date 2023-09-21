@@ -1,4 +1,5 @@
 import 'package:swapi/common/configurations/configurations.dart';
+import 'package:swapi/data/model/starship_model/starship_model.dart';
 
 import '../../common/network/http/http_client.dart';
 import '../model/article_detail_model/article_detail_model.dart';
@@ -45,6 +46,20 @@ class RemoteDataSource {
       return data;
     } catch (e) {
       return PeopleModel();
+    }
+  }
+
+  Future<StarshipModel> readDetailStarship(String type, int id) async {
+    try {
+      Map<String, String> qParams = {
+        'key': Configurations.key,
+      };
+      final response = await httpClient.get(
+          "$type/$id",queryParameters: qParams);
+      var data = StarshipModel.fromJson(response);
+      return data;
+    } catch (e) {
+      return StarshipModel();
     }
   }
 }

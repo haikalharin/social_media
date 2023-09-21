@@ -1,5 +1,7 @@
 
 
+import 'package:swapi/data/model/starship_model/starship_model.dart';
+
 import '../../../common/exceptions/network_connection_exception.dart';
 import '../../../common/network/network_info.dart';
 import '../../datasource/remote_datasource.dart';
@@ -27,6 +29,14 @@ class ArticleRepositoryImpl extends ArticleRepository {
   Future<PeopleModel> readDetailArticle(int id) async {
     if (await networkInfo.isConnected) {
       return remoteDatasource.readDetailArticle(id);
+    }
+    throw NetworkConnectionException();
+  }
+
+  @override
+  Future<StarshipModel>readDetailForListStarship(String type, int id) async {
+    if (await networkInfo.isConnected) {
+      return remoteDatasource.readDetailStarship(type,id);
     }
     throw NetworkConnectionException();
   }

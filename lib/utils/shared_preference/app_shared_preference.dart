@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:swapi/data/model/starship_model/starship_model.dart';
+import 'package:swapi/data/model/starship_model/starship_temp_model.dart';
 import '../../common/injector/injector.dart';
 
 class AppSharedPreference {
@@ -62,5 +64,24 @@ class AppSharedPreference {
     prefs.setBool(key, value);
   }
 
+  static Future<StarshipTempModel> getStarshipModel() async {
+    StarshipTempModel? baby = StarshipTempModel();
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    try {
+      String? personString = pref.getString('listStarships');
+      if (personString != null) {
+        Map<String, dynamic> personJson = json.decode(personString);
+        baby = StarshipTempModel.fromJson(personJson);
+      }
+    } catch (e) {
+      print(e);
+    }
+    return baby!;
+  }
+
+  static Future<void> setStarshipModel(StarshipTempModel starshipTempModel) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString('listStarships', json.encode(starshipTempModel.toJson()));
+  }
 
 }

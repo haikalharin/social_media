@@ -2,6 +2,8 @@ part of 'article_bloc.dart';
 
 class ArticlePageState extends Equatable with FormzMixin {
   final List<PeopleModel>? listArticle;
+  final List<StarshipModel>? listStarship;
+  final StarshipModel? starshipDetailModel;
   final PeopleModel? articleDetailModel;
   final FormzStatus? submitStatus;
   final String? errorMessage;
@@ -13,6 +15,8 @@ class ArticlePageState extends Equatable with FormzMixin {
   final String next;
 
   ArticlePageState({
+    this.listStarship,
+    this.starshipDetailModel,
     this.articleDetailModel,
     this.listArticle,
     this.type,
@@ -28,6 +32,8 @@ class ArticlePageState extends Equatable with FormzMixin {
   ArticlePageState copyWith(
       {FormzStatus? submitStatus,
       PeopleModel? articleDetailModel,
+      List<StarshipModel>? listStarship,
+      StarshipModel? starshipDetailModel,
       List<PeopleModel>? listArticle,
       bool? isSearch,
       String? type,
@@ -39,6 +45,8 @@ class ArticlePageState extends Equatable with FormzMixin {
     return ArticlePageState(
         submitStatus: submitStatus,
         articleDetailModel: articleDetailModel ?? this.articleDetailModel,
+        starshipDetailModel: starshipDetailModel ?? this.starshipDetailModel,
+        listStarship: listStarship ?? this.listStarship,
         listArticle: listArticle ?? this.listArticle,
         isSearch: isSearch ?? this.isSearch,
         type: type,
@@ -50,22 +58,29 @@ class ArticlePageState extends Equatable with FormzMixin {
   }
 
   @override
-  List<Object> get props => type == 'fetching-detail'
+  List<Object> get props =>
+      type == 'fetching-detail'
       ? [
           submitStatus ?? '',
           articleDetailModel ?? ArticleDetailModel(),
-          type ?? ''
+          type ?? '',
         ]
-      : type == 'fetching-article'
+      : type == 'fetching-starships'
           ? [
               submitStatus ?? '',
-              listArticle ?? [],
               type ?? '',
-              page,
-              isLast,
-              next
+              listStarship ?? []
             ]
-          : [];
+          : type == 'fetching-article'
+              ? [
+                  submitStatus ?? '',
+                  listArticle ?? [],
+                  type ?? '',
+                  page,
+                  isLast,
+                  next
+                ]
+              : [];
 
   @override
   // TODO: implement inputs

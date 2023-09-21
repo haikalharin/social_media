@@ -1,17 +1,19 @@
 import 'dart:async';
 
-import 'package:swapi/data/model/people_model/people_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
+import 'package:swapi/data/model/people_model/people_model.dart';
+import 'package:swapi/data/model/starship_model/starship_model.dart';
+import 'package:swapi/data/model/starship_model/starship_temp_model.dart';
 
 import '../../../common/exceptions/article_error_exception.dart';
 import '../../../data/model/article_detail_model/article_detail_model.dart';
-import '../../../data/model/article_model/article_model.dart';
 import '../../../data/model/response_model/response_model.dart';
 import '../../../data/repository/article_repository/article_repository.dart';
+import '../../../utils/shared_preference/app_shared_preference.dart';
 
 part 'article_event.dart';
 
@@ -28,6 +30,8 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
       yield* _mapArticleFetchEventToState(event, state);
     } else if (event is ArticleReadDetailEvent) {
       yield* _mapArticleReadEventToState(event, state);
+    } else if (event is ArticleListStarshipsHorizontalEvent) {
+      yield* _mapArticleListStarshipsHorizontalEventToState(event, state);
     } else if (event is ArticleBackEvent) {
       yield _mapArticleBackEventToState(event, state);
     }
@@ -94,7 +98,62 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
           page: page,
           isLast: isLast,
           next: next,
-      type: 'fetching-article');
+          type: 'fetching-article');
+    } on ArticleErrorException catch (e) {
+      print(e);
+      yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
+    } on Exception catch (a) {}
+  }
+
+  Stream<ArticlePageState> _mapArticleListStarshipsHorizontalEventToState(
+      ArticleListStarshipsHorizontalEvent event,
+    ArticlePageState state,
+  ) async* {
+    yield state.copyWith(
+        submitStatus: FormzStatus.submissionInProgress,
+        type: 'fetching-detail');
+    try {
+      StarshipTempModel starshipTempModel =
+          await AppSharedPreference.getStarshipModel();
+      if (event.type == 'starships') {
+        if (event.listData.isNotEmpty) {
+          List<StarshipModel> listStarship = state.listStarship ?? [];
+          StarshipModel response = await articleRepository
+              .readDetailForListStarship(event.type, event.id);
+
+          if (starshipTempModel.name != state.articleDetailModel?.name ||
+              (starshipTempModel.name == state.articleDetailModel?.name  &&
+                  (listStarship.length  >= state.articleDetailModel!.starships!.length))) {
+            listStarship.clear();
+            AppSharedPreference.setStarshipModel(
+                StarshipTempModel(name: state.articleDetailModel?.name, listData: listStarship));
+            listStarship.add(response);
+          } else {
+            starshipTempModel.listData?.addAll(listStarship);
+            listStarship.add(response);
+          }
+
+          if (response.name != null) {
+            yield state.copyWith(
+              submitStatus: FormzStatus.submissionSuccess,
+              listStarship: listStarship,
+              type: 'fetching-starships',
+            );
+          }
+        } else {
+          yield state.copyWith(
+            submitStatus: FormzStatus.submissionSuccess,
+            listStarship: [],
+            type: 'fetching-starships',
+          );
+        }
+      } else {
+        yield state.copyWith(
+          submitStatus: FormzStatus.submissionFailure,
+          listStarship: [],
+          type: 'fetching-starships',
+        );
+      }
     } on ArticleErrorException catch (e) {
       print(e);
       yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
@@ -109,8 +168,9 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
         submitStatus: FormzStatus.submissionInProgress,
         type: 'fetching-detail');
     try {
+      PeopleModel response =
+          await articleRepository.readDetailArticle(event.id);
 
-      PeopleModel response = await articleRepository.readDetailArticle(event.id);
       if (response.name != null) {
         yield state.copyWith(
             submitStatus: FormzStatus.submissionSuccess,
