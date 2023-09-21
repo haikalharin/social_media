@@ -1,5 +1,14 @@
 
 
+Please Using flutter version 2.10.5
+
+HOW TO RUNING THIS PROJECT
+
+install flutter 2.10.5
+pub get
+run this code in terminal -> flutter packages pub run build_runner build --delete-conflicting-outputs
+run apps
+
 Naming convention
 To reduce the effort needed to read and understand source code
 1. variable : camelCase
@@ -60,3 +69,4 @@ run apps
 
 
 
+# swapi
