@@ -10,13 +10,13 @@ import 'package:swapi/data/model/starship_model/starship_model.dart';
 import 'package:swapi/data/model/starship_model/starship_temp_model.dart';
 
 import '../../../common/exceptions/article_error_exception.dart';
+import '../../../common/exceptions/network_connection_exception.dart';
 import '../../../data/model/article_detail_model/article_detail_model.dart';
 import '../../../data/model/response_model/response_model.dart';
 import '../../../data/repository/article_repository/article_repository.dart';
 import '../../../utils/shared_preference/app_shared_preference.dart';
 
 part 'article_event.dart';
-
 part 'article_state.dart';
 
 class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
@@ -102,7 +102,15 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
     } on ArticleErrorException catch (e) {
       print(e);
       yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
-    } on Exception catch (a) {}
+    } on Exception catch (a) {
+      if (a is NetworkConnectionException) {
+        yield state.copyWith(
+            submitStatus: FormzStatus.submissionFailure,
+            errorMessage: "internetConnection");
+      } else {
+        yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
+      }
+    }
   }
 
   Stream<ArticlePageState> _mapArticleListStarshipsHorizontalEventToState(
@@ -157,7 +165,15 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
     } on ArticleErrorException catch (e) {
       print(e);
       yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
-    } on Exception catch (a) {}
+    } on Exception catch (a) {
+      if (a is NetworkConnectionException) {
+        yield state.copyWith(
+            submitStatus: FormzStatus.submissionFailure,
+            errorMessage: "internetConnection");
+      } else {
+        yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
+      }
+    }
   }
 
   Stream<ArticlePageState> _mapArticleReadEventToState(
@@ -173,15 +189,23 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
 
       if (response.name != null) {
         yield state.copyWith(
-            submitStatus: FormzStatus.submissionSuccess,
-            articleDetailModel: response,
-          type: 'fetching-detail',);
+          submitStatus: FormzStatus.submissionSuccess,
+          articleDetailModel: response,
+          type: 'fetching-detail',
+        );
       }
-
     } on ArticleErrorException catch (e) {
       print(e);
       yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
-    } on Exception catch (a) {}
+    } on Exception catch (a) {
+      if (a is NetworkConnectionException) {
+        yield state.copyWith(
+            submitStatus: FormzStatus.submissionFailure,
+            errorMessage: "internetConnection");
+      } else {
+        yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
+      }
+    }
   }
 //
 

@@ -9,6 +9,7 @@ import 'package:swapi/common/utils/substring_util.dart';
 import 'package:swapi/data/model/people_model/people_model.dart';
 
 import '../../common/injector/injector.dart';
+import '../../common/widget/dialog_default_internet_custom.dart';
 import '../../routes/route_name.dart';
 import '../../utils/epragnancy_color.dart';
 import 'bloc/article_bloc.dart';
@@ -52,7 +53,18 @@ class _ListArticleVerticalState extends State<ListArticleVertical> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<ArticlePageBloc, ArticlePageState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state.submitStatus == FormzStatus.submissionFailure) {
+          if (state.errorMessage == "internetConnection") {
+            return showDialogDefaultErrorCustom(
+                context, "Lost Connection", "Please check your connection",
+                refresh: (){
+                  Navigator.of(context).pop();
+                  _handleRefresh();
+                });
+          }
+        }
+      },
       child: BlocBuilder<ArticlePageBloc, ArticlePageState>(
         builder: (context, state) {
           return Scaffold(
@@ -211,7 +223,7 @@ class _ListArticleVerticalState extends State<ListArticleVertical> {
                                                   alignment:
                                                       Alignment.bottomCenter,
                                                   child: _LoadingBottom())
-                                              : Container()
+                                              :Container()
                                         ],
                                       )),
                         _Loading(),
@@ -303,27 +315,6 @@ class _ListArticleBody extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
-                                child: Row(
-                                  children: [
-                                    Container(
-                                        child: Icon(
-                                      Icons.access_time,
-                                      color: Colors.white,
-                                      size: 12,
-                                    )),
-                                    SizedBox(
-                                      width: 5,
-                                    ),
-                                    Container(
-                                        child: Text(
-                                      outputDate,
-                                      style: TextStyle(
-                                          fontSize: 12, color: Colors.white),
-                                    )),
-                                  ],
-                                ),
-                              ),
                               Container(
                                 margin: EdgeInsets.only(top: 5),
                                 decoration: BoxDecoration(
