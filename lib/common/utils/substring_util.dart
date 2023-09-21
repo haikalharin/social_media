@@ -1,6 +1,7 @@
 
-String getIdOrPage(String text){
-  String result = text.substring(text.length - 2);
-  String resultFix = result.replaceAll("/", "");
-  return resultFix;
+int getIdOrPage(String text){
+  String result = text.replaceAll(new RegExp(r'[^0-9]'),'');
+  int  resultInt = int.parse(result);
+
+  return resultInt;
 }

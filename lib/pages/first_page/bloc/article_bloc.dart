@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:swapi/data/model/people_model/people_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
@@ -68,8 +69,8 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
 
 
       ResponseModel response = await articleRepository.fetchArticle(
-          page, startString, endString);
-      List<ArticleModel>data = [];
+          page, startString, endString,event.keyword??'', event.isSearch??false);
+      List<PeopleModel>data = [];
       String next = '';
 
       if (response.results != null) {
@@ -83,6 +84,7 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
         if (response.next != null) {
           page = state.page + 1;
         } else {
+          page = 1;
           isLast = true;
         }
       }
@@ -108,8 +110,8 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
         type: 'fetching-detail');
     try {
 
-      ArticleDetailModel response = await articleRepository.readDetailArticle(event.id);
-      if (response.id != null) {
+      PeopleModel response = await articleRepository.readDetailArticle(event.id);
+      if (response.name != null) {
         yield state.copyWith(
             submitStatus: FormzStatus.submissionSuccess,
             articleDetailModel: response,

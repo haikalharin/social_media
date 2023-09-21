@@ -1,8 +1,9 @@
-import 'package:base_app_new/common/configurations/configurations.dart';
+import 'package:swapi/common/configurations/configurations.dart';
 
 import '../../common/network/http/http_client.dart';
 import '../model/article_detail_model/article_detail_model.dart';
 import '../model/article_model/article_model.dart';
+import '../model/people_model/people_model.dart';
 import '../model/response_model/response_model.dart';
 
 class RemoteDataSource {
@@ -13,37 +14,37 @@ class RemoteDataSource {
 
 
 
-  Future<ResponseModel> fetchArticle(String page,String start, String end) async {
+  Future<ResponseModel> fetchArticle(String page,String start, String end,String keyword, bool isSearch) async {
     try {
       Map<String, String> qParams = {
         'page': page,
-        'page_size': '20',
-        'platforms': '187',
-        'dates': '$start,$end',
-        'ordering': '-released',
-        'key': '02ef6ba5d13444ee86bad607e8bce3f4',
-
       };
+      if(isSearch) {
+        qParams = {
+          'search': keyword,
+        };
+      }
+
       final response = await httpClient.get(
-          "games",queryParameters: qParams);
-      var data = ResponseModel.fromJson(response, ArticleModel.fromJson);
+          "people",queryParameters: qParams);
+      var data = ResponseModel.fromJson(response, PeopleModel.fromJson);
       return data;
     } catch (e) {
       return ResponseModel.resultsEmpty();
     }
   }
 
-  Future<ArticleDetailModel> readDetailArticle(int id) async {
+  Future<PeopleModel> readDetailArticle(int id) async {
     try {
       Map<String, String> qParams = {
         'key': Configurations.key,
       };
       final response = await httpClient.get(
-          "games/$id",queryParameters: qParams);
-      var data = ArticleDetailModel.fromJson(response);
+          "people/$id",queryParameters: qParams);
+      var data = PeopleModel.fromJson(response);
       return data;
     } catch (e) {
-      return ArticleDetailModel();
+      return PeopleModel();
     }
   }
 }

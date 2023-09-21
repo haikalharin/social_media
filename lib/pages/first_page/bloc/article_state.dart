@@ -1,8 +1,8 @@
 part of 'article_bloc.dart';
 
 class ArticlePageState extends Equatable with FormzMixin {
-  final List<ArticleModel>? listArticle;
-  final ArticleDetailModel? articleDetailModel;
+  final List<PeopleModel>? listArticle;
+  final PeopleModel? articleDetailModel;
   final FormzStatus? submitStatus;
   final String? errorMessage;
   final String? type;
@@ -27,8 +27,8 @@ class ArticlePageState extends Equatable with FormzMixin {
 
   ArticlePageState copyWith(
       {FormzStatus? submitStatus,
-      ArticleDetailModel? articleDetailModel,
-      List<ArticleModel>? listArticle,
+      PeopleModel? articleDetailModel,
+      List<PeopleModel>? listArticle,
       bool? isSearch,
       String? type,
       bool? isLast,

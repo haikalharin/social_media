@@ -1,8 +1,9 @@
-import 'package:base_app_new/data/model/article_detail_model/article_detail_model.dart';
-import 'package:base_app_new/data/model/article_model/article_model.dart';
-import 'package:base_app_new/data/model/response_model/response_model.dart';
-import 'package:base_app_new/data/repository/article_repository/article_repository.dart';
-import 'package:base_app_new/pages/first_page/bloc/article_bloc.dart';
+import 'package:swapi/data/model/article_detail_model/article_detail_model.dart';
+import 'package:swapi/data/model/article_model/article_model.dart';
+import 'package:swapi/data/model/people_model/people_model.dart';
+import 'package:swapi/data/model/response_model/response_model.dart';
+import 'package:swapi/data/repository/article_repository/article_repository.dart';
+import 'package:swapi/pages/first_page/bloc/article_bloc.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:formz/formz.dart';
@@ -19,11 +20,9 @@ var listData = ResponseModel(
     next:
     "https://api.rawg.io/api/games?dates=2020-12-21%2C2021-12-21&key=02ef6ba5d13444ee86bad607e8bce3f4&ordering=-released&page=2&page_size=20&platforms=187",
     results: [dataArticle, dataArticle, dataArticle]);
-var dataDetail = ArticleDetailModel(
-    id: 437049,
-    slug: "fifa-21",
+var dataDetail = PeopleModel(
     name: "FIFA 21",
-    nameOriginal: "FIFA 21");
+    gender: "male");
 
 var dataMap = {
   "id": 437049,
@@ -35,12 +34,12 @@ var dataMap = {
 class ArticleMockRepository extends Mock implements ArticleRepository {
 
   @override
-  Future<ArticleDetailModel> readDetailArticle(int id) async {
+  Future<PeopleModel> readDetailArticle(int id) async {
     return dataDetail;
   }
 
   @override
-  Future<ResponseModel> fetchArticle(int page, String start, String end) async {
+  Future<ResponseModel> fetchArticle(int page, String start, String end,String keyword,bool isSearch) async {
     return listData;
   }
 }
@@ -52,7 +51,7 @@ void main() {
     ArticleMockRepository? repository;
     ArticlePageBloc bloc = ArticlePageBloc(ArticleMockRepository());
     ArticlePageState state = ArticlePageState();
-    List<ArticleModel>listDetail = [];
+    List<PeopleModel>listDetail = [];
     var id = 437049,
         submitStatusInProgress,
         submitStatusSuccess,

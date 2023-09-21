@@ -1,4 +1,4 @@
-import 'package:base_app_new/routes/route_name.dart';
+import 'package:swapi/routes/route_name.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +14,7 @@ class Routes {
             builder: (_) => ListArticleVertical());
       case RouteName.secondPage:
         return MaterialPageRoute(
-            builder: (_) => ArticleDetailPage());
+            builder: (_) => ArticleDetailPage(data: getPeopleDetail(settings.arguments)));
 
       default:
         return MaterialPageRoute(

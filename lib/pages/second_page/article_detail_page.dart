@@ -1,19 +1,20 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:formz/formz.dart';
-import 'package:intl/intl.dart';
+import 'package:shimmer/shimmer.dart';
 
-
+import '../../common/color/color.dart';
+import '../../common/injector/injector.dart';
+import '../../common/style/style.dart';
+import '../../common/utils/substring_util.dart';
 import '../../utils/epragnancy_color.dart';
 import '../first_page/bloc/article_bloc.dart';
 
 class ArticleDetailPage extends StatefulWidget {
+  final String? data;
 
-  ArticleDetailPage();
+  ArticleDetailPage({this.data});
 
   @override
   State<ArticleDetailPage> createState() => _ArticleDetailPageState();
@@ -26,242 +27,389 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
     EpregnancyColors.periwinkle,
     EpregnancyColors.rosePink
   ];
+
   @override
   void initState() {
-
+    Injector.resolve<ArticlePageBloc>()
+        .add(ArticleReadDetailEvent(getIdOrPage(widget.data ?? '0')));
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () {
-        return Future.value(true);
-      },
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: BlocBuilder<ArticlePageBloc, ArticlePageState>(
-          builder: (context, state) {
-            String outputDate = "";
-            var outputFormat = DateFormat.yMMMMd('id');
-            outputDate = outputFormat.format(DateTime.parse(
-                state.articleDetailModel?.released ?? "0000-00-00"));
-
-            return Stack(
-              children: [
-                NestedScrollView(
-                    headerSliverBuilder:
-                        (BuildContext context, bool innerBoxIsScrolled) {
-                      return <Widget>[
-                        SliverAppBar(
-                          expandedHeight: 300.0,
-                          floating: false,
-                          pinned: true,
-                          elevation: 0.0,
-                          leading: GestureDetector(
-                            child: const Icon(
-                              Icons.arrow_back_ios,
-                              color: Colors.grey,
-                            ),
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                          backgroundColor: Colors.white,
-                          flexibleSpace: FlexibleSpaceBar(
-                            centerTitle: false,
-                            title: Container(),
-                            background: Image(
-                              image: NetworkImage(state
-                                      .articleDetailModel?.backgroundImage ??
-                                  'https://images.nintendolife.com/7eb5b6e59be08/a-hat-in-time-cover.cover_large.jpg'),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        header(context, state,outputDate)
-                      ];
+    Size size = MediaQuery.of(context).size;
+    return Scaffold(
+      body: Stack(
+        children: [
+          NestedScrollView(
+            headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+              return <Widget>[
+                SliverAppBar(
+                  expandedHeight: 300.0,
+                  floating: false,
+                  pinned: true,
+                  elevation: 0.0,
+                  leading: GestureDetector(
+                    child: const Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.redAccent,
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
                     },
-                    body: Column(
+                  ),
+                  flexibleSpace: FlexibleSpaceBar(
+                    centerTitle: false,
+                    title: Container(),
+                    background: Stack(
+                      fit: StackFit.expand,
                       children: [
-                        Expanded(
-                          child: SingleChildScrollView(
-                            child: Container(
-                                padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
-                                child: Html(
-                                    data:
-                                        state.articleDetailModel?.description ??
-                                            '',
-                                    style: {
-                                      "body": Style(
-                                          fontSize: FontSize(16.0),
-                                          color: Colors.black),
-                                    })),
-                          ),
+                        Container(
+                          alignment: Alignment.topCenter,
+                          height: size.height - 300,
+                          width: size.width,
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                alignment: Alignment.bottomRight,
+                                fit: BoxFit.cover,
+                                image: NetworkImage(
+                                    'https://media.timeout.com/images/105863223/image.jpg'),
+                              )),
                         ),
                       ],
-                    )),
-                _Loading()
-              ],
-            );
-          },
-        ),
+                    ),
+                  ),
+                ),
+              //   Positioned(
+              //   top: 0,
+              //   child: Container(
+              //     alignment: Alignment.topCenter,
+              //     height: size.height - 300,
+              //     width: size.width,
+              //     decoration: const BoxDecoration(
+              //         image: DecorationImage(
+              //           alignment: Alignment.bottomRight,
+              //           fit: BoxFit.cover,
+              //           image: NetworkImage(
+              //               'https://media.timeout.com/images/105863223/image.jpg'),
+              //         )),
+              //   ),
+              // )
+              ];
+            }, body:  SingleChildScrollView(
+              child:   Container(
+                height: size.height,
+                width: size.width,
+                decoration: BoxDecoration(
+                  color: AppColor.secondary,),
+                child: Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Container(
+                          margin: const EdgeInsets.only(bottom: 16),
+                          height: 5,
+                          width: 32 * 1.5,
+                          decoration: BoxDecoration(
+                            gradient: AppColor.gradient,
+                            borderRadius: BorderRadius.circular(3),
+                          ),
+                        ),
+                      ),
+                      const ProductNameAndPrice(),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      Text('Size',
+                          style: AppStyle.text
+                              .copyWith(color: Colors.white.withOpacity(.8))),
+                      const Spacing(),
+                      Row(
+                        children: const [
+                          RectButtonSelected(
+                            label: 'S',
+                          ),
+                          RectButton(
+                            label: 'M',
+                          ),
+                          RectButton(
+                            label: 'L',
+                          ),
+                          RectButton(
+                            label: 'XL',
+                          ),
+                        ],
+                      ),
+                      const Spacing(),
+                      Row(
+                        children: const [
+                          TabTitle(label: 'Details', selected: true),
+                          SizedBox(width: 8),
+                          TabTitle(label: 'Review', selected: false),
+                        ],
+                      ),
+                      const Spacing(),
+                      Text(
+                        'This is weekdays design-your go-to for all the latest trends, no matter who you are.',
+                        style: AppStyle.bodyText.copyWith(color: Colors.white),
+                      ),
+                      const Spacing(),
+                      Center(
+                          child: ElevatedButton(
+                              style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                      AppColor.primary),
+                                  shape: MaterialStateProperty.all(
+                                      RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(16))),
+                                  minimumSize: MaterialStateProperty.all(
+                                      Size(size.width / 1.4, 37))),
+                              onPressed: () {},
+                              child: Text('Add To Cart',
+                                  style: AppStyle.h3
+                                      .copyWith(color: Colors.white))))
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+
+          // Positioned(
+          //     bottom: 0,
+          //     child: Container(
+          //       height: size.height / 2.2,
+          //       width: size.width,
+          //       decoration: BoxDecoration(
+          //         color: AppColor.secondary,
+          //         borderRadius: BorderRadius.circular(34),
+          //       ),
+          //       child: Padding(
+          //         padding: const EdgeInsets.all(24.0),
+          //         child: Column(
+          //           mainAxisAlignment: MainAxisAlignment.start,
+          //           crossAxisAlignment: CrossAxisAlignment.start,
+          //           children: [
+          //             Center(
+          //               child: Container(
+          //                 margin: const EdgeInsets.only(bottom: 16),
+          //                 height: 5,
+          //                 width: 32 * 1.5,
+          //                 decoration: BoxDecoration(
+          //                   gradient: AppColor.gradient,
+          //                   borderRadius: BorderRadius.circular(3),
+          //                 ),
+          //               ),
+          //             ),
+          //             const ProductNameAndPrice(),
+          //             const SizedBox(
+          //               height: 16,
+          //             ),
+          //             Text('Size',
+          //                 style: AppStyle.text
+          //                     .copyWith(color: Colors.white.withOpacity(.8))),
+          //             const Spacing(),
+          //             Row(
+          //               children: const [
+          //                 RectButtonSelected(
+          //                   label: 'S',
+          //                 ),
+          //                 RectButton(
+          //                   label: 'M',
+          //                 ),
+          //                 RectButton(
+          //                   label: 'L',
+          //                 ),
+          //                 RectButton(
+          //                   label: 'XL',
+          //                 ),
+          //               ],
+          //             ),
+          //             const Spacing(),
+          //             Row(
+          //               children: const [
+          //                 TabTitle(label: 'Details', selected: true),
+          //                 SizedBox(width: 8),
+          //                 TabTitle(label: 'Review', selected: false),
+          //               ],
+          //             ),
+          //             const Spacing(),
+          //             Text(
+          //               'This is weekdays design-your go-to for all the latest trends, no matter who you are.',
+          //               style: AppStyle.bodyText.copyWith(color: Colors.white),
+          //             ),
+          //             const Spacing(),
+          //             Center(
+          //                 child: ElevatedButton(
+          //                     style: ButtonStyle(
+          //                         backgroundColor: MaterialStateProperty.all(
+          //                             AppColor.primary),
+          //                         shape: MaterialStateProperty.all(
+          //                             RoundedRectangleBorder(
+          //                                 borderRadius:
+          //                                 BorderRadius.circular(16))),
+          //                         minimumSize: MaterialStateProperty.all(
+          //                             Size(size.width / 1.4, 37))),
+          //                     onPressed: () {},
+          //                     child: Text('Add To Cart',
+          //                         style: AppStyle.h3
+          //                             .copyWith(color: Colors.white))))
+          //           ],
+          //         ),
+          //       ),
+          //     )),
+
+          ),
+
+        ],
       ),
     );
   }
+}
 
-  Widget header(BuildContext context, ArticlePageState state,String outputDate) {
-    return SliverPersistentHeader(
-      pinned: true,
-      delegate: _SliverAppBarDelegate(Container(
-        width: MediaQuery.of(context).size.width,
-        color: Colors.white,
-        child: Container(
-          padding: EdgeInsets.only(left: 20, right: 20),
-          decoration: BoxDecoration(
-            // borderRadius: BorderRadius.circular(5.0),
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey,
-                offset: Offset(0.0, 1.0), //(x,y)
-                blurRadius: 6.0,
-              ),
-            ],
+class TabTitle extends StatelessWidget {
+  final String label;
+  final bool selected;
+
+  const TabTitle({
+    Key? key,
+    required this.label,
+    required this.selected,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(
+            label,
+            style: AppStyle.text.copyWith(color: Colors.white),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                margin: EdgeInsets.only(top: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(top: 5),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.0),
-                          color: EpregnancyColors.green),
-                      height: 30,
-                      width: 100,
-                      child: Center(
-                          child: Text(
-                        "Rating : ${state.articleDetailModel?.rating.toString() ?? '0.0'}",
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      )),
-                    ),
-                    Icon(Icons.ios_share),
-                  ],
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 10),
-                child: Text(
-                  state.articleDetailModel?.name ?? '',
-                  maxLines: 5,
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  overflow: TextOverflow.clip,
-                ),
-              ),
-              Expanded(
-                child: Container(
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true,
-                        itemCount: state.articleDetailModel?.publishers?.length,
-                        itemBuilder: (context, index) {
-                          return Row(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(top: 5, right: 5),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    color: articleBgColor[Random().nextInt(3)]),
-                                height: 30,
-                                width: 180,
-                                child: Center(
-                                    child: Text(
-                                  state.articleDetailModel?.publishers != null
-                                      ? state.articleDetailModel
-                                              ?.publishers![index].name ??
-                                          ''
-                                      : '',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                              ),
-                            ],
-                          );
-                        })),
-              ),
-              Expanded(
-                child: Container(
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true,
-                        itemCount: state.articleDetailModel?.genres?.length,
-                        itemBuilder: (context, index) {
-                          return Row(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(top: 5, right: 5),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    color: EpregnancyColors.orange),
-                                height: 20,
-                                width: 100,
-                                child: Center(
-                                    child: Text(
-                                  state.articleDetailModel?.genres != null
-                                      ? state.articleDetailModel?.genres![index]
-                                              .name ??
-                                          ''
-                                      : '',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                              ),
-                            ],
-                          );
-                        })),
-              ),
-              Expanded(
-                child: Container(
-                    margin: EdgeInsets.only(bottom: 10),
-                    child: Row(
-                      children: [
-                        Container(
-                            child: Icon(
-                          Icons.access_time,
-                          size: 18,
-                        )),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Container(
-                            child: Text(
-                          outputDate,
-                          style: TextStyle(fontSize: 16, color: Colors.black),
-                        )),
-                      ],
-                    )),
-              ),
-            ],
+          const SizedBox(
+            height: 4,
           ),
-        ),
+          if (selected)
+            Container(
+              width: 21,
+              height: 2,
+              decoration: const BoxDecoration(color: AppColor.primary),
+            )
+        ])
+      ],
+    );
+  }
+}
+
+class Spacing extends StatelessWidget {
+  const Spacing({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox(
+      height: 16,
+    );
+  }
+}
+
+class RectButtonSelected extends StatelessWidget {
+  final String label;
+
+  const RectButtonSelected({
+    Key? key,
+    required this.label,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(right: 14),
+      height: 32,
+      width: 32,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(9), gradient: AppColor.gradient),
+      child: Center(
+          child: Text(
+        label,
+        style: AppStyle.text,
       )),
     );
   }
 }
+
+class RectButton extends StatelessWidget {
+  final String label;
+
+  const RectButton({
+    Key? key,
+    required this.label,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(right: 14),
+      height: 32,
+      width: 32,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(9),
+          border: Border.all(color: AppColor.primary)),
+      child: Center(
+          child: Text(
+        label,
+        style: AppStyle.text.copyWith(color: Colors.white),
+      )),
+    );
+  }
+}
+
+class ProductNameAndPrice extends StatelessWidget {
+  const ProductNameAndPrice({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ArticlePageBloc, ArticlePageState>(
+      builder: (context, state) {
+        return Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            state.submitStatus == FormzStatus.submissionInProgress
+                ? SizedBox(
+                    child: Shimmer.fromColors(
+                      baseColor: Colors.deepPurple,
+                      highlightColor: Colors.grey,
+                      child: Container(
+
+                          height: 50,
+                          width: MediaQuery.of(context).size.width/2,
+                          decoration:
+                               BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: EpregnancyColors.grey)),
+                    ),
+                  )
+                : Text(
+                    state.articleDetailModel?.name ?? '',
+                    style: AppStyle.h1Light,
+                  ),
+          ],
+        );
+      },
+    );
+  }
+}
+
 
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   _SliverAppBarDelegate(this._widget);
@@ -299,7 +447,7 @@ class _Loading extends StatelessWidget {
             color: Colors.white.withAlpha(90),
             child: Center(child: CircularProgressIndicator()));
       } else {
-        return Text("");
+        return Container();
       }
     });
   }

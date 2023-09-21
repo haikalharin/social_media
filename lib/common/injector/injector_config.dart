@@ -1,5 +1,5 @@
 
-import 'package:base_app_new/pages/first_page/bloc/article_bloc.dart';
+import 'package:swapi/pages/first_page/bloc/article_bloc.dart';
 import 'package:kiwi/kiwi.dart';
 
 import '../../data/datasource/remote_datasource.dart';
