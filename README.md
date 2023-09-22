@@ -31,13 +31,13 @@ Basic rules:
 
 Network
 - File config url remote_constant.dart
-- File penghubung http ke repository remote_datasource.dart
-- Custom httpnya di http_client.dart
+- File connecting http to repository remote_datasource.dart
+- if you will Custom http, you can custom in http_client.dart
 
 Database(Sqlite)
 1. create script table in database.dart
 2. create class Dao extending BaseDao
-3. add dao di injector_config.dartk
+3. add dao in injector_config.dartk
 4. run common.injector generator
 5. implement di repository
 
@@ -62,11 +62,3 @@ pub get
 run this code in terminal -> flutter packages pub run build_runner build --delete-conflicting-outputs
 run apps
 
-
-
-
-
-
-
-
-# swapi

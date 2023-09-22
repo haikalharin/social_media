@@ -1,10 +1,11 @@
 import 'package:swapi/common/configurations/configurations.dart';
 import 'package:swapi/data/model/starship_model/starship_model.dart';
+import 'package:swapi/data/model/vehicle_model/vehicle_model.dart';
 
 import '../../common/network/http/http_client.dart';
-import '../model/article_detail_model/article_detail_model.dart';
-import '../model/article_model/article_model.dart';
+
 import '../model/people_model/people_model.dart';
+import '../model/planet_model/planet_model.dart';
 import '../model/response_model/response_model.dart';
 
 class RemoteDataSource {
@@ -49,17 +50,45 @@ class RemoteDataSource {
     }
   }
 
-  Future<StarshipModel> readDetailStarship(String type, int id) async {
+  Future<PlanetModel> readDetailHomeworld(int id) async {
     try {
       Map<String, String> qParams = {
         'key': Configurations.key,
       };
       final response = await httpClient.get(
-          "$type/$id",queryParameters: qParams);
+          "planets/$id",queryParameters: qParams);
+      var data = PlanetModel.fromJson(response);
+      return data;
+    } catch (e) {
+      return PlanetModel();
+    }
+  }
+
+  Future<StarshipModel> readDetailStarship(int id) async {
+    try {
+      Map<String, String> qParams = {
+        'key': Configurations.key,
+      };
+      final response = await httpClient.get(
+          "starships/$id",queryParameters: qParams);
       var data = StarshipModel.fromJson(response);
       return data;
     } catch (e) {
       return StarshipModel();
+    }
+  }
+
+  Future<VehicleModel> readDetailVehicle(int id) async {
+    try {
+      Map<String, String> qParams = {
+        'key': Configurations.key,
+      };
+      final response = await httpClient.get(
+          "vehicles/$id",queryParameters: qParams);
+      var data = VehicleModel.fromJson(response);
+      return data;
+    } catch (e) {
+      return VehicleModel();
     }
   }
 }

@@ -41,8 +41,27 @@ class ArticleReadDetailEvent extends ArticlePageEvent {
   List<Object> get props => [id];
 }
 
+class ArticleReadHomeworldEvent extends ArticlePageEvent {
+  const ArticleReadHomeworldEvent(this.id);
+  final int id;
+
+  @override
+  List<Object> get props => [id];
+}
+
 class ArticleListStarshipsHorizontalEvent extends ArticlePageEvent {
   const ArticleListStarshipsHorizontalEvent({this.type= '', this.id = 0, this.listData = const[],this.isLast =false, });
+  final String type;
+  final int id;
+  final List<String> listData;
+  final bool isLast;
+
+  @override
+  List<Object> get props => [type];
+}
+
+class ArticleListVehiclesHorizontalEvent extends ArticlePageEvent {
+  const ArticleListVehiclesHorizontalEvent({this.type= '', this.id = 0, this.listData = const[],this.isLast =false, });
   final String type;
   final int id;
   final List<String> listData;

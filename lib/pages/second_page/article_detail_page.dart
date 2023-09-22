@@ -62,6 +62,31 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
             Injector.resolve<ArticlePageBloc>()
                 .add(ArticleListStarshipsHorizontalEvent(type: 'starships'));
           }
+        }  if (state.submitStatus == FormzStatus.submissionSuccess &&
+            state.type == 'fetching-detail') {
+          if (state.articleDetailModel?.vehicles?.length != 0) {
+            state.articleDetailModel?.vehicles?.forEach((element) {
+              Injector.resolve<ArticlePageBloc>().add(
+                  ArticleListVehiclesHorizontalEvent(
+                      id: getIdOrPage(element),
+                      listData: state.articleDetailModel?.vehicles ?? []));
+            });
+          } else {
+            Injector.resolve<ArticlePageBloc>()
+                .add(ArticleListVehiclesHorizontalEvent());
+          }
+        }
+
+        if (state.submitStatus == FormzStatus.submissionSuccess &&
+            state.type == 'fetching-detail') {
+          if (state.articleDetailModel?.homeworld != null) {
+              Injector.resolve<ArticlePageBloc>().add(
+                  ArticleReadHomeworldEvent(
+                      getIdOrPage(state.articleDetailModel?.homeworld??'0')));
+          } else {
+            Injector.resolve<ArticlePageBloc>()
+                .add(ArticleReadHomeworldEvent(0));
+          }
         } else if (state.submitStatus == FormzStatus.submissionFailure) {
           if (state.errorMessage == "internetConnection") {
             return showDialogDefaultErrorCustom(

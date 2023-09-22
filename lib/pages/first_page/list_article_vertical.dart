@@ -5,6 +5,7 @@ import 'package:formz/formz.dart';
 import 'package:intl/intl.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
+import 'package:lottie/lottie.dart';
 import 'package:swapi/common/utils/substring_util.dart';
 import 'package:swapi/data/model/people_model/people_model.dart';
 
@@ -375,7 +376,7 @@ class _Loading extends StatelessWidget {
           state.type == 'fetching-article') {
         return Container(
             color: Colors.white.withAlpha(50),
-            child: Center(child: CircularProgressIndicator(color: Colors.red,)));
+            child: Center(child: Lottie.asset("assets/lottie/starwars.json", repeat: true)));
       } else {
         return Text("");
       }

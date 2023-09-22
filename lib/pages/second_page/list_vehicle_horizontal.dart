@@ -5,21 +5,22 @@ import 'package:formz/formz.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:swapi/data/model/starship_model/starship_model.dart';
+import 'package:swapi/data/model/vehicle_model/vehicle_model.dart';
 import 'package:swapi/pages/first_page/bloc/article_bloc.dart';
 
 import '../../utils/epragnancy_color.dart';
 
-class ListStarshipsHorizontal extends StatefulWidget {
-  List<StarshipModel>? listStarship = [];
+class ListVehicleHorizontal extends StatefulWidget {
+  List<VehicleModel>? listVehicle = [];
   bool? isMovie = false;
 
-  ListStarshipsHorizontal({this.listStarship, this.isMovie});
+  ListVehicleHorizontal({this.listVehicle, this.isMovie});
 
   @override
-  State<ListStarshipsHorizontal> createState() => _ListStarshipsHorizontalState();
+  State<ListVehicleHorizontal> createState() => _ListVehicleHorizontalState();
 }
 
-class _ListStarshipsHorizontalState extends State<ListStarshipsHorizontal> {
+class _ListVehicleHorizontalState extends State<ListVehicleHorizontal> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ArticlePageBloc, ArticlePageState>(
@@ -27,7 +28,7 @@ class _ListStarshipsHorizontalState extends State<ListStarshipsHorizontal> {
         return Container(
           height: 150.h,
           width: 170.w,
-          child: widget.listStarship == null
+          child: widget.listVehicle == null
               ? state.submitStatus == FormzStatus.submissionInProgress
                   ? SizedBox(
                       child: Shimmer.fromColors(
@@ -57,10 +58,10 @@ class _ListStarshipsHorizontalState extends State<ListStarshipsHorizontal> {
                         String outputDate = "";
                         var outputFormat = DateFormat.yMMMMd('id');
                         outputDate =
-                            widget.listStarship?[index].created != '' &&
-                                    widget.listStarship?[index].created != null
+                            widget.listVehicle?[index].created != '' &&
+                                    widget.listVehicle?[index].created != null
                                 ? outputFormat.format(DateTime.parse(
-                                    widget.listStarship?[index].created ??
+                                    widget.listVehicle?[index].created ??
                                         "0000-00-00"))
                                 : "0000-00-00";
                         // 12/3
@@ -74,13 +75,13 @@ class _ListStarshipsHorizontalState extends State<ListStarshipsHorizontal> {
                             height: 150.h,
                             margin:
                                 EdgeInsets.only(left: 16, right: 16, top: 10),
-                            decoration: widget.listStarship?[index].url !=
+                            decoration: widget.listVehicle?[index].url !=
                                         null &&
-                                    widget.listStarship?[index].url != ""
+                                    widget.listVehicle?[index].url != ""
                                 ? BoxDecoration(
                                     image: DecorationImage(
                                       image: NetworkImage(
-                                          "https://imgix.ranker.com/user_node_img/50047/1000931279/original/1000931279-photo-u2?auto=format&q=60&fit=crop&fm=pjpg&dpr=2&w=375"),
+                                          "https://i.pinimg.com/originals/4d/b5/60/4db5606186aef55767e388c176984e53.jpg"),
                                       fit: BoxFit.cover,
                                     ),
                                     borderRadius: BorderRadius.circular(10.0),
@@ -99,26 +100,26 @@ class _ListStarshipsHorizontalState extends State<ListStarshipsHorizontal> {
                               child: Container(
                                   child: Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
+                                    Container(
+                                        width: 200,
+                                        margin: EdgeInsets.only(),
+                                        child: Text(
+                                          widget.listVehicle?[index].name ??
+                                              '',
+                                          maxLines: 2,
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        )),
                                         Container(
-                                            width: 300,
-                                            margin: EdgeInsets.only(),
-                                            child: Text(
-                                              widget.listStarship?[index].model ??
-                                                  '',
-                                              maxLines: 2,
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.white),
-                                            )),
-                                        Container(
-                                            width: 300,
+                                            width: 200,
                                             margin: EdgeInsets.only(top: 10),
                                             child: Text(
-                                              widget.listStarship?[index].starshipClass ??
+                                              widget.listVehicle?[index].model ??
                                                   '',
                                               maxLines: 2,
                                               style: TextStyle(
@@ -127,49 +128,23 @@ class _ListStarshipsHorizontalState extends State<ListStarshipsHorizontal> {
                                                   color: Colors.white),
                                             )),
                                         Container(
-                                            width: 300,
-                                            margin: EdgeInsets.only(top: 10),
+                                            width: 200,
+                                            margin: EdgeInsets.only(top: 70),
                                             child: Text(
-                                              widget.listStarship?[index].hyperdriveRating ??
-                                                  '',
-                                              maxLines: 4,
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.normal,
-                                                  color: Colors.white),
-                                            )),
-                                        Container(
-                                            width: 300,
-                                            margin: EdgeInsets.only(top: 10),
-                                            child: Text(
-                                              "USD ${widget.listStarship?[index].costInCredits ??
+                                              "USD ${widget.listVehicle?[index].costInCredits ??
                                                   ''}",
-                                              maxLines: 4,
+                                              maxLines: 2,
                                               style: TextStyle(
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.bold,
                                                   color: Colors.white),
                                             )),
-                                        Expanded(
-                                          child: Container(
-                                              width: 300,
-                                              margin: EdgeInsets.only(top: 10),
-                                              child: Text(
-                                                widget.listStarship?[index].manufacturer ??
-                                                    '',
-                                                maxLines: 2,
-                                                style: TextStyle(
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.normal,
-                                                    color: Colors.white),
-                                              )),
-                                        ),
-                                      ])),
+                                  ])),
                             ),
                           ),
                         );
                       },
-                      itemCount: widget.listStarship?.length,
+                      itemCount: widget.listVehicle?.length,
                     ),
         );
       },

@@ -2,9 +2,12 @@ part of 'article_bloc.dart';
 
 class ArticlePageState extends Equatable with FormzMixin {
   final List<PeopleModel>? listArticle;
+  final PeopleModel? articleDetailModel;
   final List<StarshipModel>? listStarship;
   final StarshipModel? starshipDetailModel;
-  final PeopleModel? articleDetailModel;
+  final List<VehicleModel>? listVehicle;
+  final VehicleModel? vehicleDetailModel;
+  final PlanetModel? planetModel;
   final FormzStatus? submitStatus;
   final String? errorMessage;
   final String? type;
@@ -14,11 +17,14 @@ class ArticlePageState extends Equatable with FormzMixin {
   final String keyword;
   final String next;
 
-  ArticlePageState({
+  ArticlePageState( {
     this.listStarship,
     this.starshipDetailModel,
+    this.listVehicle,
+    this.vehicleDetailModel,
     this.articleDetailModel,
     this.listArticle,
+    this.planetModel,
     this.type,
     this.isSearch = false,
     this.submitStatus = FormzStatus.pure,
@@ -35,6 +41,9 @@ class ArticlePageState extends Equatable with FormzMixin {
       List<StarshipModel>? listStarship,
       StarshipModel? starshipDetailModel,
       List<PeopleModel>? listArticle,
+      VehicleModel? vehicleDetailModel,
+      List<VehicleModel>? listVehicle,
+        PlanetModel? planetModel,
       bool? isSearch,
       String? type,
       bool? isLast,
@@ -46,8 +55,11 @@ class ArticlePageState extends Equatable with FormzMixin {
         submitStatus: submitStatus,
         articleDetailModel: articleDetailModel ?? this.articleDetailModel,
         starshipDetailModel: starshipDetailModel ?? this.starshipDetailModel,
+        vehicleDetailModel: vehicleDetailModel ?? this.vehicleDetailModel,
+        planetModel: planetModel ?? this.planetModel,
         listStarship: listStarship ?? this.listStarship,
         listArticle: listArticle ?? this.listArticle,
+        listVehicle: listVehicle ?? this.listVehicle,
         isSearch: isSearch ?? this.isSearch,
         type: type,
         isLast: isLast ?? this.isLast,
@@ -58,29 +70,18 @@ class ArticlePageState extends Equatable with FormzMixin {
   }
 
   @override
-  List<Object> get props =>
-      type == 'fetching-detail'
-      ? [
-          submitStatus ?? '',
-          articleDetailModel ?? ArticleDetailModel(),
-          type ?? '',
-        ]
-      : type == 'fetching-starships'
-          ? [
-              submitStatus ?? '',
-              type ?? '',
-              listStarship ?? []
-            ]
-          : type == 'fetching-article'
-              ? [
-                  submitStatus ?? '',
-                  listArticle ?? [],
-                  type ?? '',
-                  page,
-                  isLast,
-                  next
-                ]
-              : [];
+  List<Object> get props => [
+        submitStatus ?? '',
+        listArticle ?? [],
+        listStarship ?? [],
+        articleDetailModel ?? PeopleModel(),
+        starshipDetailModel ?? StarshipModel(),
+        vehicleDetailModel ?? VehicleModel(),
+        type ?? '',
+        page,
+        isLast,
+        next
+      ];
 
   @override
   // TODO: implement inputs

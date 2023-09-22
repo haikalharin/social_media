@@ -8,11 +8,13 @@ import 'package:meta/meta.dart';
 import 'package:swapi/data/model/people_model/people_model.dart';
 import 'package:swapi/data/model/starship_model/starship_model.dart';
 import 'package:swapi/data/model/starship_model/starship_temp_model.dart';
+import 'package:swapi/data/model/vehicle_model/vehicle_temp_model.dart';
 
 import '../../../common/exceptions/article_error_exception.dart';
 import '../../../common/exceptions/network_connection_exception.dart';
-import '../../../data/model/article_detail_model/article_detail_model.dart';
+import '../../../data/model/planet_model/planet_model.dart';
 import '../../../data/model/response_model/response_model.dart';
+import '../../../data/model/vehicle_model/vehicle_model.dart';
 import '../../../data/repository/article_repository/article_repository.dart';
 import '../../../utils/shared_preference/app_shared_preference.dart';
 
@@ -30,8 +32,12 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
       yield* _mapArticleFetchEventToState(event, state);
     } else if (event is ArticleReadDetailEvent) {
       yield* _mapArticleReadEventToState(event, state);
+    } else if (event is ArticleReadHomeworldEvent) {
+      yield* _mapArticleReadHomeworldEventToState(event, state);
     } else if (event is ArticleListStarshipsHorizontalEvent) {
       yield* _mapArticleListStarshipsHorizontalEventToState(event, state);
+    } else if (event is ArticleListVehiclesHorizontalEvent) {
+      yield* _mapArticleListVehiclesHorizontalEventToState(event, state);
     } else if (event is ArticleBackEvent) {
       yield _mapArticleBackEventToState(event, state);
     }
@@ -123,22 +129,23 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
     try {
       StarshipTempModel starshipTempModel =
           await AppSharedPreference.getStarshipModel();
-      if (event.type == 'starships') {
-        if (event.listData.isNotEmpty) {
-          List<StarshipModel> listStarship = state.listStarship ?? [];
-          StarshipModel response = await articleRepository
-              .readDetailForListStarship(event.type, event.id);
 
-          if (starshipTempModel.name != state.articleDetailModel?.name ||
-              (starshipTempModel.name == state.articleDetailModel?.name  &&
-                  (listStarship.length  >= state.articleDetailModel!.starships!.length))) {
-            listStarship.clear();
-            AppSharedPreference.setStarshipModel(
-                StarshipTempModel(name: state.articleDetailModel?.name, listData: listStarship));
-            listStarship.add(response);
-          } else {
-            starshipTempModel.listData?.addAll(listStarship);
-            listStarship.add(response);
+      if (event.listData.isNotEmpty) {
+          List<StarshipModel> listStarship = state.listStarship ?? [];
+        StarshipModel response =
+            await articleRepository.readDetailForListStarship(event.id);
+
+        if (starshipTempModel.name != state.articleDetailModel?.name ||
+            (starshipTempModel.name == state.articleDetailModel?.name &&
+                (listStarship.length >=
+                    state.articleDetailModel!.starships!.length))) {
+          listStarship.clear();
+          AppSharedPreference.setStarshipModel(StarshipTempModel(
+              name: state.articleDetailModel?.name, listData: listStarship));
+          listStarship.add(response);
+        } else {
+          starshipTempModel.listData?.addAll(listStarship);
+          listStarship.add(response);
           }
 
           if (response.name != null) {
@@ -155,11 +162,60 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
             type: 'fetching-starships',
           );
         }
+    } on ArticleErrorException catch (e) {
+      print(e);
+      yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
+    } on Exception catch (a) {
+      if (a is NetworkConnectionException) {
+        yield state.copyWith(
+            submitStatus: FormzStatus.submissionFailure,
+            errorMessage: "internetConnection");
+      } else {
+        yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
+      }
+    }
+  }
+
+  Stream<ArticlePageState> _mapArticleListVehiclesHorizontalEventToState(
+    ArticleListVehiclesHorizontalEvent event,
+    ArticlePageState state,
+  ) async* {
+    yield state.copyWith(
+        submitStatus: FormzStatus.submissionInProgress,
+        type: 'fetching-detail');
+    try {
+      VehicleTempModel vehicleTempModel =
+          await AppSharedPreference.getVehicleipModel();
+      if (event.listData.isNotEmpty) {
+        List<VehicleModel> listVehicle = state.listVehicle ?? [];
+        VehicleModel response =
+            await articleRepository.readDetailForListVehicle(event.id);
+
+        if (vehicleTempModel.name != state.articleDetailModel?.name ||
+            (vehicleTempModel.name == state.articleDetailModel?.name &&
+                (listVehicle.length >=
+                    state.articleDetailModel!.vehicles!.length))) {
+          listVehicle.clear();
+          AppSharedPreference.setVehicleModel(VehicleTempModel(
+              name: state.articleDetailModel?.name, listData: listVehicle));
+          listVehicle.add(response);
+        } else {
+          vehicleTempModel.listData?.addAll(listVehicle);
+          listVehicle.add(response);
+        }
+
+        if (response.name != null) {
+          yield state.copyWith(
+            submitStatus: FormzStatus.submissionSuccess,
+            listVehicle: listVehicle,
+            type: 'fetching-vehicle',
+          );
+        }
       } else {
         yield state.copyWith(
-          submitStatus: FormzStatus.submissionFailure,
+          submitStatus: FormzStatus.submissionSuccess,
           listStarship: [],
-          type: 'fetching-starships',
+          type: 'fetching-vehicle',
         );
       }
     } on ArticleErrorException catch (e) {
@@ -192,6 +248,38 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
           submitStatus: FormzStatus.submissionSuccess,
           articleDetailModel: response,
           type: 'fetching-detail',
+        );
+      }
+    } on ArticleErrorException catch (e) {
+      print(e);
+      yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
+    } on Exception catch (a) {
+      if (a is NetworkConnectionException) {
+        yield state.copyWith(
+            submitStatus: FormzStatus.submissionFailure,
+            errorMessage: "internetConnection");
+      } else {
+        yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
+      }
+    }
+  }
+
+  Stream<ArticlePageState> _mapArticleReadHomeworldEventToState(
+      ArticleReadHomeworldEvent event,
+      ArticlePageState state,
+      ) async* {
+    yield state.copyWith(
+        submitStatus: FormzStatus.submissionInProgress,
+        type: 'fetching-detail');
+    try {
+      PlanetModel response =
+      await articleRepository.readDetailHomeworld(event.id);
+
+      if (response.name != null) {
+        yield state.copyWith(
+          submitStatus: FormzStatus.submissionSuccess,
+          planetModel: response,
+          type: 'fetching-homeworld',
         );
       }
     } on ArticleErrorException catch (e) {

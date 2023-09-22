@@ -38,6 +38,8 @@ dependencies:
   flutter_bloc: ^7.0.0
   equatable: ^2.0.3
   formz: ^0.4.0
+  lottie: ^1.4.2
+
   #  cloud_firestore: ^3.0.0
 
 
@@ -121,6 +123,7 @@ flutter:
     #    - languages/
     - assets/people/
     - assets/images/
+    - assets/lottie/
     - assets/icons/
     - res/graphics/
     - res/fonts/

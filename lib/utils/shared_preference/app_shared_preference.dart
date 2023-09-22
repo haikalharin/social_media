@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swapi/data/model/starship_model/starship_model.dart';
 import 'package:swapi/data/model/starship_model/starship_temp_model.dart';
 import '../../common/injector/injector.dart';
+import '../../data/model/vehicle_model/vehicle_temp_model.dart';
 
 class AppSharedPreference {
   static const String user = "user";
@@ -21,7 +22,7 @@ class AppSharedPreference {
   static const String role = "role";
   static const String baby = "baby";
   static const String babyProgress = "babyProfress";
-  static const String _person = "person";
+  static const String _starship = "starship";
   static const String otp = "otp";
   static const String bmSignature = "bm_signature";
   static const String checkIn = "checkin";
@@ -65,23 +66,45 @@ class AppSharedPreference {
   }
 
   static Future<StarshipTempModel> getStarshipModel() async {
-    StarshipTempModel? baby = StarshipTempModel();
+    StarshipTempModel? starships = StarshipTempModel();
     SharedPreferences pref = await SharedPreferences.getInstance();
     try {
-      String? personString = pref.getString('listStarships');
-      if (personString != null) {
-        Map<String, dynamic> personJson = json.decode(personString);
-        baby = StarshipTempModel.fromJson(personJson);
+      String? starshipString = pref.getString('listStarships');
+      if (starshipString != null) {
+        Map<String, dynamic> starshipJson = json.decode(starshipString);
+        starships = StarshipTempModel.fromJson(starshipJson);
       }
     } catch (e) {
       print(e);
     }
-    return baby!;
+    return starships!;
   }
+
 
   static Future<void> setStarshipModel(StarshipTempModel starshipTempModel) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setString('listStarships', json.encode(starshipTempModel.toJson()));
+  }
+
+
+  static Future<VehicleTempModel> getVehicleipModel() async {
+    VehicleTempModel? vehicle = VehicleTempModel();
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    try {
+      String? vehicleString = pref.getString('listVehicles');
+      if (vehicleString != null) {
+        Map<String, dynamic> vehicleJson = json.decode(vehicleString);
+        vehicle = VehicleTempModel.fromJson(vehicleJson);
+      }
+    } catch (e) {
+      print(e);
+    }
+    return vehicle!;
+  }
+
+  static Future<void> setVehicleModel(VehicleTempModel vehicleTempModel) async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString('listVehicles', json.encode(vehicleTempModel.toJson()));
   }
 
 }

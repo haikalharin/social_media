@@ -7,7 +7,9 @@ import '../../common/style/style.dart';
 import '../../utils/epragnancy_color.dart';
 import '../first_page/bloc/article_bloc.dart';
 import 'article_detail_page.dart';
+import 'homeworld_people.dart';
 import 'list_starships_horizontal.dart';
+import 'list_vehicle_horizontal.dart';
 
 class BodyDetailPeople extends StatelessWidget {
   const BodyDetailPeople({Key? key}) : super(key: key);
@@ -41,7 +43,10 @@ class BodyDetailPeople extends StatelessWidget {
                     ),
                   ),
                   const NameAndProperties(),
-                    state.submitStatus ==
+                   SizedBox(
+                    height: 16,
+                  ),
+                  state.submitStatus ==
                       FormzStatus.submissionInProgress
                       ? SizedBox(
                     child: Shimmer.fromColors(
@@ -55,10 +60,7 @@ class BodyDetailPeople extends StatelessWidget {
                               BorderRadius.circular(10.0),
                               color: EpregnancyColors.grey)),
                     ),
-                  ):SizedBox(
-                    height: 16,
-                  ),
-                  Text("Height : ${state.articleDetailModel?.height??"-"}",
+                  ):Text("Height : ${state.articleDetailModel?.height??"-"}",
                       style: AppStyle.text.copyWith(
                           color: Colors.white.withOpacity(.8))),
                   const Spacing(),
@@ -93,10 +95,10 @@ class BodyDetailPeople extends StatelessWidget {
                     ],
                   ),
                   const Spacing(),
-                  state.listStarship != null && state.listStarship!.isNotEmpty?Container(
+                  state.listVehicle != null && state.listVehicle!.isNotEmpty?Container(
                     width: MediaQuery.of(context).size.width,
-                    child: ListStarshipsHorizontal(
-                      listStarship: state.listStarship,
+                    child: ListVehicleHorizontal(
+                      listVehicle: state.listVehicle,
                     ),
                   ):Container(child: Text("-"),),
                   const Spacing(),
@@ -106,11 +108,9 @@ class BodyDetailPeople extends StatelessWidget {
                     ],
                   ),
                   const Spacing(),
-                  state.listStarship != null && state.listStarship!.isNotEmpty?Container(
+                  state.articleDetailModel != null?Container(
                     width: MediaQuery.of(context).size.width,
-                    child: ListStarshipsHorizontal(
-                      listStarship: state.listStarship,
-                    ),
+                    child:HomeworldPeople(planetModel: state.planetModel),
                   ):Container(child: Text("-"),),
                 ],
               ),
