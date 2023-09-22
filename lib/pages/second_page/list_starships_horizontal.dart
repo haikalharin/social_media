@@ -118,8 +118,8 @@ class _ListStarshipsHorizontalState extends State<ListStarshipsHorizontal> {
                                             width: 300,
                                             margin: EdgeInsets.only(top: 10),
                                             child: Text(
-                                              widget.listStarship?[index].starshipClass ??
-                                                  '',
+                                              "Class: ${widget.listStarship?[index].starshipClass ??
+                                                  ''}",
                                               maxLines: 2,
                                               style: TextStyle(
                                                   fontSize: 16,
@@ -130,8 +130,8 @@ class _ListStarshipsHorizontalState extends State<ListStarshipsHorizontal> {
                                             width: 300,
                                             margin: EdgeInsets.only(top: 10),
                                             child: Text(
-                                              widget.listStarship?[index].hyperdriveRating ??
-                                                  '',
+                                              "Rate: ${widget.listStarship?[index].hyperdriveRating ??
+                                                  ''}",
                                               maxLines: 4,
                                               style: TextStyle(
                                                   fontSize: 16,
