@@ -4,7 +4,21 @@ Please Using flutter version 2.10.5
 
 HOW TO RUNING THIS PROJECT
 
-install flutter 2.10.5
+#install flutter 2.10.5
+#using ext.kotlin_version = '1.8.21' check in build.gradle
+    buildscript {
+        ext.kotlin_version = '1.8.21' <----- this line
+        repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.3.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+#using jdk 1.8
+
 pub get
 run this code in terminal -> flutter packages pub run build_runner build --delete-conflicting-outputs
 run apps

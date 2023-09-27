@@ -93,6 +93,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                 context, "Lost Connection", "Please check your connection",
                 refresh: (){
                   Navigator.of(context).pop();
+                  Navigator.of(context).pop();
                   _handleRefresh();
                 });
           }
@@ -143,7 +144,7 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                                                 color: EpregnancyColors.grey)),
                                       ),
                                     )
-                                  : Container(
+                                  : state.articleDetailModel?.url != null? Container(
                                       alignment: Alignment.topCenter,
                                       height: size.height - 300,
                                       width: size.width,
@@ -154,7 +155,16 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                                         image: AssetImage(
                                             'assets/people/${getIdOrPage(state.articleDetailModel?.url ?? "0")}.jpg'),
                                       )),
-                                    );
+                                    ):SizedBox(
+                                child: Container(
+                                    width: MediaQuery.of(context)
+                                        .size
+                                        .width,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                        BorderRadius.circular(10.0),
+                                        color: EpregnancyColors.grey)),
+                              ) ;
                             },
                           ),
                         ],
