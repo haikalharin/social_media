@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 import '../../../utils/shared_preference/app_shared_preference.dart';
 import '../../configurations/configurations.dart';
+import '../../exceptions/network_connection_exception.dart';
 import '../http_constants.dart';
 import 'http_util.dart';
 
@@ -43,7 +43,7 @@ class HttpClient {
     if (h.contains("/")) {
       h = h.replaceAll("/", "");
     }
-    var data =  Uri.https(h, finalPath, queryParameters);
+    var data = Uri.https(h, finalPath, queryParameters);
     return data;
   }
 
@@ -51,12 +51,15 @@ class HttpClient {
       {Map<String, String>? queryParameters}) async {
     late Response response;
 
-      response = await _client!
-          .get(
-            _getParsedUrl(path, queryParameters: queryParameters),
-            headers: header,
-          )
-          .timeout(Duration(minutes: 2));
+    response = await _client!
+        .get(
+          _getParsedUrl(path, queryParameters: queryParameters),
+          headers: header,
+        )
+        .timeout(Duration(minutes: 2), onTimeout: () {
+      // Time has run out, do what you wanted to do.
+      return  HttpUtil.getResponse(Response("", 408)); // Request Timeout response status code
+    });
 
     return response;
   }
@@ -86,11 +89,15 @@ class HttpClient {
   Future<Response?> downloadAccess(String path) async {
     late Response response;
 
-      response = await _client!.get(
-        _getParsedUrl(path),
-        headers: header,
-      );
-
+    response = await _client!
+        .get(
+      _getParsedUrl(path),
+      headers: header,
+    )
+        .timeout(const Duration(seconds: 60), onTimeout: () {
+      // Time has run out, do what you wanted to do.
+      return  HttpUtil.getResponse(Response("", 408)); // Request Timeout response status code
+    });
 
     return response;
   }
@@ -105,14 +112,18 @@ class HttpClient {
     final Map<String, String>? requestHeader = overrideHeader ?? header;
     late Response response;
 
-      response = await _client!.post(
-        _getParsedUrl(path),
-        body: HttpUtil.encodeRequestBody(
-            json.encode(data), requestHeader![HttpConstants.contentType]!),
-        headers: requestHeader,
-      );
-      updateCookie(response);
-
+    response = await _client!
+        .post(
+      _getParsedUrl(path),
+      body: HttpUtil.encodeRequestBody(
+          json.encode(data), requestHeader![HttpConstants.contentType]!),
+      headers: requestHeader,
+    )
+        .timeout(const Duration(seconds: 60), onTimeout: () {
+      // Time has run out, do what you wanted to do.
+      return  HttpUtil.getResponse(Response("", 408)); // Request Timeout response status code
+    });
+    updateCookie(response);
 
     return response;
   }
@@ -137,7 +148,8 @@ class HttpClient {
     // header![HttpHeaders.authorizationHeader] = AppConstants.token;
 
     // todo fix refresh token
-    Response? response = await postAccess(path, data, overrideHeader: overrideHeader);
+    Response? response =
+        await postAccess(path, data, overrideHeader: overrideHeader);
     var responseData = HttpUtil.getResponse(response ?? Response('', 0));
 
     return responseData;
@@ -173,12 +185,15 @@ class HttpClient {
     final Map<String, String>? requestHeader = overrideHeader ?? header;
     late Response response;
 
-      response = await _client!.delete(
-        _getParsedUrl(path),
-        body: HttpUtil.encodeRequestBody(
-            json.encode(data), requestHeader![HttpConstants.contentType]!),
-        headers: requestHeader,
-      );
+    response = await _client!.delete(
+      _getParsedUrl(path),
+      body: HttpUtil.encodeRequestBody(
+          json.encode(data), requestHeader![HttpConstants.contentType]!),
+      headers: requestHeader,
+    ).timeout(const Duration(seconds: 60), onTimeout: () {
+      // Time has run out, do what you wanted to do.
+      return  HttpUtil.getResponse(Response("", 408));; // Request Timeout response status code
+    });
 
     return response;
   }
@@ -198,7 +213,6 @@ class HttpClient {
         await deleteAccess(path, data, overrideHeader: overrideHeader);
     var responseData = HttpUtil.getResponse(response ?? Response('', 0));
 
-
     return responseData;
   }
 
@@ -207,20 +221,22 @@ class HttpClient {
     final Map<String, String>? requestHeader = overrideHeader ?? header;
     late Response response;
 
-      response = await _client!
-          .put(
-            _getParsedUrl(path),
-            body: HttpUtil.encodeRequestBody(
-                json.encode(data), requestHeader![HttpConstants.contentType]!),
-            headers: requestHeader,
-          );
+    response = await _client!.put(
+      _getParsedUrl(path),
+      body: HttpUtil.encodeRequestBody(
+          json.encode(data), requestHeader![HttpConstants.contentType]!),
+      headers: requestHeader,
+    ).timeout(const Duration(seconds: 60), onTimeout: () {
+      // Time has run out, do what you wanted to do.
+      return  HttpUtil.getResponse(Response("", 408)); // Request Timeout response status code
+    });
 
-      response = await _client!.put(
-        _getParsedUrl(path),
-        body: HttpUtil.encodeRequestBody(
-            json.encode(data), requestHeader[HttpConstants.contentType]!),
-        headers: requestHeader,
-      );
+    response = await _client!.put(
+      _getParsedUrl(path),
+      body: HttpUtil.encodeRequestBody(
+          json.encode(data), requestHeader[HttpConstants.contentType]!),
+      headers: requestHeader,
+    );
 
     return response;
   }

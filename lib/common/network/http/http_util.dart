@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 
+import '../../exceptions/network_connection_exception.dart';
 import '../../exceptions/server_error_exception.dart';
+import '../../exceptions/time_out_exception.dart';
 import '../http_constants.dart';
 
 
@@ -32,6 +34,8 @@ class HttpUtil {
         return _getSuccessResponse(response);
       case 405:
         return _getSuccessResponse(response);
+      case 408:
+        return throw TimeoutCustomException();
       case 500:
         return throw ServerErrorException(
           json.decode(response.body),

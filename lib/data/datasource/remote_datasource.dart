@@ -1,7 +1,9 @@
 import 'package:swapi/common/configurations/configurations.dart';
+import 'package:swapi/common/exceptions/time_out_exception.dart';
 import 'package:swapi/data/model/starship_model/starship_model.dart';
 import 'package:swapi/data/model/vehicle_model/vehicle_model.dart';
 
+import '../../common/exceptions/network_connection_exception.dart';
 import '../../common/network/http/http_client.dart';
 
 import '../model/people_model/people_model.dart';
@@ -32,7 +34,11 @@ class RemoteDataSource {
       var data = ResponseModel.fromJson(response, PeopleModel.fromJson);
       return data;
     } catch (e) {
-      return ResponseModel.resultsEmpty();
+      if (e is TimeoutCustomException) {
+        return throw e;
+      }else {
+        return ResponseModel.resultsEmpty();
+      }
     }
   }
 
@@ -46,7 +52,11 @@ class RemoteDataSource {
       var data = PeopleModel.fromJson(response);
       return data;
     } catch (e) {
-      return PeopleModel();
+      if (e is TimeoutCustomException) {
+        return throw e;
+      }else {
+        return PeopleModel();
+      }
     }
   }
 
@@ -60,7 +70,11 @@ class RemoteDataSource {
       var data = PlanetModel.fromJson(response);
       return data;
     } catch (e) {
-      return PlanetModel();
+      if (e is TimeoutCustomException) {
+        return throw e;
+      }else {
+        return PlanetModel();
+      }
     }
   }
 
@@ -74,7 +88,11 @@ class RemoteDataSource {
       var data = StarshipModel.fromJson(response);
       return data;
     } catch (e) {
-      return StarshipModel();
+      if (e is TimeoutCustomException) {
+        return throw e;
+      }else {
+        return StarshipModel();
+      }
     }
   }
 
@@ -88,7 +106,11 @@ class RemoteDataSource {
       var data = VehicleModel.fromJson(response);
       return data;
     } catch (e) {
-      return VehicleModel();
+      if (e is TimeoutCustomException) {
+        return throw e;
+      }else {
+        return VehicleModel();
+      }
     }
   }
 }

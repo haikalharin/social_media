@@ -96,6 +96,14 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
                   Navigator.of(context).pop();
                   _handleRefresh();
                 });
+          } else if (state.errorMessage == "timeout") {
+            return showDialogDefaultErrorCustom(
+                context, "Timeout", "Sorry please refresh",
+                refresh: (){
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                  _handleRefresh();
+                });
           }
         }
       },

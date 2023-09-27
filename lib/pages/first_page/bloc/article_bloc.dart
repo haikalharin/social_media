@@ -12,6 +12,7 @@ import 'package:swapi/data/model/vehicle_model/vehicle_temp_model.dart';
 
 import '../../../common/exceptions/article_error_exception.dart';
 import '../../../common/exceptions/network_connection_exception.dart';
+import '../../../common/exceptions/time_out_exception.dart';
 import '../../../data/model/planet_model/planet_model.dart';
 import '../../../data/model/response_model/response_model.dart';
 import '../../../data/model/vehicle_model/vehicle_model.dart';
@@ -113,6 +114,10 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
         yield state.copyWith(
             submitStatus: FormzStatus.submissionFailure,
             errorMessage: "internetConnection");
+      } else if (a is TimeoutCustomException) {
+        yield state.copyWith(
+            submitStatus: FormzStatus.submissionFailure,
+            errorMessage: "timeout");
       } else {
         yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
       }
@@ -170,6 +175,10 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
         yield state.copyWith(
             submitStatus: FormzStatus.submissionFailure,
             errorMessage: "internetConnection");
+      }else if (a is TimeoutCustomException) {
+        yield state.copyWith(
+            submitStatus: FormzStatus.submissionFailure,
+            errorMessage: "timeout");
       } else {
         yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
       }
@@ -226,7 +235,11 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
         yield state.copyWith(
             submitStatus: FormzStatus.submissionFailure,
             errorMessage: "internetConnection");
-      } else {
+      }else if (a is TimeoutCustomException) {
+        yield state.copyWith(
+            submitStatus: FormzStatus.submissionFailure,
+            errorMessage: "timeout");
+      }  else {
         yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
       }
     }
@@ -290,7 +303,11 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
         yield state.copyWith(
             submitStatus: FormzStatus.submissionFailure,
             errorMessage: "internetConnection");
-      } else {
+      }else if (a is TimeoutCustomException) {
+        yield state.copyWith(
+            submitStatus: FormzStatus.submissionFailure,
+            errorMessage: "timeout");
+      }  else {
         yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
       }
     }

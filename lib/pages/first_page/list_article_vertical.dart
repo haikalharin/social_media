@@ -63,6 +63,13 @@ class _ListArticleVerticalState extends State<ListArticleVertical> {
                   Navigator.of(context).pop();
                   _handleRefresh();
                 });
+          }else if (state.errorMessage == "timeout") {
+            return showDialogDefaultErrorCustom(
+                context, "Timeout", "Sorry please refresh",
+                refresh: (){
+                  Navigator.of(context).pop();
+                  _handleRefresh();
+                });
           }
         }
       },

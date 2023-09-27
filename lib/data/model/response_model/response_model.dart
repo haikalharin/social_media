@@ -91,4 +91,14 @@ class ResponseModel<T> {
       action: '',
     );
   }
+
+  static ResponseModel resultsTimeOut({dynamic results}) {
+    return ResponseModel(
+      count: 0,
+      next: '',
+      previous: '',
+      results: 'timeout',
+      action: '',
+    );
+  }
 }
