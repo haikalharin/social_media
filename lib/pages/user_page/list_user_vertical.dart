@@ -6,14 +6,14 @@ import 'package:intl/intl.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:lottie/lottie.dart';
-import 'package:swapi/common/utils/substring_util.dart';
-import 'package:swapi/data/model/people_model/people_model.dart';
+import 'package:social_media/common/utils/substring_util.dart';
+import 'package:social_media/data/model/people_model/people_model.dart';
 
 import '../../common/injector/injector.dart';
 import '../../common/widget/dialog_default_internet_custom.dart';
 import '../../routes/route_name.dart';
 import '../../utils/epragnancy_color.dart';
-import 'bloc/article_bloc.dart';
+import 'bloc/user_page_bloc.dart';
 
 class ListArticleVertical extends StatefulWidget {
   List<PeopleModel>? listArticle = [];

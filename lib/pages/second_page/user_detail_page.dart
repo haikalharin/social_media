@@ -10,7 +10,7 @@ import '../../common/style/style.dart';
 import '../../common/utils/substring_util.dart';
 import '../../common/widget/dialog_default_internet_custom.dart';
 import '../../utils/epragnancy_color.dart';
-import '../first_page/bloc/article_bloc.dart';
+import '../user_page/bloc/user_page_bloc.dart';
 import 'body_detail_people.dart';
 
 class ArticleDetailPage extends StatefulWidget {

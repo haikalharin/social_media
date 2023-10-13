@@ -5,10 +5,10 @@ import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
-import 'package:swapi/data/model/people_model/people_model.dart';
-import 'package:swapi/data/model/starship_model/starship_model.dart';
-import 'package:swapi/data/model/starship_model/starship_temp_model.dart';
-import 'package:swapi/data/model/vehicle_model/vehicle_temp_model.dart';
+import 'package:social_media/data/model/people_model/people_model.dart';
+import 'package:social_media/data/model/starship_model/starship_model.dart';
+import 'package:social_media/data/model/starship_model/starship_temp_model.dart';
+import 'package:social_media/data/model/vehicle_model/vehicle_temp_model.dart';
 
 import '../../../common/exceptions/article_error_exception.dart';
 import '../../../common/exceptions/network_connection_exception.dart';
