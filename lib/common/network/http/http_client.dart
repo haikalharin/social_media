@@ -26,6 +26,7 @@ class HttpClient {
     header = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
+      'app-id': Configurations.key,
     };
     host = Configurations.host;
     cookieFromSp = true;

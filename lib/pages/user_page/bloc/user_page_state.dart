@@ -1,7 +1,7 @@
-part of 'article_bloc.dart';
+part of 'user_page_bloc.dart';
 
-class ArticlePageState extends Equatable with FormzMixin {
-  final List<PeopleModel>? listArticle;
+class UserPageState extends Equatable with FormzMixin {
+  final List<PeopleModel>? listPeople;
   final PeopleModel? articleDetailModel;
   final List<StarshipModel>? listStarship;
   final StarshipModel? starshipDetailModel;
@@ -17,13 +17,13 @@ class ArticlePageState extends Equatable with FormzMixin {
   final String keyword;
   final String next;
 
-  ArticlePageState( {
+  UserPageState( {
     this.listStarship,
     this.starshipDetailModel,
     this.listVehicle,
     this.vehicleDetailModel,
     this.articleDetailModel,
-    this.listArticle,
+    this.listPeople,
     this.planetModel,
     this.type,
     this.isSearch = false,
@@ -35,7 +35,7 @@ class ArticlePageState extends Equatable with FormzMixin {
     this.next = '',
   });
 
-  ArticlePageState copyWith(
+  UserPageState copyWith(
       {FormzStatus? submitStatus,
       PeopleModel? articleDetailModel,
       List<StarshipModel>? listStarship,
@@ -51,14 +51,14 @@ class ArticlePageState extends Equatable with FormzMixin {
       String? keyword,
       String? next,
       String? errorMessage}) {
-    return ArticlePageState(
+    return UserPageState(
         submitStatus: submitStatus,
         articleDetailModel: articleDetailModel ?? this.articleDetailModel,
         starshipDetailModel: starshipDetailModel ?? this.starshipDetailModel,
         vehicleDetailModel: vehicleDetailModel ?? this.vehicleDetailModel,
         planetModel: planetModel ?? this.planetModel,
         listStarship: listStarship ?? this.listStarship,
-        listArticle: listArticle ?? this.listArticle,
+        listPeople: listArticle ?? this.listPeople,
         listVehicle: listVehicle ?? this.listVehicle,
         isSearch: isSearch ?? this.isSearch,
         type: type,
@@ -72,7 +72,7 @@ class ArticlePageState extends Equatable with FormzMixin {
   @override
   List<Object> get props => [
         submitStatus ?? '',
-        listArticle ?? [],
+        listPeople ?? [],
         listStarship ?? [],
         articleDetailModel ?? PeopleModel(),
         starshipDetailModel ?? StarshipModel(),
@@ -88,4 +88,4 @@ class ArticlePageState extends Equatable with FormzMixin {
   List<FormzInput> get inputs => throw UnimplementedError();
 }
 
-class ArticlePageInitial extends ArticlePageState {}
+class ArticlePageInitial extends UserPageState {}

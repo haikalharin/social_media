@@ -22,39 +22,29 @@ class _$PeopleModelTearOff {
   const _$PeopleModelTearOff();
 
   _PeopleModel call(
-      {@JsonKey(name: "name") String? name,
-      @JsonKey(name: "height") String? height,
-      @JsonKey(name: "mass") String? mass,
-      @JsonKey(name: "hair_color") String? hairColor,
-      @JsonKey(name: "skin_color") String? skinColor,
-      @JsonKey(name: "eye_color") String? eyeColor,
-      @JsonKey(name: "birth_year") String? birthYear,
+      {@JsonKey(name: "id") String? id,
+      @JsonKey(name: "title") String? title,
+      @JsonKey(name: "firstName") String? firstName,
+      @JsonKey(name: "lastName") String? lastName,
       @JsonKey(name: "gender") String? gender,
-      @JsonKey(name: "homeworld") String? homeworld,
-      @JsonKey(name: "films") List<String>? films,
-      @JsonKey(name: "species") List<dynamic>? species,
-      @JsonKey(name: "vehicles") List<String>? vehicles,
-      @JsonKey(name: "starships") List<String>? starships,
-      @JsonKey(name: "created") String? created,
-      @JsonKey(name: "edited") String? edited,
-      @JsonKey(name: "url") String? url}) {
+      @JsonKey(name: "email") String? email,
+      @JsonKey(name: "dateOfBirth") String? dateOfBirth,
+      @JsonKey(name: "registerDate") String? registerDate,
+      @JsonKey(name: "phone") String? phone,
+      @JsonKey(name: "picture") String? picture,
+      @JsonKey(name: "location") Location? location}) {
     return _PeopleModel(
-      name: name,
-      height: height,
-      mass: mass,
-      hairColor: hairColor,
-      skinColor: skinColor,
-      eyeColor: eyeColor,
-      birthYear: birthYear,
+      id: id,
+      title: title,
+      firstName: firstName,
+      lastName: lastName,
       gender: gender,
-      homeworld: homeworld,
-      films: films,
-      species: species,
-      vehicles: vehicles,
-      starships: starships,
-      created: created,
-      edited: edited,
-      url: url,
+      email: email,
+      dateOfBirth: dateOfBirth,
+      registerDate: registerDate,
+      phone: phone,
+      picture: picture,
+      location: location,
     );
   }
 
@@ -68,38 +58,28 @@ const $PeopleModel = _$PeopleModelTearOff();
 
 /// @nodoc
 mixin _$PeopleModel {
-  @JsonKey(name: "name")
-  String? get name => throw _privateConstructorUsedError;
-  @JsonKey(name: "height")
-  String? get height => throw _privateConstructorUsedError;
-  @JsonKey(name: "mass")
-  String? get mass => throw _privateConstructorUsedError;
-  @JsonKey(name: "hair_color")
-  String? get hairColor => throw _privateConstructorUsedError;
-  @JsonKey(name: "skin_color")
-  String? get skinColor => throw _privateConstructorUsedError;
-  @JsonKey(name: "eye_color")
-  String? get eyeColor => throw _privateConstructorUsedError;
-  @JsonKey(name: "birth_year")
-  String? get birthYear => throw _privateConstructorUsedError;
+  @JsonKey(name: "id")
+  String? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: "title")
+  String? get title => throw _privateConstructorUsedError;
+  @JsonKey(name: "firstName")
+  String? get firstName => throw _privateConstructorUsedError;
+  @JsonKey(name: "lastName")
+  String? get lastName => throw _privateConstructorUsedError;
   @JsonKey(name: "gender")
   String? get gender => throw _privateConstructorUsedError;
-  @JsonKey(name: "homeworld")
-  String? get homeworld => throw _privateConstructorUsedError;
-  @JsonKey(name: "films")
-  List<String>? get films => throw _privateConstructorUsedError;
-  @JsonKey(name: "species")
-  List<dynamic>? get species => throw _privateConstructorUsedError;
-  @JsonKey(name: "vehicles")
-  List<String>? get vehicles => throw _privateConstructorUsedError;
-  @JsonKey(name: "starships")
-  List<String>? get starships => throw _privateConstructorUsedError;
-  @JsonKey(name: "created")
-  String? get created => throw _privateConstructorUsedError;
-  @JsonKey(name: "edited")
-  String? get edited => throw _privateConstructorUsedError;
-  @JsonKey(name: "url")
-  String? get url => throw _privateConstructorUsedError;
+  @JsonKey(name: "email")
+  String? get email => throw _privateConstructorUsedError;
+  @JsonKey(name: "dateOfBirth")
+  String? get dateOfBirth => throw _privateConstructorUsedError;
+  @JsonKey(name: "registerDate")
+  String? get registerDate => throw _privateConstructorUsedError;
+  @JsonKey(name: "phone")
+  String? get phone => throw _privateConstructorUsedError;
+  @JsonKey(name: "picture")
+  String? get picture => throw _privateConstructorUsedError;
+  @JsonKey(name: "location")
+  Location? get location => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -113,22 +93,19 @@ abstract class $PeopleModelCopyWith<$Res> {
           PeopleModel value, $Res Function(PeopleModel) then) =
       _$PeopleModelCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: "name") String? name,
-      @JsonKey(name: "height") String? height,
-      @JsonKey(name: "mass") String? mass,
-      @JsonKey(name: "hair_color") String? hairColor,
-      @JsonKey(name: "skin_color") String? skinColor,
-      @JsonKey(name: "eye_color") String? eyeColor,
-      @JsonKey(name: "birth_year") String? birthYear,
+      {@JsonKey(name: "id") String? id,
+      @JsonKey(name: "title") String? title,
+      @JsonKey(name: "firstName") String? firstName,
+      @JsonKey(name: "lastName") String? lastName,
       @JsonKey(name: "gender") String? gender,
-      @JsonKey(name: "homeworld") String? homeworld,
-      @JsonKey(name: "films") List<String>? films,
-      @JsonKey(name: "species") List<dynamic>? species,
-      @JsonKey(name: "vehicles") List<String>? vehicles,
-      @JsonKey(name: "starships") List<String>? starships,
-      @JsonKey(name: "created") String? created,
-      @JsonKey(name: "edited") String? edited,
-      @JsonKey(name: "url") String? url});
+      @JsonKey(name: "email") String? email,
+      @JsonKey(name: "dateOfBirth") String? dateOfBirth,
+      @JsonKey(name: "registerDate") String? registerDate,
+      @JsonKey(name: "phone") String? phone,
+      @JsonKey(name: "picture") String? picture,
+      @JsonKey(name: "location") Location? location});
+
+  $LocationCopyWith<$Res>? get location;
 }
 
 /// @nodoc
@@ -141,89 +118,75 @@ class _$PeopleModelCopyWithImpl<$Res> implements $PeopleModelCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? name = freezed,
-    Object? height = freezed,
-    Object? mass = freezed,
-    Object? hairColor = freezed,
-    Object? skinColor = freezed,
-    Object? eyeColor = freezed,
-    Object? birthYear = freezed,
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
     Object? gender = freezed,
-    Object? homeworld = freezed,
-    Object? films = freezed,
-    Object? species = freezed,
-    Object? vehicles = freezed,
-    Object? starships = freezed,
-    Object? created = freezed,
-    Object? edited = freezed,
-    Object? url = freezed,
+    Object? email = freezed,
+    Object? dateOfBirth = freezed,
+    Object? registerDate = freezed,
+    Object? phone = freezed,
+    Object? picture = freezed,
+    Object? location = freezed,
   }) {
     return _then(_value.copyWith(
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      height: height == freezed
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      mass: mass == freezed
-          ? _value.mass
-          : mass // ignore: cast_nullable_to_non_nullable
+      firstName: firstName == freezed
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
               as String?,
-      hairColor: hairColor == freezed
-          ? _value.hairColor
-          : hairColor // ignore: cast_nullable_to_non_nullable
-              as String?,
-      skinColor: skinColor == freezed
-          ? _value.skinColor
-          : skinColor // ignore: cast_nullable_to_non_nullable
-              as String?,
-      eyeColor: eyeColor == freezed
-          ? _value.eyeColor
-          : eyeColor // ignore: cast_nullable_to_non_nullable
-              as String?,
-      birthYear: birthYear == freezed
-          ? _value.birthYear
-          : birthYear // ignore: cast_nullable_to_non_nullable
+      lastName: lastName == freezed
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
       gender: gender == freezed
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String?,
-      homeworld: homeworld == freezed
-          ? _value.homeworld
-          : homeworld // ignore: cast_nullable_to_non_nullable
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      films: films == freezed
-          ? _value.films
-          : films // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      species: species == freezed
-          ? _value.species
-          : species // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
-      vehicles: vehicles == freezed
-          ? _value.vehicles
-          : vehicles // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      starships: starships == freezed
-          ? _value.starships
-          : starships // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      created: created == freezed
-          ? _value.created
-          : created // ignore: cast_nullable_to_non_nullable
+      dateOfBirth: dateOfBirth == freezed
+          ? _value.dateOfBirth
+          : dateOfBirth // ignore: cast_nullable_to_non_nullable
               as String?,
-      edited: edited == freezed
-          ? _value.edited
-          : edited // ignore: cast_nullable_to_non_nullable
+      registerDate: registerDate == freezed
+          ? _value.registerDate
+          : registerDate // ignore: cast_nullable_to_non_nullable
               as String?,
-      url: url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
+      phone: phone == freezed
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String?,
+      picture: picture == freezed
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
+              as String?,
+      location: location == freezed
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as Location?,
     ));
+  }
+
+  @override
+  $LocationCopyWith<$Res>? get location {
+    if (_value.location == null) {
+      return null;
+    }
+
+    return $LocationCopyWith<$Res>(_value.location!, (value) {
+      return _then(_value.copyWith(location: value));
+    });
   }
 }
 
@@ -235,22 +198,20 @@ abstract class _$PeopleModelCopyWith<$Res>
       __$PeopleModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: "name") String? name,
-      @JsonKey(name: "height") String? height,
-      @JsonKey(name: "mass") String? mass,
-      @JsonKey(name: "hair_color") String? hairColor,
-      @JsonKey(name: "skin_color") String? skinColor,
-      @JsonKey(name: "eye_color") String? eyeColor,
-      @JsonKey(name: "birth_year") String? birthYear,
+      {@JsonKey(name: "id") String? id,
+      @JsonKey(name: "title") String? title,
+      @JsonKey(name: "firstName") String? firstName,
+      @JsonKey(name: "lastName") String? lastName,
       @JsonKey(name: "gender") String? gender,
-      @JsonKey(name: "homeworld") String? homeworld,
-      @JsonKey(name: "films") List<String>? films,
-      @JsonKey(name: "species") List<dynamic>? species,
-      @JsonKey(name: "vehicles") List<String>? vehicles,
-      @JsonKey(name: "starships") List<String>? starships,
-      @JsonKey(name: "created") String? created,
-      @JsonKey(name: "edited") String? edited,
-      @JsonKey(name: "url") String? url});
+      @JsonKey(name: "email") String? email,
+      @JsonKey(name: "dateOfBirth") String? dateOfBirth,
+      @JsonKey(name: "registerDate") String? registerDate,
+      @JsonKey(name: "phone") String? phone,
+      @JsonKey(name: "picture") String? picture,
+      @JsonKey(name: "location") Location? location});
+
+  @override
+  $LocationCopyWith<$Res>? get location;
 }
 
 /// @nodoc
@@ -265,88 +226,63 @@ class __$PeopleModelCopyWithImpl<$Res> extends _$PeopleModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? name = freezed,
-    Object? height = freezed,
-    Object? mass = freezed,
-    Object? hairColor = freezed,
-    Object? skinColor = freezed,
-    Object? eyeColor = freezed,
-    Object? birthYear = freezed,
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
     Object? gender = freezed,
-    Object? homeworld = freezed,
-    Object? films = freezed,
-    Object? species = freezed,
-    Object? vehicles = freezed,
-    Object? starships = freezed,
-    Object? created = freezed,
-    Object? edited = freezed,
-    Object? url = freezed,
+    Object? email = freezed,
+    Object? dateOfBirth = freezed,
+    Object? registerDate = freezed,
+    Object? phone = freezed,
+    Object? picture = freezed,
+    Object? location = freezed,
   }) {
     return _then(_PeopleModel(
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
-      height: height == freezed
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      mass: mass == freezed
-          ? _value.mass
-          : mass // ignore: cast_nullable_to_non_nullable
+      firstName: firstName == freezed
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
               as String?,
-      hairColor: hairColor == freezed
-          ? _value.hairColor
-          : hairColor // ignore: cast_nullable_to_non_nullable
-              as String?,
-      skinColor: skinColor == freezed
-          ? _value.skinColor
-          : skinColor // ignore: cast_nullable_to_non_nullable
-              as String?,
-      eyeColor: eyeColor == freezed
-          ? _value.eyeColor
-          : eyeColor // ignore: cast_nullable_to_non_nullable
-              as String?,
-      birthYear: birthYear == freezed
-          ? _value.birthYear
-          : birthYear // ignore: cast_nullable_to_non_nullable
+      lastName: lastName == freezed
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String?,
       gender: gender == freezed
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String?,
-      homeworld: homeworld == freezed
-          ? _value.homeworld
-          : homeworld // ignore: cast_nullable_to_non_nullable
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      films: films == freezed
-          ? _value.films
-          : films // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      species: species == freezed
-          ? _value.species
-          : species // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>?,
-      vehicles: vehicles == freezed
-          ? _value.vehicles
-          : vehicles // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      starships: starships == freezed
-          ? _value.starships
-          : starships // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
-      created: created == freezed
-          ? _value.created
-          : created // ignore: cast_nullable_to_non_nullable
+      dateOfBirth: dateOfBirth == freezed
+          ? _value.dateOfBirth
+          : dateOfBirth // ignore: cast_nullable_to_non_nullable
               as String?,
-      edited: edited == freezed
-          ? _value.edited
-          : edited // ignore: cast_nullable_to_non_nullable
+      registerDate: registerDate == freezed
+          ? _value.registerDate
+          : registerDate // ignore: cast_nullable_to_non_nullable
               as String?,
-      url: url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
+      phone: phone == freezed
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
               as String?,
+      picture: picture == freezed
+          ? _value.picture
+          : picture // ignore: cast_nullable_to_non_nullable
+              as String?,
+      location: location == freezed
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as Location?,
     ));
   }
 }
@@ -355,78 +291,58 @@ class __$PeopleModelCopyWithImpl<$Res> extends _$PeopleModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PeopleModel implements _PeopleModel {
   const _$_PeopleModel(
-      {@JsonKey(name: "name") this.name,
-      @JsonKey(name: "height") this.height,
-      @JsonKey(name: "mass") this.mass,
-      @JsonKey(name: "hair_color") this.hairColor,
-      @JsonKey(name: "skin_color") this.skinColor,
-      @JsonKey(name: "eye_color") this.eyeColor,
-      @JsonKey(name: "birth_year") this.birthYear,
+      {@JsonKey(name: "id") this.id,
+      @JsonKey(name: "title") this.title,
+      @JsonKey(name: "firstName") this.firstName,
+      @JsonKey(name: "lastName") this.lastName,
       @JsonKey(name: "gender") this.gender,
-      @JsonKey(name: "homeworld") this.homeworld,
-      @JsonKey(name: "films") this.films,
-      @JsonKey(name: "species") this.species,
-      @JsonKey(name: "vehicles") this.vehicles,
-      @JsonKey(name: "starships") this.starships,
-      @JsonKey(name: "created") this.created,
-      @JsonKey(name: "edited") this.edited,
-      @JsonKey(name: "url") this.url});
+      @JsonKey(name: "email") this.email,
+      @JsonKey(name: "dateOfBirth") this.dateOfBirth,
+      @JsonKey(name: "registerDate") this.registerDate,
+      @JsonKey(name: "phone") this.phone,
+      @JsonKey(name: "picture") this.picture,
+      @JsonKey(name: "location") this.location});
 
   factory _$_PeopleModel.fromJson(Map<String, dynamic> json) =>
       _$$_PeopleModelFromJson(json);
 
   @override
-  @JsonKey(name: "name")
-  final String? name;
+  @JsonKey(name: "id")
+  final String? id;
   @override
-  @JsonKey(name: "height")
-  final String? height;
+  @JsonKey(name: "title")
+  final String? title;
   @override
-  @JsonKey(name: "mass")
-  final String? mass;
+  @JsonKey(name: "firstName")
+  final String? firstName;
   @override
-  @JsonKey(name: "hair_color")
-  final String? hairColor;
-  @override
-  @JsonKey(name: "skin_color")
-  final String? skinColor;
-  @override
-  @JsonKey(name: "eye_color")
-  final String? eyeColor;
-  @override
-  @JsonKey(name: "birth_year")
-  final String? birthYear;
+  @JsonKey(name: "lastName")
+  final String? lastName;
   @override
   @JsonKey(name: "gender")
   final String? gender;
   @override
-  @JsonKey(name: "homeworld")
-  final String? homeworld;
+  @JsonKey(name: "email")
+  final String? email;
   @override
-  @JsonKey(name: "films")
-  final List<String>? films;
+  @JsonKey(name: "dateOfBirth")
+  final String? dateOfBirth;
   @override
-  @JsonKey(name: "species")
-  final List<dynamic>? species;
+  @JsonKey(name: "registerDate")
+  final String? registerDate;
   @override
-  @JsonKey(name: "vehicles")
-  final List<String>? vehicles;
+  @JsonKey(name: "phone")
+  final String? phone;
   @override
-  @JsonKey(name: "starships")
-  final List<String>? starships;
+  @JsonKey(name: "picture")
+  final String? picture;
   @override
-  @JsonKey(name: "created")
-  final String? created;
-  @override
-  @JsonKey(name: "edited")
-  final String? edited;
-  @override
-  @JsonKey(name: "url")
-  final String? url;
+  @JsonKey(name: "location")
+  final Location? location;
 
   @override
   String toString() {
-    return 'PeopleModel(name: $name, height: $height, mass: $mass, hairColor: $hairColor, skinColor: $skinColor, eyeColor: $eyeColor, birthYear: $birthYear, gender: $gender, homeworld: $homeworld, films: $films, species: $species, vehicles: $vehicles, starships: $starships, created: $created, edited: $edited, url: $url)';
+    return 'PeopleModel(id: $id, title: $title, firstName: $firstName, lastName: $lastName, gender: $gender, email: $email, dateOfBirth: $dateOfBirth, registerDate: $registerDate, phone: $phone, picture: $picture, location: $location)';
   }
 
   @override
@@ -434,43 +350,35 @@ class _$_PeopleModel implements _PeopleModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _PeopleModel &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.height, height) &&
-            const DeepCollectionEquality().equals(other.mass, mass) &&
-            const DeepCollectionEquality().equals(other.hairColor, hairColor) &&
-            const DeepCollectionEquality().equals(other.skinColor, skinColor) &&
-            const DeepCollectionEquality().equals(other.eyeColor, eyeColor) &&
-            const DeepCollectionEquality().equals(other.birthYear, birthYear) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.title, title) &&
+            const DeepCollectionEquality().equals(other.firstName, firstName) &&
+            const DeepCollectionEquality().equals(other.lastName, lastName) &&
             const DeepCollectionEquality().equals(other.gender, gender) &&
-            const DeepCollectionEquality().equals(other.homeworld, homeworld) &&
-            const DeepCollectionEquality().equals(other.films, films) &&
-            const DeepCollectionEquality().equals(other.species, species) &&
-            const DeepCollectionEquality().equals(other.vehicles, vehicles) &&
-            const DeepCollectionEquality().equals(other.starships, starships) &&
-            const DeepCollectionEquality().equals(other.created, created) &&
-            const DeepCollectionEquality().equals(other.edited, edited) &&
-            const DeepCollectionEquality().equals(other.url, url));
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality()
+                .equals(other.dateOfBirth, dateOfBirth) &&
+            const DeepCollectionEquality()
+                .equals(other.registerDate, registerDate) &&
+            const DeepCollectionEquality().equals(other.phone, phone) &&
+            const DeepCollectionEquality().equals(other.picture, picture) &&
+            const DeepCollectionEquality().equals(other.location, location));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(height),
-      const DeepCollectionEquality().hash(mass),
-      const DeepCollectionEquality().hash(hairColor),
-      const DeepCollectionEquality().hash(skinColor),
-      const DeepCollectionEquality().hash(eyeColor),
-      const DeepCollectionEquality().hash(birthYear),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(title),
+      const DeepCollectionEquality().hash(firstName),
+      const DeepCollectionEquality().hash(lastName),
       const DeepCollectionEquality().hash(gender),
-      const DeepCollectionEquality().hash(homeworld),
-      const DeepCollectionEquality().hash(films),
-      const DeepCollectionEquality().hash(species),
-      const DeepCollectionEquality().hash(vehicles),
-      const DeepCollectionEquality().hash(starships),
-      const DeepCollectionEquality().hash(created),
-      const DeepCollectionEquality().hash(edited),
-      const DeepCollectionEquality().hash(url));
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(dateOfBirth),
+      const DeepCollectionEquality().hash(registerDate),
+      const DeepCollectionEquality().hash(phone),
+      const DeepCollectionEquality().hash(picture),
+      const DeepCollectionEquality().hash(location));
 
   @JsonKey(ignore: true)
   @override
@@ -485,76 +393,311 @@ class _$_PeopleModel implements _PeopleModel {
 
 abstract class _PeopleModel implements PeopleModel {
   const factory _PeopleModel(
-      {@JsonKey(name: "name") String? name,
-      @JsonKey(name: "height") String? height,
-      @JsonKey(name: "mass") String? mass,
-      @JsonKey(name: "hair_color") String? hairColor,
-      @JsonKey(name: "skin_color") String? skinColor,
-      @JsonKey(name: "eye_color") String? eyeColor,
-      @JsonKey(name: "birth_year") String? birthYear,
+      {@JsonKey(name: "id") String? id,
+      @JsonKey(name: "title") String? title,
+      @JsonKey(name: "firstName") String? firstName,
+      @JsonKey(name: "lastName") String? lastName,
       @JsonKey(name: "gender") String? gender,
-      @JsonKey(name: "homeworld") String? homeworld,
-      @JsonKey(name: "films") List<String>? films,
-      @JsonKey(name: "species") List<dynamic>? species,
-      @JsonKey(name: "vehicles") List<String>? vehicles,
-      @JsonKey(name: "starships") List<String>? starships,
-      @JsonKey(name: "created") String? created,
-      @JsonKey(name: "edited") String? edited,
-      @JsonKey(name: "url") String? url}) = _$_PeopleModel;
+      @JsonKey(name: "email") String? email,
+      @JsonKey(name: "dateOfBirth") String? dateOfBirth,
+      @JsonKey(name: "registerDate") String? registerDate,
+      @JsonKey(name: "phone") String? phone,
+      @JsonKey(name: "picture") String? picture,
+      @JsonKey(name: "location") Location? location}) = _$_PeopleModel;
 
   factory _PeopleModel.fromJson(Map<String, dynamic> json) =
       _$_PeopleModel.fromJson;
 
   @override
-  @JsonKey(name: "name")
-  String? get name;
+  @JsonKey(name: "id")
+  String? get id;
   @override
-  @JsonKey(name: "height")
-  String? get height;
+  @JsonKey(name: "title")
+  String? get title;
   @override
-  @JsonKey(name: "mass")
-  String? get mass;
+  @JsonKey(name: "firstName")
+  String? get firstName;
   @override
-  @JsonKey(name: "hair_color")
-  String? get hairColor;
-  @override
-  @JsonKey(name: "skin_color")
-  String? get skinColor;
-  @override
-  @JsonKey(name: "eye_color")
-  String? get eyeColor;
-  @override
-  @JsonKey(name: "birth_year")
-  String? get birthYear;
+  @JsonKey(name: "lastName")
+  String? get lastName;
   @override
   @JsonKey(name: "gender")
   String? get gender;
   @override
-  @JsonKey(name: "homeworld")
-  String? get homeworld;
+  @JsonKey(name: "email")
+  String? get email;
   @override
-  @JsonKey(name: "films")
-  List<String>? get films;
+  @JsonKey(name: "dateOfBirth")
+  String? get dateOfBirth;
   @override
-  @JsonKey(name: "species")
-  List<dynamic>? get species;
+  @JsonKey(name: "registerDate")
+  String? get registerDate;
   @override
-  @JsonKey(name: "vehicles")
-  List<String>? get vehicles;
+  @JsonKey(name: "phone")
+  String? get phone;
   @override
-  @JsonKey(name: "starships")
-  List<String>? get starships;
+  @JsonKey(name: "picture")
+  String? get picture;
   @override
-  @JsonKey(name: "created")
-  String? get created;
-  @override
-  @JsonKey(name: "edited")
-  String? get edited;
-  @override
-  @JsonKey(name: "url")
-  String? get url;
+  @JsonKey(name: "location")
+  Location? get location;
   @override
   @JsonKey(ignore: true)
   _$PeopleModelCopyWith<_PeopleModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Location _$LocationFromJson(Map<String, dynamic> json) {
+  return _Location.fromJson(json);
+}
+
+/// @nodoc
+class _$LocationTearOff {
+  const _$LocationTearOff();
+
+  _Location call(
+      {@JsonKey(name: "street") String? street,
+      @JsonKey(name: "city") String? city,
+      @JsonKey(name: "state") String? state,
+      @JsonKey(name: "country") String? country,
+      @JsonKey(name: "timezone") String? timezone}) {
+    return _Location(
+      street: street,
+      city: city,
+      state: state,
+      country: country,
+      timezone: timezone,
+    );
+  }
+
+  Location fromJson(Map<String, Object?> json) {
+    return Location.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $Location = _$LocationTearOff();
+
+/// @nodoc
+mixin _$Location {
+  @JsonKey(name: "street")
+  String? get street => throw _privateConstructorUsedError;
+  @JsonKey(name: "city")
+  String? get city => throw _privateConstructorUsedError;
+  @JsonKey(name: "state")
+  String? get state => throw _privateConstructorUsedError;
+  @JsonKey(name: "country")
+  String? get country => throw _privateConstructorUsedError;
+  @JsonKey(name: "timezone")
+  String? get timezone => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LocationCopyWith<Location> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LocationCopyWith<$Res> {
+  factory $LocationCopyWith(Location value, $Res Function(Location) then) =
+      _$LocationCopyWithImpl<$Res>;
+  $Res call(
+      {@JsonKey(name: "street") String? street,
+      @JsonKey(name: "city") String? city,
+      @JsonKey(name: "state") String? state,
+      @JsonKey(name: "country") String? country,
+      @JsonKey(name: "timezone") String? timezone});
+}
+
+/// @nodoc
+class _$LocationCopyWithImpl<$Res> implements $LocationCopyWith<$Res> {
+  _$LocationCopyWithImpl(this._value, this._then);
+
+  final Location _value;
+  // ignore: unused_field
+  final $Res Function(Location) _then;
+
+  @override
+  $Res call({
+    Object? street = freezed,
+    Object? city = freezed,
+    Object? state = freezed,
+    Object? country = freezed,
+    Object? timezone = freezed,
+  }) {
+    return _then(_value.copyWith(
+      street: street == freezed
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String?,
+      city: city == freezed
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
+      state: state == freezed
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as String?,
+      country: country == freezed
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String?,
+      timezone: timezone == freezed
+          ? _value.timezone
+          : timezone // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$LocationCopyWith<$Res> implements $LocationCopyWith<$Res> {
+  factory _$LocationCopyWith(_Location value, $Res Function(_Location) then) =
+      __$LocationCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {@JsonKey(name: "street") String? street,
+      @JsonKey(name: "city") String? city,
+      @JsonKey(name: "state") String? state,
+      @JsonKey(name: "country") String? country,
+      @JsonKey(name: "timezone") String? timezone});
+}
+
+/// @nodoc
+class __$LocationCopyWithImpl<$Res> extends _$LocationCopyWithImpl<$Res>
+    implements _$LocationCopyWith<$Res> {
+  __$LocationCopyWithImpl(_Location _value, $Res Function(_Location) _then)
+      : super(_value, (v) => _then(v as _Location));
+
+  @override
+  _Location get _value => super._value as _Location;
+
+  @override
+  $Res call({
+    Object? street = freezed,
+    Object? city = freezed,
+    Object? state = freezed,
+    Object? country = freezed,
+    Object? timezone = freezed,
+  }) {
+    return _then(_Location(
+      street: street == freezed
+          ? _value.street
+          : street // ignore: cast_nullable_to_non_nullable
+              as String?,
+      city: city == freezed
+          ? _value.city
+          : city // ignore: cast_nullable_to_non_nullable
+              as String?,
+      state: state == freezed
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as String?,
+      country: country == freezed
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String?,
+      timezone: timezone == freezed
+          ? _value.timezone
+          : timezone // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Location implements _Location {
+  const _$_Location(
+      {@JsonKey(name: "street") this.street,
+      @JsonKey(name: "city") this.city,
+      @JsonKey(name: "state") this.state,
+      @JsonKey(name: "country") this.country,
+      @JsonKey(name: "timezone") this.timezone});
+
+  factory _$_Location.fromJson(Map<String, dynamic> json) =>
+      _$$_LocationFromJson(json);
+
+  @override
+  @JsonKey(name: "street")
+  final String? street;
+  @override
+  @JsonKey(name: "city")
+  final String? city;
+  @override
+  @JsonKey(name: "state")
+  final String? state;
+  @override
+  @JsonKey(name: "country")
+  final String? country;
+  @override
+  @JsonKey(name: "timezone")
+  final String? timezone;
+
+  @override
+  String toString() {
+    return 'Location(street: $street, city: $city, state: $state, country: $country, timezone: $timezone)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Location &&
+            const DeepCollectionEquality().equals(other.street, street) &&
+            const DeepCollectionEquality().equals(other.city, city) &&
+            const DeepCollectionEquality().equals(other.state, state) &&
+            const DeepCollectionEquality().equals(other.country, country) &&
+            const DeepCollectionEquality().equals(other.timezone, timezone));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(street),
+      const DeepCollectionEquality().hash(city),
+      const DeepCollectionEquality().hash(state),
+      const DeepCollectionEquality().hash(country),
+      const DeepCollectionEquality().hash(timezone));
+
+  @JsonKey(ignore: true)
+  @override
+  _$LocationCopyWith<_Location> get copyWith =>
+      __$LocationCopyWithImpl<_Location>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_LocationToJson(this);
+  }
+}
+
+abstract class _Location implements Location {
+  const factory _Location(
+      {@JsonKey(name: "street") String? street,
+      @JsonKey(name: "city") String? city,
+      @JsonKey(name: "state") String? state,
+      @JsonKey(name: "country") String? country,
+      @JsonKey(name: "timezone") String? timezone}) = _$_Location;
+
+  factory _Location.fromJson(Map<String, dynamic> json) = _$_Location.fromJson;
+
+  @override
+  @JsonKey(name: "street")
+  String? get street;
+  @override
+  @JsonKey(name: "city")
+  String? get city;
+  @override
+  @JsonKey(name: "state")
+  String? get state;
+  @override
+  @JsonKey(name: "country")
+  String? get country;
+  @override
+  @JsonKey(name: "timezone")
+  String? get timezone;
+  @override
+  @JsonKey(ignore: true)
+  _$LocationCopyWith<_Location> get copyWith =>
       throw _privateConstructorUsedError;
 }

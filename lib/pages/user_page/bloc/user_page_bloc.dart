@@ -19,16 +19,16 @@ import '../../../data/model/vehicle_model/vehicle_model.dart';
 import '../../../data/repository/article_repository/article_repository.dart';
 import '../../../utils/shared_preference/app_shared_preference.dart';
 
-part 'article_event.dart';
-part 'article_state.dart';
+part 'user_page_event.dart';
+part 'user_page_state.dart';
 
-class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
-  ArticlePageBloc(this.articleRepository) : super(ArticlePageInitial());
+class UserPageBloc extends Bloc<UserPageEvent, UserPageState> {
+  UserPageBloc(this.articleRepository) : super(ArticlePageInitial());
 
   final ArticleRepository articleRepository;
 
   @override
-  Stream<ArticlePageState> mapEventToState(ArticlePageEvent event) async* {
+  Stream<UserPageState> mapEventToState(UserPageEvent event) async* {
     if (event is ArticleFetchEvent) {
       yield* _mapArticleFetchEventToState(event, state);
     } else if (event is ArticleReadDetailEvent) {
@@ -44,18 +44,18 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
     }
   }
 
-  ArticlePageState _mapArticleBackEventToState(
+  UserPageState _mapArticleBackEventToState(
     ArticleBackEvent event,
-    ArticlePageState state,
+    UserPageState state,
   ) {
     return state.copyWith(
       isSearch: false,
     );
   }
 
-  Stream<ArticlePageState> _mapArticleFetchEventToState(
+  Stream<UserPageState> _mapArticleFetchEventToState(
     ArticleFetchEvent event,
-    ArticlePageState state,
+    UserPageState state,
   ) async* {
     if(event.isBottomScroll){
       yield state.copyWith(
@@ -84,15 +84,15 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
       List<PeopleModel>data = [];
       String next = '';
 
-      if (response.results != null) {
-        if (state.listArticle != null && event.page != 1) {
-          data = state.listArticle??[];
-          data.addAll(response.results);
+      if (response.data != null) {
+        if (state.listPeople != null && event.page != 1) {
+          data = state.listPeople??[];
+          data.addAll(response.data);
         } else {
-          data = response.results;
+          data = response.data;
         }
         next = response.next??'';
-        if (response.next != null) {
+        if (((response.limit??0)*(response.page??1)) < (response.total??0)) {
           page = state.page + 1;
         } else {
           page = 1;
@@ -124,130 +124,130 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
     }
   }
 
-  Stream<ArticlePageState> _mapArticleListStarshipsHorizontalEventToState(
+  Stream<UserPageState> _mapArticleListStarshipsHorizontalEventToState(
       ArticleListStarshipsHorizontalEvent event,
-    ArticlePageState state,
+    UserPageState state,
   ) async* {
-    yield state.copyWith(
-        submitStatus: FormzStatus.submissionInProgress,
-        type: 'fetching-detail');
-    try {
-      StarshipTempModel starshipTempModel =
-          await AppSharedPreference.getStarshipModel();
-
-      if (event.listData.isNotEmpty) {
-          List<StarshipModel> listStarship = state.listStarship ?? [];
-        StarshipModel response =
-            await articleRepository.readDetailForListStarship(event.id);
-
-        if (starshipTempModel.name != state.articleDetailModel?.name ||
-            (starshipTempModel.name == state.articleDetailModel?.name &&
-                (listStarship.length >=
-                    state.articleDetailModel!.starships!.length))) {
-          listStarship.clear();
-          AppSharedPreference.setStarshipModel(StarshipTempModel(
-              name: state.articleDetailModel?.name, listData: listStarship));
-          listStarship.add(response);
-        } else {
-          starshipTempModel.listData?.addAll(listStarship);
-          listStarship.add(response);
-          }
-
-          if (response.name != null) {
-            yield state.copyWith(
-              submitStatus: FormzStatus.submissionSuccess,
-              listStarship: listStarship,
-              type: 'fetching-starships',
-            );
-          }
-        } else {
-          yield state.copyWith(
-            submitStatus: FormzStatus.submissionSuccess,
-            listStarship: [],
-            type: 'fetching-starships',
-          );
-        }
-    } on ArticleErrorException catch (e) {
-      print(e);
-      yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
-    } on Exception catch (a) {
-      if (a is NetworkConnectionException) {
-        yield state.copyWith(
-            submitStatus: FormzStatus.submissionFailure,
-            errorMessage: "internetConnection");
-      }else if (a is TimeoutCustomException) {
-        yield state.copyWith(
-            submitStatus: FormzStatus.submissionFailure,
-            errorMessage: "timeout");
-      } else {
-        yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
-      }
-    }
+    // yield state.copyWith(
+    //     submitStatus: FormzStatus.submissionInProgress,
+    //     type: 'fetching-detail');
+    // try {
+    //   StarshipTempModel starshipTempModel =
+    //       await AppSharedPreference.getStarshipModel();
+    //
+    //   if (event.listData.isNotEmpty) {
+    //       List<StarshipModel> listStarship = state.listStarship ?? [];
+    //     StarshipModel response =
+    //         await articleRepository.readDetailForListStarship(event.id);
+    //
+    //     if (starshipTempModel.name != state.articleDetailModel?.name ||
+    //         (starshipTempModel.name == state.articleDetailModel?.name &&
+    //             (listStarship.length >=
+    //                 state.articleDetailModel!.starships!.length))) {
+    //       listStarship.clear();
+    //       AppSharedPreference.setStarshipModel(StarshipTempModel(
+    //           name: state.articleDetailModel?.name, listData: listStarship));
+    //       listStarship.add(response);
+    //     } else {
+    //       starshipTempModel.listData?.addAll(listStarship);
+    //       listStarship.add(response);
+    //       }
+    //
+    //       if (response.name != null) {
+    //         yield state.copyWith(
+    //           submitStatus: FormzStatus.submissionSuccess,
+    //           listStarship: listStarship,
+    //           type: 'fetching-starships',
+    //         );
+    //       }
+    //     } else {
+    //       yield state.copyWith(
+    //         submitStatus: FormzStatus.submissionSuccess,
+    //         listStarship: [],
+    //         type: 'fetching-starships',
+    //       );
+    //     }
+    // } on ArticleErrorException catch (e) {
+    //   print(e);
+    //   yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
+    // } on Exception catch (a) {
+    //   if (a is NetworkConnectionException) {
+    //     yield state.copyWith(
+    //         submitStatus: FormzStatus.submissionFailure,
+    //         errorMessage: "internetConnection");
+    //   }else if (a is TimeoutCustomException) {
+    //     yield state.copyWith(
+    //         submitStatus: FormzStatus.submissionFailure,
+    //         errorMessage: "timeout");
+    //   } else {
+    //     yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
+    //   }
+    // }
   }
 
-  Stream<ArticlePageState> _mapArticleListVehiclesHorizontalEventToState(
+  Stream<UserPageState> _mapArticleListVehiclesHorizontalEventToState(
     ArticleListVehiclesHorizontalEvent event,
-    ArticlePageState state,
+    UserPageState state,
   ) async* {
-    yield state.copyWith(
-        submitStatus: FormzStatus.submissionInProgress,
-        type: 'fetching-detail');
-    try {
-      VehicleTempModel vehicleTempModel =
-          await AppSharedPreference.getVehicleipModel();
-      if (event.listData.isNotEmpty) {
-        List<VehicleModel> listVehicle = state.listVehicle ?? [];
-        VehicleModel response =
-            await articleRepository.readDetailForListVehicle(event.id);
-
-        if (vehicleTempModel.name != state.articleDetailModel?.name ||
-            (vehicleTempModel.name == state.articleDetailModel?.name &&
-                (listVehicle.length >=
-                    state.articleDetailModel!.vehicles!.length))) {
-          listVehicle.clear();
-          AppSharedPreference.setVehicleModel(VehicleTempModel(
-              name: state.articleDetailModel?.name, listData: listVehicle));
-          listVehicle.add(response);
-        } else {
-          vehicleTempModel.listData?.addAll(listVehicle);
-          listVehicle.add(response);
-        }
-
-        if (response.name != null) {
-          yield state.copyWith(
-            submitStatus: FormzStatus.submissionSuccess,
-            listVehicle: listVehicle,
-            type: 'fetching-vehicle',
-          );
-        }
-      } else {
-        yield state.copyWith(
-          submitStatus: FormzStatus.submissionSuccess,
-          listStarship: [],
-          type: 'fetching-vehicle',
-        );
-      }
-    } on ArticleErrorException catch (e) {
-      print(e);
-      yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
-    } on Exception catch (a) {
-      if (a is NetworkConnectionException) {
-        yield state.copyWith(
-            submitStatus: FormzStatus.submissionFailure,
-            errorMessage: "internetConnection");
-      }else if (a is TimeoutCustomException) {
-        yield state.copyWith(
-            submitStatus: FormzStatus.submissionFailure,
-            errorMessage: "timeout");
-      }  else {
-        yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
-      }
-    }
+    // yield state.copyWith(
+    //     submitStatus: FormzStatus.submissionInProgress,
+    //     type: 'fetching-detail');
+    // try {
+    //   VehicleTempModel vehicleTempModel =
+    //       await AppSharedPreference.getVehicleipModel();
+    //   if (event.listData.isNotEmpty) {
+    //     List<VehicleModel> listVehicle = state.listVehicle ?? [];
+    //     VehicleModel response =
+    //         await articleRepository.readDetailForListVehicle(event.id);
+    //
+    //     if (vehicleTempModel.name != state.articleDetailModel?.name ||
+    //         (vehicleTempModel.name == state.articleDetailModel?.name &&
+    //             (listVehicle.length >=
+    //                 state.articleDetailModel!.vehicles!.length))) {
+    //       listVehicle.clear();
+    //       AppSharedPreference.setVehicleModel(VehicleTempModel(
+    //           name: state.articleDetailModel?.name, listData: listVehicle));
+    //       listVehicle.add(response);
+    //     } else {
+    //       vehicleTempModel.listData?.addAll(listVehicle);
+    //       listVehicle.add(response);
+    //     }
+    //
+    //     if (response.name != null) {
+    //       yield state.copyWith(
+    //         submitStatus: FormzStatus.submissionSuccess,
+    //         listVehicle: listVehicle,
+    //         type: 'fetching-vehicle',
+    //       );
+    //     }
+    //   } else {
+    //     yield state.copyWith(
+    //       submitStatus: FormzStatus.submissionSuccess,
+    //       listStarship: [],
+    //       type: 'fetching-vehicle',
+    //     );
+    //   }
+    // } on ArticleErrorException catch (e) {
+    //   print(e);
+    //   yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
+    // } on Exception catch (a) {
+    //   if (a is NetworkConnectionException) {
+    //     yield state.copyWith(
+    //         submitStatus: FormzStatus.submissionFailure,
+    //         errorMessage: "internetConnection");
+    //   }else if (a is TimeoutCustomException) {
+    //     yield state.copyWith(
+    //         submitStatus: FormzStatus.submissionFailure,
+    //         errorMessage: "timeout");
+    //   }  else {
+    //     yield state.copyWith(submitStatus: FormzStatus.submissionFailure);
+    //   }
+    // }
   }
 
-  Stream<ArticlePageState> _mapArticleReadEventToState(
+  Stream<UserPageState> _mapArticleReadEventToState(
     ArticleReadDetailEvent event,
-    ArticlePageState state,
+    UserPageState state,
   ) async* {
     yield state.copyWith(
         submitStatus: FormzStatus.submissionInProgress,
@@ -256,7 +256,7 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
       PeopleModel response =
           await articleRepository.readDetailArticle(event.id);
 
-      if (response.name != null) {
+      if (response.id != null) {
         yield state.copyWith(
           submitStatus: FormzStatus.submissionSuccess,
           articleDetailModel: response,
@@ -277,9 +277,9 @@ class ArticlePageBloc extends Bloc<ArticlePageEvent, ArticlePageState> {
     }
   }
 
-  Stream<ArticlePageState> _mapArticleReadHomeworldEventToState(
+  Stream<UserPageState> _mapArticleReadHomeworldEventToState(
       ArticleReadHomeworldEvent event,
-      ArticlePageState state,
+      UserPageState state,
       ) async* {
     yield state.copyWith(
         submitStatus: FormzStatus.submissionInProgress,

@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:swapi/data/model/starship_model/starship_model.dart';
-import 'package:swapi/data/model/starship_model/starship_temp_model.dart';
+import 'package:social_media/data/model/starship_model/starship_model.dart';
+import 'package:social_media/data/model/starship_model/starship_temp_model.dart';
 import '../../common/injector/injector.dart';
 import '../../data/model/vehicle_model/vehicle_temp_model.dart';
 

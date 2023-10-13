@@ -1,7 +1,5 @@
-
-
-import 'package:swapi/data/model/planet_model/planet_model.dart';
-import 'package:swapi/data/model/starship_model/starship_model.dart';
+import 'package:social_media/data/model/planet_model/planet_model.dart';
+import 'package:social_media/data/model/starship_model/starship_model.dart';
 
 import '../../../common/exceptions/network_connection_exception.dart';
 import '../../../common/network/network_info.dart';
@@ -28,7 +26,17 @@ class ArticleRepositoryImpl extends ArticleRepository {
   }
 
   @override
-  Future<PeopleModel> readDetailArticle(int id) async {
+  Future<ResponseModel> fetchPost(int page, String start, String id, String end,
+      String tag, bool isFilter, bool isFromUser) async {
+    if (await networkInfo.isConnected) {
+      return remoteDatasource.fetchPost(
+          page.toString(), start, id, end, tag, isFilter, isFromUser);
+    }
+    throw NetworkConnectionException();
+  }
+
+  @override
+  Future<PeopleModel> readDetailArticle(String id) async {
     if (await networkInfo.isConnected) {
       return remoteDatasource.readDetailArticle(id);
     }
@@ -44,7 +52,7 @@ class ArticleRepositoryImpl extends ArticleRepository {
   }
 
   @override
-  Future<StarshipModel>readDetailForListStarship( int id) async {
+  Future<StarshipModel> readDetailForListStarship(int id) async {
     if (await networkInfo.isConnected) {
       return remoteDatasource.readDetailStarship(id);
     }
@@ -52,7 +60,7 @@ class ArticleRepositoryImpl extends ArticleRepository {
   }
 
   @override
-  Future<VehicleModel>readDetailForListVehicle( int id) async {
+  Future<VehicleModel> readDetailForListVehicle(int id) async {
     if (await networkInfo.isConnected) {
       return remoteDatasource.readDetailVehicle(id);
     }

@@ -1,4 +1,4 @@
-import 'package:swapi/common/exceptions/server_exception.dart';
+import 'package:social_media/common/exceptions/server_exception.dart';
 
 
 

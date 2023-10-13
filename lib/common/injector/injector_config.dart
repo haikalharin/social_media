@@ -1,11 +1,12 @@
 
-import 'package:swapi/pages/first_page/bloc/article_bloc.dart';
+import 'package:social_media/pages/user_page/bloc/user_page_bloc.dart';
 import 'package:kiwi/kiwi.dart';
 
 import '../../data/datasource/remote_datasource.dart';
 
 import '../../data/repository/article_repository/article_repository.dart';
 import '../../data/repository/article_repository/article_repository_impl.dart';
+import '../../pages/consultation_page/bloc/post_page_bloc.dart';
 import '../network/http/http_client.dart';
 import '../network/network_info.dart';
 
@@ -40,7 +41,8 @@ abstract class InjectorConfig {
 
 
 
-  @Register.singleton(ArticlePageBloc)
+  @Register.singleton(UserPageBloc)
+  @Register.singleton(PostPageBloc)
 
   void _configureBlocs();
 

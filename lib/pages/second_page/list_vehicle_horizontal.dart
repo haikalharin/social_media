@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:formz/formz.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:swapi/data/model/starship_model/starship_model.dart';
-import 'package:swapi/data/model/vehicle_model/vehicle_model.dart';
-import 'package:swapi/pages/first_page/bloc/article_bloc.dart';
+import 'package:social_media/data/model/starship_model/starship_model.dart';
+import 'package:social_media/data/model/vehicle_model/vehicle_model.dart';
+import 'package:social_media/pages/user_page/bloc/user_page_bloc.dart';
 
 import '../../utils/epragnancy_color.dart';
 
@@ -23,7 +23,7 @@ class ListVehicleHorizontal extends StatefulWidget {
 class _ListVehicleHorizontalState extends State<ListVehicleHorizontal> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ArticlePageBloc, ArticlePageState>(
+    return BlocBuilder<UserPageBloc, UserPageState>(
       builder: (context, state) {
         return Container(
           height: 150.h,

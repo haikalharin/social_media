@@ -1,7 +1,9 @@
-import 'package:swapi/pages/first_page/bloc/article_bloc.dart';
-import 'package:swapi/pages/first_page/list_article_vertical.dart';
-import 'package:swapi/routes/routes.dart';
-import 'package:swapi/utils/flavors.dart';
+import 'package:social_media/pages/consultation_page/bloc/post_page_bloc.dart';
+import 'package:social_media/pages/navbar_page/bottom_nav.dart';
+import 'package:social_media/pages/user_page/bloc/user_page_bloc.dart';
+import 'package:social_media/pages/user_page/list_user_vertical.dart';
+import 'package:social_media/routes/routes.dart';
+import 'package:social_media/utils/flavors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -29,15 +31,16 @@ class MyApp extends StatelessWidget {
       designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (BuildContext context, Widget? child) { return  MultiBlocProvider(
+      builder: (BuildContext context, Widget? child) {
+        return  MultiBlocProvider(
           providers: _getProviders(),
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'Games',
-            home: ListArticleVertical(),
+            title: 'Social Media',
+            home: NavbarPage(),
             // home: UkPage(UjiKelayakanModel()),
             onGenerateRoute: Routes.generateRoute,
-            theme:  MyTheme.getThemeData(isLight: false),
+            theme:  MyTheme.getThemeData(isLight: true),
             localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate,
@@ -48,7 +51,12 @@ class MyApp extends StatelessWidget {
   }
 
   List<BlocProvider> _getProviders() => [
-    BlocProvider<ArticlePageBloc>(
+    BlocProvider<UserPageBloc>(
         create: (context) =>
-            Injector.container.resolve<ArticlePageBloc>()),  ];
+            Injector.container.resolve<UserPageBloc>()),
+
+    BlocProvider<PostPageBloc>(
+        create: (context) =>
+            Injector.container.resolve<PostPageBloc>()),
+  ];
 }

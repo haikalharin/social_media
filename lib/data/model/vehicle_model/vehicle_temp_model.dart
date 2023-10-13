@@ -5,7 +5,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
 
-import 'package:swapi/data/model/vehicle_model/vehicle_model.dart';
+import 'package:social_media/data/model/vehicle_model/vehicle_model.dart';
 
 part 'vehicle_temp_model.freezed.dart';
 part 'vehicle_temp_model.g.dart';

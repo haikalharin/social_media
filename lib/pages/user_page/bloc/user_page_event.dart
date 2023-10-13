@@ -1,8 +1,8 @@
-part of 'article_bloc.dart';
+part of 'user_page_bloc.dart';
 
 @immutable
-abstract class ArticlePageEvent extends Equatable {
-  const ArticlePageEvent();
+abstract class UserPageEvent extends Equatable {
+  const UserPageEvent();
 
   @override
   List<Object> get props => [];
@@ -10,7 +10,7 @@ abstract class ArticlePageEvent extends Equatable {
 
 enum SortEnum { asc, desc }
 
-class ArticleFetchEvent extends ArticlePageEvent {
+class ArticleFetchEvent extends UserPageEvent {
   const ArticleFetchEvent({
     this.page = 0,
     this.isBottomScroll = false,
@@ -33,15 +33,15 @@ class ArticleFetchEvent extends ArticlePageEvent {
   List<Object> get props => [];
 }
 
-class ArticleReadDetailEvent extends ArticlePageEvent {
+class ArticleReadDetailEvent extends UserPageEvent {
   const ArticleReadDetailEvent(this.id);
-  final int id;
+  final String id;
 
   @override
   List<Object> get props => [id];
 }
 
-class ArticleReadHomeworldEvent extends ArticlePageEvent {
+class ArticleReadHomeworldEvent extends UserPageEvent {
   const ArticleReadHomeworldEvent(this.id);
   final int id;
 
@@ -49,7 +49,7 @@ class ArticleReadHomeworldEvent extends ArticlePageEvent {
   List<Object> get props => [id];
 }
 
-class ArticleListStarshipsHorizontalEvent extends ArticlePageEvent {
+class ArticleListStarshipsHorizontalEvent extends UserPageEvent {
   const ArticleListStarshipsHorizontalEvent({this.type= '', this.id = 0, this.listData = const[],this.isLast =false, });
   final String type;
   final int id;
@@ -60,7 +60,7 @@ class ArticleListStarshipsHorizontalEvent extends ArticlePageEvent {
   List<Object> get props => [type];
 }
 
-class ArticleListVehiclesHorizontalEvent extends ArticlePageEvent {
+class ArticleListVehiclesHorizontalEvent extends UserPageEvent {
   const ArticleListVehiclesHorizontalEvent({this.type= '', this.id = 0, this.listData = const[],this.isLast =false, });
   final String type;
   final int id;
@@ -71,7 +71,7 @@ class ArticleListVehiclesHorizontalEvent extends ArticlePageEvent {
   List<Object> get props => [type];
 }
 
-class ArticleBackEvent extends ArticlePageEvent {
+class ArticleBackEvent extends UserPageEvent {
   const ArticleBackEvent();
 
   @override

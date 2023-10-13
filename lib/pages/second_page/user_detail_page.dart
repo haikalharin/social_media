@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:formz/formz.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../common/color/color.dart';
@@ -9,10 +10,12 @@ import '../../common/injector/injector.dart';
 import '../../common/style/style.dart';
 import '../../common/utils/substring_util.dart';
 import '../../common/widget/dialog_default_internet_custom.dart';
+import '../../data/model/people_model/people_model.dart';
 import '../../utils/epragnancy_color.dart';
+import '../consultation_page/bloc/post_page_bloc.dart';
 import '../user_page/bloc/user_page_bloc.dart';
 import 'body_detail_people.dart';
-
+PeopleModel peopleModel = PeopleModel();
 class ArticleDetailPage extends StatefulWidget {
   final String? data;
 
@@ -32,60 +35,60 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
 
   @override
   void initState() {
-    Injector.resolve<ArticlePageBloc>()
-        .add(ArticleReadDetailEvent(getIdOrPage(widget.data ?? '0')));
+    Injector.resolve<UserPageBloc>()
+        .add(ArticleReadDetailEvent(widget.data ?? '0'));
     super.initState();
   }
 
 
   Future<void> _handleRefresh() async {
-    Injector.resolve<ArticlePageBloc>()
-        .add(ArticleReadDetailEvent(getIdOrPage(widget.data ?? '0')));
+    Injector.resolve<UserPageBloc>()
+        .add(ArticleReadDetailEvent(widget.data ?? '0'));
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return BlocListener<ArticlePageBloc, ArticlePageState>(
+    return BlocListener<UserPageBloc, UserPageState>(
       listener: (context, state) {
         if (state.submitStatus == FormzStatus.submissionSuccess &&
             state.type == 'fetching-detail') {
-          if (state.articleDetailModel?.starships?.length != 0) {
-            state.articleDetailModel?.starships?.forEach((element) {
-              Injector.resolve<ArticlePageBloc>().add(
-                  ArticleListStarshipsHorizontalEvent(
-                      type: 'starships',
-                      id: getIdOrPage(element),
-                      listData: state.articleDetailModel?.starships ?? []));
-            });
-          } else {
-            Injector.resolve<ArticlePageBloc>()
-                .add(ArticleListStarshipsHorizontalEvent(type: 'starships'));
-          }
+          // if (state.articleDetailModel?.starships?.length != 0) {
+          //   state.articleDetailModel?.starships?.forEach((element) {
+          //     Injector.resolve<UserPageBloc>().add(
+          //         ArticleListStarshipsHorizontalEvent(
+          //             type: 'starships',
+          //             id: getIdOrPage(element),
+          //             listData: state.articleDetailModel?.starships ?? []));
+          //   });
+          // } else {
+          //   Injector.resolve<UserPageBloc>()
+          //       .add(ArticleListStarshipsHorizontalEvent(type: 'starships'));
+          // }
         }  if (state.submitStatus == FormzStatus.submissionSuccess &&
             state.type == 'fetching-detail') {
-          if (state.articleDetailModel?.vehicles?.length != 0) {
-            state.articleDetailModel?.vehicles?.forEach((element) {
-              Injector.resolve<ArticlePageBloc>().add(
-                  ArticleListVehiclesHorizontalEvent(
-                      id: getIdOrPage(element),
-                      listData: state.articleDetailModel?.vehicles ?? []));
-            });
-          } else {
-            Injector.resolve<ArticlePageBloc>()
-                .add(ArticleListVehiclesHorizontalEvent());
-          }
+          // if (state.articleDetailModel?.vehicles?.length != 0) {
+          //   state.articleDetailModel?.vehicles?.forEach((element) {
+          //     Injector.resolve<UserPageBloc>().add(
+          //         ArticleListVehiclesHorizontalEvent(
+          //             id: getIdOrPage(element),
+          //             listData: state.articleDetailModel?.vehicles ?? []));
+          //   });
+          // } else {
+          //   Injector.resolve<UserPageBloc>()
+          //       .add(ArticleListVehiclesHorizontalEvent());
+          // }
         }
 
         if (state.submitStatus == FormzStatus.submissionSuccess &&
             state.type == 'fetching-detail') {
-          if (state.articleDetailModel?.homeworld != null) {
-              Injector.resolve<ArticlePageBloc>().add(
-                  ArticleReadHomeworldEvent(
-                      getIdOrPage(state.articleDetailModel?.homeworld??'0')));
+          if (state.articleDetailModel?.id != null) {
+            Injector.resolve<PostPageBloc>()
+                .add(PostFetchEvent(page: 1, isFromUser: true, id: state.articleDetailModel?.id??''));
           } else {
-            Injector.resolve<ArticlePageBloc>()
-                .add(ArticleReadHomeworldEvent(0));
+            Injector.resolve<PostPageBloc>()
+                .add(PostFetchEvent(page: 1,));
+
           }
         } else if (state.submitStatus == FormzStatus.submissionFailure) {
           if (state.errorMessage == "internetConnection") {
@@ -107,85 +110,88 @@ class _ArticleDetailPageState extends State<ArticleDetailPage> {
           }
         }
       },
-      child: Scaffold(
-        body: Stack(
-          children: [
-            NestedScrollView(
-              headerSliverBuilder:
-                  (BuildContext context, bool innerBoxIsScrolled) {
-                return <Widget>[
-                  SliverAppBar(
-                    expandedHeight: 300.0,
-                    floating: false,
-                    pinned: true,
-                    elevation: 0.0,
-                    leading: GestureDetector(
-                      child: const Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.redAccent,
-                      ),
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                    flexibleSpace: FlexibleSpaceBar(
-                      centerTitle: false,
-                      title: Container(),
-                      background: Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          BlocBuilder<ArticlePageBloc, ArticlePageState>(
-                            builder: (context, state) {
-                              return state.submitStatus ==
-                                      FormzStatus.submissionInProgress
-                                  ? SizedBox(
-                                      child: Shimmer.fromColors(
-                                        baseColor: Colors.deepPurple,
-                                        highlightColor: Colors.grey,
+      child:Scaffold(
+            body: Stack(
+              children: [
+                 NestedScrollView(
+                      headerSliverBuilder:
+                          (BuildContext context, bool innerBoxIsScrolled) {
+                        return <Widget>[
+                          SliverAppBar(
+                            expandedHeight: 300.0,
+                            floating: false,
+                            pinned: true,
+                            elevation: 0.0,
+                            leading: GestureDetector(
+                              child: const Icon(
+                                Icons.arrow_back_ios,
+                                color: Colors.redAccent,
+                              ),
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                            ),
+                            flexibleSpace: FlexibleSpaceBar(
+                              centerTitle: false,
+                              title: Container(child: Text('Detail'),),
+                              background: Stack(
+                                fit: StackFit.expand,
+                                children: [
+                                  BlocBuilder<UserPageBloc, UserPageState>(
+                                    builder: (context, state) {
+                                      return state.submitStatus ==
+                                              FormzStatus.submissionInProgress
+                                          ? SizedBox(
+                                              child: Shimmer.fromColors(
+                                                baseColor: Colors.deepPurple,
+                                                highlightColor: Colors.grey,
+                                                child: Container(
+                                                    width: MediaQuery.of(context)
+                                                        .size
+                                                        .width,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius.circular(10.0),
+                                                        color: EpregnancyColors.grey)),
+                                              ),
+                                            )
+                                          : state.articleDetailModel?.picture != null? Container(
+                                              alignment: Alignment.topCenter,
+                                              height: size.height - 300,
+                                              width: size.width,
+                                              decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                alignment: Alignment.center,
+                                                fit: BoxFit.fill,
+                                                image: NetworkImage(
+                                                    state.articleDetailModel?.picture ?? "")
+                                              )),
+                                            ):SizedBox(
                                         child: Container(
                                             width: MediaQuery.of(context)
                                                 .size
                                                 .width,
                                             decoration: BoxDecoration(
                                                 borderRadius:
-                                                    BorderRadius.circular(10.0),
+                                                BorderRadius.circular(10.0),
                                                 color: EpregnancyColors.grey)),
-                                      ),
-                                    )
-                                  : state.articleDetailModel?.url != null? Container(
-                                      alignment: Alignment.topCenter,
-                                      height: size.height - 300,
-                                      width: size.width,
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                        alignment: Alignment.center,
-                                        fit: BoxFit.fitHeight,
-                                        image: AssetImage(
-                                            'assets/people/${getIdOrPage(state.articleDetailModel?.url ?? "0")}.jpg'),
-                                      )),
-                                    ):SizedBox(
-                                child: Container(
-                                    width: MediaQuery.of(context)
-                                        .size
-                                        .width,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                        BorderRadius.circular(10.0),
-                                        color: EpregnancyColors.grey)),
-                              ) ;
-                            },
+                                      ) ;
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                        ],
-                      ),
+                        ];
+                      },
+                      body:  BodyDetailPeople(),
+
                     ),
-                  ),
-                ];
-              },
-              body: BodyDetailPeople(),
+
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+
     );
   }
 }
@@ -209,7 +215,7 @@ class TabTitle extends StatelessWidget {
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             label,
-            style: AppStyle.text.copyWith(color: Colors.white),
+            style: AppStyle.text,
           ),
           const SizedBox(
             height: 4,
@@ -273,7 +279,7 @@ class RectButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ArticlePageBloc, ArticlePageState>(
+    return BlocBuilder<UserPageBloc, UserPageState>(
   builder: (context, state) {
     return  state.submitStatus ==
         FormzStatus.submissionInProgress
@@ -299,7 +305,7 @@ class RectButton extends StatelessWidget {
       child: Center(
           child: Text(
         label,
-        style: AppStyle.text.copyWith(color: Colors.white),
+        style: AppStyle.text,
       )),
     );
   },
@@ -314,7 +320,7 @@ class NameAndProperties extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ArticlePageBloc, ArticlePageState>(
+    return BlocBuilder<UserPageBloc, UserPageState>(
       builder: (context, state) {
         return Row(
           mainAxisSize: MainAxisSize.max,
@@ -336,8 +342,8 @@ class NameAndProperties extends StatelessWidget {
                     ),
                   )
                 : Text(
-                    state.articleDetailModel?.name ?? '',
-                    style: AppStyle.h1Light,
+                    state.articleDetailModel?.firstName ?? '',
+                    style: AppStyle.h1Dark,
                   ),
           ],
         );

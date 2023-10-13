@@ -1,11 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../post/screen/create_post_screen.dart';
-import '../user/user_list_screen.dart';
-
-
-
+import 'package:social_media/pages/consultation_page/list_post_page.dart';
+import 'package:social_media/pages/user_page/list_user_vertical.dart';
 
 int indexBottomNavSelected = 0;
 bool isChangeIndex = false;
@@ -76,7 +73,7 @@ class _NavbarPageState extends State<NavbarPage> with TickerProviderStateMixin {
       },
       items: [
         BottomNavigationBarItem(
-          label: "Rekrutment saya",
+          label: "Home",
           activeIcon: ClipRRect(
             borderRadius: BorderRadius.circular(0),
             child: SvgPicture.asset(
@@ -97,7 +94,7 @@ class _NavbarPageState extends State<NavbarPage> with TickerProviderStateMixin {
           ),
         ),
         BottomNavigationBarItem(
-          label: " BE Rekrutment ",
+          label: "Favorit",
           activeIcon: ClipRRect(
             borderRadius: BorderRadius.circular(0),
             child: ClipRRect(
@@ -123,7 +120,7 @@ class _NavbarPageState extends State<NavbarPage> with TickerProviderStateMixin {
 
         ),
         BottomNavigationBarItem(
-          label: "Akun",
+          label: "People",
           activeIcon: ClipRRect(
             borderRadius: BorderRadius.circular(0),
             child: SvgPicture.asset(
@@ -163,11 +160,11 @@ class _NavbarPageState extends State<NavbarPage> with TickerProviderStateMixin {
   Widget _buildWidgetBody() {
     switch (indexSelected) {
       case 0:
-        return UserListScreen();
+        return ListPostPage();
       case 1:
-        return UserListScreen();
+        return ListUserVertical();
       case 2:
-        return UserListScreen();
+        return ListUserVertical();
       default:
         return Container();
     }

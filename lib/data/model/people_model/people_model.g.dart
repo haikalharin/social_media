@@ -8,45 +8,49 @@ part of 'people_model.dart';
 
 _$_PeopleModel _$$_PeopleModelFromJson(Map<String, dynamic> json) =>
     _$_PeopleModel(
-      name: json['name'] as String?,
-      height: json['height'] as String?,
-      mass: json['mass'] as String?,
-      hairColor: json['hair_color'] as String?,
-      skinColor: json['skin_color'] as String?,
-      eyeColor: json['eye_color'] as String?,
-      birthYear: json['birth_year'] as String?,
+      id: json['id'] as String?,
+      title: json['title'] as String?,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
       gender: json['gender'] as String?,
-      homeworld: json['homeworld'] as String?,
-      films:
-          (json['films'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      species: json['species'] as List<dynamic>?,
-      vehicles: (json['vehicles'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      starships: (json['starships'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      created: json['created'] as String?,
-      edited: json['edited'] as String?,
-      url: json['url'] as String?,
+      email: json['email'] as String?,
+      dateOfBirth: json['dateOfBirth'] as String?,
+      registerDate: json['registerDate'] as String?,
+      phone: json['phone'] as String?,
+      picture: json['picture'] as String?,
+      location: json['location'] == null
+          ? null
+          : Location.fromJson(json['location'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_PeopleModelToJson(_$_PeopleModel instance) =>
     <String, dynamic>{
-      'name': instance.name,
-      'height': instance.height,
-      'mass': instance.mass,
-      'hair_color': instance.hairColor,
-      'skin_color': instance.skinColor,
-      'eye_color': instance.eyeColor,
-      'birth_year': instance.birthYear,
+      'id': instance.id,
+      'title': instance.title,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
       'gender': instance.gender,
-      'homeworld': instance.homeworld,
-      'films': instance.films,
-      'species': instance.species,
-      'vehicles': instance.vehicles,
-      'starships': instance.starships,
-      'created': instance.created,
-      'edited': instance.edited,
-      'url': instance.url,
+      'email': instance.email,
+      'dateOfBirth': instance.dateOfBirth,
+      'registerDate': instance.registerDate,
+      'phone': instance.phone,
+      'picture': instance.picture,
+      'location': instance.location,
+    };
+
+_$_Location _$$_LocationFromJson(Map<String, dynamic> json) => _$_Location(
+      street: json['street'] as String?,
+      city: json['city'] as String?,
+      state: json['state'] as String?,
+      country: json['country'] as String?,
+      timezone: json['timezone'] as String?,
+    );
+
+Map<String, dynamic> _$$_LocationToJson(_$_Location instance) =>
+    <String, dynamic>{
+      'street': instance.street,
+      'city': instance.city,
+      'state': instance.state,
+      'country': instance.country,
+      'timezone': instance.timezone,
     };

@@ -6,4 +6,6 @@ dynamic getGameName(dynamic result) => result['game_name'];
 
 dynamic getPeopleDetail(dynamic result) => result['people_detail'];
 
+dynamic getIsFromUser(dynamic result) => result['is_from_user'];
+
 

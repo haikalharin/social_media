@@ -5,7 +5,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
 
-import 'package:swapi/data/model/starship_model/starship_model.dart';
+import 'package:social_media/data/model/starship_model/starship_model.dart';
 
 part 'starship_temp_model.freezed.dart';
 part 'starship_temp_model.g.dart';
